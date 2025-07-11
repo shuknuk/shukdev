@@ -1,17 +1,11 @@
 
-export enum ProjectRank {
-  Gold = 'Gold',
-  Silver = 'Silver',
-  Bronze = 'Bronze',
-  Current = 'Current'
-}
+export type ProjectRank = 'gold' | 'silver' | 'bronze';
 
 export interface Project {
   rank: ProjectRank;
   title: string;
   description: string;
-  role?: string;
   tech: string[];
+  githubUrl?: string;
   liveUrl?: string;
-  repoUrl: string;
 }
