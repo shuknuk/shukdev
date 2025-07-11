@@ -1,5 +1,5 @@
 {
-  "name": "Kinshuk Goel - Personal Portfolio",
-  "description": "A minimal, clean, and professional single-page portfolio for Kinshuk Goel, a developer and designer, built with React and Tailwind CSS.",
+  "name": "portfolio v3",
+  "description": "An advanced, interactive portfolio for Kinshuk Goel, a Computer Science student. Features include a command menu, project case studies, and a theme toggle, all built with React and Tailwind CSS.",
   "requestFramePermissions": []
 }

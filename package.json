@@ -1,5 +1,5 @@
 {
-  "name": "kinshuk-goel---personal-portfolio",
+  "name": "portfolio-v3",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,14 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "next-themes": "^0.4.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   }

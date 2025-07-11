@@ -1,37 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
-import { SunIcon, MoonIcon } from './icons';
 
-const ThemeToggle: React.FC = () => {
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
+import React from 'react';
+import { useTheme } from '../contexts/ThemeProvider';
+import { ICONS } from '../constants';
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
-  const toggleTheme = () => {
-    setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
-  };
+export function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
 
   return (
     <button
-      onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 h-12 w-12 bg-white/50 dark:bg-black/50 backdrop-blur-sm border border-neutral-200 dark:border-neutral-800 rounded-full flex items-center justify-center text-neutral-800 dark:text-neutral-200 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors"
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      className="relative flex items-center justify-center h-9 w-9 rounded-full bg-secondary text-secondary-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
       aria-label="Toggle theme"
     >
+      <ICONS.sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <ICONS.moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
-      {resolvedTheme === 'light' ? (
-        <SunIcon className="h-6 w-6" />
-      ) : (
-        <MoonIcon className="h-6 w-6" />
-      )}
     </button>
   );
-};
-
-export default ThemeToggle;
+}

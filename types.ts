@@ -1,11 +1,20 @@
 
-export type ProjectRank = 'gold' | 'silver' | 'bronze';
+export type Theme = 'dark' | 'light' | 'system';
 
 export interface Project {
-  rank: ProjectRank;
+  id: string;
   title: string;
+  category: 'Featured Work' | 'Creative Labs';
+  rank?: 'Gold' | 'Silver' | 'Bronze';
   description: string;
   tech: string[];
-  githubUrl?: string;
-  liveUrl?: string;
+  links: {
+    github?: string;
+    live?: string;
+  };
+  caseStudy?: {
+    challenge: string;
+    solution: string;
+    learnings: string;
+  };
 }

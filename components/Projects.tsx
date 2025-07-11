@@ -1,113 +1,158 @@
-import React from 'react';
-import type { Project, ProjectRank } from '../types';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/Card';
-import Badge from './ui/Badge';
-import Button from './ui/Button';
-import FadeInSection from './FadeInSection';
-import { GithubIcon, ExternalLinkIcon, CrownIcon, AwardIcon, MedalIcon } from './icons';
 
-const projects: Project[] = [
-  {
-    rank: 'gold',
-    title: 'Intelligent Resume Analyzer',
-    description: "An AI agent that analyzes resumes, compares them to job descriptions, and uses live web data to provide deeply tailored feedback.",
-    tech: ['Next.js', 'TypeScript', 'Python', 'FastAPI', 'Gemini API', 'LangChain', 'Docker'],
-  },
-  {
-    rank: 'gold',
-    title: 'BRHacks 2024',
-    description: 'Designed and developed the full website for our second annual high school hackathon. Fully responsive, animated, and deployed on Vercel.',
-    tech: ['Next.js', 'TailwindCSS', 'Framer Motion'],
-    githubUrl: 'https://github.com/shuknuk/brhacks24',
-    liveUrl: 'https://brhacks24.vercel.app/',
-  },
-  {
-    rank: 'silver',
-    title: 'BRHacks 2023',
-    description: 'Created the frontend and helped launch the first-ever BRHacks event site. Learned to collaborate under pressure and shipped a functional product.',
-    tech: ['Next.js', 'CSS'],
-    githubUrl: 'https://github.com/ethanw2457/2023BRHacksWebsite',
-  },
-  {
-    rank: 'silver',
-    title: 'Environmental Careers Guide',
-    description: 'Interactive website showcasing 10 environmental careers with quotes, icons, and real education links for an APES project.',
-    tech: ['Next.js', 'TailwindCSS', 'React Hooks'],
-    githubUrl: 'https://github.com/shuknuk/environmental-careers-guide',
-  },
-   {
-    rank: 'bronze',
-    title: 'GreenCoin',
-    description: 'Carbon footprint calculator for teens. Uses aesthetic design + gamification to make tracking your digital carbon footprint more appealing.',
-    tech: ['JavaScript', 'HTML/CSS'],
-    githubUrl: 'https://github.com/shuknuk/GreenCoin',
-  },
-  {
-    rank: 'bronze',
-    title: '3pfs-in-1',
-    description: 'A command-line tool that simplifies package search across Snap, Flatpak, and Apt for Linux power users.',
-    tech: ['Bash'],
-    githubUrl: 'https://github.com/shuknuk/3pfs-in-1',
-  },
-];
+import React, { useState } from 'react';
+import { Project } from '../types';
+import { PROJECTS_DATA, ICONS } from '../constants';
 
-const RankIcon: React.FC<{ rank: ProjectRank }> = ({ rank }) => {
-  const iconProps = { className: "h-6 w-6" };
-  const rankStyles: Record<ProjectRank, { icon: React.ReactNode; color: string; text: string }> = {
-    gold: { icon: <CrownIcon {...iconProps} />, color: 'text-yellow-500 dark:text-yellow-400', text: 'Gold Project' },
-    silver: { icon: <AwardIcon {...iconProps} />, color: 'text-slate-500 dark:text-slate-400', text: 'Silver Project' },
-    bronze: { icon: <MedalIcon {...iconProps} />, color: 'text-orange-500 dark:text-orange-400', text: 'Bronze Project' }
-  };
-  const { icon, color, text } = rankStyles[rank];
-  return <div className={`flex items-center gap-2 text-base font-medium ${color}`}>{icon}<span>{text}</span></div>;
+type Tab = 'Featured Work' | 'Creative Labs';
+
+const rankColorMap = {
+  Gold: 'bg-yellow-400/20 text-yellow-400 border-yellow-400/30',
+  Silver: 'bg-gray-400/20 text-gray-400 border-gray-400/30',
+  Bronze: 'bg-yellow-600/20 text-yellow-600 border-yellow-600/30',
 };
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-  <Card className="flex flex-col h-full">
-    <CardHeader className="p-8">
-      <div className="flex justify-between items-start mb-2">
-        <CardTitle className="text-2xl">{project.title}</CardTitle>
-        <RankIcon rank={project.rank} />
-      </div>
-    </CardHeader>
-    <CardContent className="flex-grow p-8 pt-0">
-      <p className="text-neutral-600 dark:text-neutral-400 text-base mb-6">{project.description}</p>
-      <div className="flex flex-wrap gap-3">
-        {project.tech.map(t => <Badge key={t}>{t}</Badge>)}
-      </div>
-    </CardContent>
-    <CardFooter className="mt-auto p-8 pt-0">
-      <div className="flex items-center gap-4">
-        {project.githubUrl && (
-          <Button asLink href={project.githubUrl} variant="outline" className="text-sm px-4 py-2 h-auto">
-            <GithubIcon className="mr-2 h-4 w-4" /> GitHub
-          </Button>
-        )}
-        {project.liveUrl && (
-          <Button asLink href={project.liveUrl} variant="outline" className="text-sm px-4 py-2 h-auto">
-            <ExternalLinkIcon className="mr-2 h-4 w-4" /> Live Site
-          </Button>
-        )}
-      </div>
-    </CardFooter>
-  </Card>
-);
+const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
+  if (!project.caseStudy) return null;
 
-const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-20 md:py-32 bg-white dark:bg-neutral-950">
-      <FadeInSection className="container mx-auto px-4 md:px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">Highlight Projects</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} />
-            ))}
-          </div>
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div 
+        className="w-full max-w-2xl m-4 bg-card text-card-foreground rounded-lg border border-border shadow-lg p-6 relative animate-in fade-in-0 zoom-in-95"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button onClick={onClose} className="absolute top-4 right-4 p-1 rounded-full hover:bg-muted">
+          <ICONS.x className="h-5 w-5 text-muted-foreground" />
+        </button>
+        <h2 className="text-2xl font-bold text-foreground mb-2">{project.title}</h2>
+        <div className="flex items-center space-x-2 mb-4">
+            {project.links.github && (
+              <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
+                <ICONS.github className="w-4 h-4 mr-1" /> GitHub
+              </a>
+            )}
+            {project.links.live && (
+              <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
+                <ICONS.externalLink className="w-4 h-4 mr-1" /> Live Site
+              </a>
+            )}
         </div>
-      </FadeInSection>
-    </section>
+        <div className="space-y-4 text-muted-foreground max-h-[60vh] overflow-y-auto pr-2">
+            <div>
+                <h3 className="font-semibold text-lg text-foreground mb-1">Challenge</h3>
+                <p>{project.caseStudy.challenge}</p>
+            </div>
+            <div>
+                <h3 className="font-semibold text-lg text-foreground mb-1">Solution</h3>
+                <p>{project.caseStudy.solution}</p>
+            </div>
+            <div>
+                <h3 className="font-semibold text-lg text-foreground mb-1">Key Learnings</h3>
+                <p>{project.caseStudy.learnings}</p>
+            </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Projects;
+
+const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> = ({ project, onCaseStudyClick }) => {
+  return (
+    <div className="p-6 bg-card rounded-lg border border-border flex flex-col h-full transition-shadow hover:shadow-md">
+      <div className="flex-grow">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-lg font-bold text-foreground">{project.title}</h3>
+          {project.rank && (
+            <span className={`flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full border ${rankColorMap[project.rank]}`}>
+              <ICONS.medal className="w-3 h-3" />
+              <span>{project.rank}</span>
+            </span>
+          )}
+        </div>
+        <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tech.map((t) => (
+            <span key={t} className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-md">{t}</span>
+          ))}
+        </div>
+      </div>
+      <div className="mt-auto pt-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {project.links.github && (
+              <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <ICONS.github className="w-4 h-4" />
+                <span>GitHub</span>
+              </a>
+            )}
+            {project.links.live && (
+              <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <ICONS.externalLink className="w-4 h-4" />
+                <span>Live Site</span>
+              </a>
+            )}
+          </div>
+          {project.caseStudy && (
+            <button onClick={onCaseStudyClick} className="text-sm font-semibold text-primary hover:underline">
+              View Case Study
+            </button>
+          )}
+      </div>
+    </div>
+  );
+};
+
+export function Projects() {
+  const [activeTab, setActiveTab] = useState<Tab>('Featured Work');
+  const [openModalId, setOpenModalId] = useState<string | null>(null);
+
+  const filteredProjects = PROJECTS_DATA.filter(p => p.category === activeTab);
+
+  const openCaseStudy = (projectId: string) => {
+    setOpenModalId(projectId);
+  };
+  
+  const closeCaseStudy = () => {
+    setOpenModalId(null);
+  };
+  
+  const projectToDisplayInModal = PROJECTS_DATA.find(p => p.id === openModalId);
+
+  return (
+    <section id="projects" className="py-20">
+      <h2 className="text-3xl font-bold text-center mb-10">My Work</h2>
+      
+      <div className="flex justify-center mb-8">
+        <div className="p-1 bg-secondary rounded-lg">
+          <button
+            onClick={() => setActiveTab('Featured Work')}
+            className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === 'Featured Work' ? 'bg-background shadow-sm text-primary' : 'text-muted-foreground hover:bg-muted/50'}`}
+          >
+            Featured Work
+          </button>
+          <button
+            onClick={() => setActiveTab('Creative Labs')}
+            className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === 'Creative Labs' ? 'bg-background shadow-sm text-primary' : 'text-muted-foreground hover:bg-muted/50'}`}
+          >
+            Creative Labs
+          </button>
+        </div>
+      </div>
+
+      <div 
+        key={activeTab}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in-on-change"
+      >
+        {filteredProjects.map((project) => (
+          <ProjectCard key={project.id} project={project} onCaseStudyClick={() => openCaseStudy(project.id)} />
+        ))}
+      </div>
+
+      {openModalId && projectToDisplayInModal && (
+        <CaseStudyDialog project={projectToDisplayInModal} onClose={closeCaseStudy} />
+      )}
+    </section>
+  );
+}
