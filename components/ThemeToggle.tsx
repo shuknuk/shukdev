@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 import { SunIcon, MoonIcon } from './icons';
 
-interface ThemeToggleProps {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
-}
+const ThemeToggle: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, toggleTheme }) => {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
+  };
+
   return (
     <button
       onClick={toggleTheme}
@@ -14,7 +25,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, toggleTheme }) => {
       aria-label="Toggle theme"
     >
       <span className="sr-only">Toggle theme</span>
-      {theme === 'light' ? (
+      {resolvedTheme === 'light' ? (
         <SunIcon className="h-6 w-6" />
       ) : (
         <MoonIcon className="h-6 w-6" />

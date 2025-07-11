@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import Particles from "@/components/ui/particles";
 
 export default function BackgroundParticles() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [color, setColor] = useState("#ffffff");
   
   // Particles configuration parameters
@@ -15,8 +15,8 @@ export default function BackgroundParticles() {
   useEffect(() => {
     // Set particle color based on theme
     // Using higher contrast colors for better visibility
-    setColor(theme === "dark" ? "#ffffff" : "#252525");
-  }, [theme]);
+    setColor(resolvedTheme === "dark" ? "#ffffff" : "#252525");
+  }, [resolvedTheme]);
 
   return (
     <div className="fixed inset-0 z-0">
