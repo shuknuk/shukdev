@@ -4,8 +4,45 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/Card'
 import Badge from './ui/Badge';
 import Button from './ui/Button';
 import FadeInSection from './FadeInSection';
-import { GithubIcon, ExternalLinkIcon, CrownIcon, AwardIcon, MedalIcon } from './icons';
+import {
+  GithubIcon,
+  ExternalLinkIcon,
+  CrownIcon,
+  AwardIcon,
+  MedalIcon,
+  NextJsIcon,
+  TypeScriptIcon,
+  PythonIcon,
+  FastApiIcon,
+  GeminiApiIcon,
+  LangChainIcon,
+  DockerIcon,
+  TailwindCssIcon,
+  JavaScriptIcon,
+  Html5Icon,
+  Css3Icon,
+  FramerMotionIcon,
+  ReactHooksIcon,
+  BashIcon
+} from './icons';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/Tabs';
+
+const techIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  'Next.js': NextJsIcon,
+  'TypeScript': TypeScriptIcon,
+  'Python': PythonIcon,
+  'FastAPI': FastApiIcon,
+  'Gemini API': GeminiApiIcon,
+  'LangChain': LangChainIcon,
+  'Docker': DockerIcon,
+  'TailwindCSS': TailwindCssIcon,
+  'JavaScript': JavaScriptIcon,
+  'CSS': Css3Icon,
+  'HTML': Html5Icon,
+  'Framer Motion': FramerMotionIcon,
+  'React Hooks': ReactHooksIcon,
+  'Bash': BashIcon
+};
 
 // Data for Featured Work
 const featuredWork: Project[] = [
@@ -45,7 +82,7 @@ const creativeLabs: Project[] = [
     rank: 'bronze',
     title: 'GreenCoin',
     description: 'Carbon footprint calculator for teens. Uses aesthetic design + gamification to make tracking your digital carbon footprint more appealing.',
-    tech: ['JavaScript', 'HTML/CSS'],
+    tech: ['JavaScript', 'HTML', 'CSS'],
     githubUrl: 'https://github.com/shuknuk/GreenCoin',
   },
   {
@@ -100,7 +137,15 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
     <CardContent className="flex-grow p-8 pt-0">
       <p className="text-neutral-600 dark:text-neutral-400 text-base mb-6 text-left">{project.description}</p>
       <div className="flex flex-wrap gap-3">
-        {project.tech.map(t => <Badge key={t}>{t}</Badge>)}
+        {project.tech.map(t => {
+          const IconComponent = techIcons[t];
+          return (
+            <Badge key={t} className="flex items-center">
+              {IconComponent && <IconComponent className="w-4 h-4 mr-1" />}
+              <span>{t}</span>
+            </Badge>
+          );
+        })}
       </div>
     </CardContent>
     <CardFooter className="mt-auto p-8 pt-0">
