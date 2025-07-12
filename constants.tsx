@@ -60,7 +60,7 @@ export const PROJECTS_DATA: Project[] = [
     id: 'brhacks23',
     title: 'BRHacks 2023',
     category: 'Featured Work',
-    rank: 'Silver',
+    rank: 'Bronze',
     description: 'Created the frontend and helped launch the first-ever BRHacks event site. Learned to collaborate with teammates under pressure and shipped a functional product in time for launch.',
     tech: ['Next.js', 'CSS'],
     links: {
