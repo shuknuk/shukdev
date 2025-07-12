@@ -47,7 +47,7 @@ const App: React.FC = () => {
   );
 
   const About: React.FC = () => (
-    <section id="about" className="py-20 bg-secondary text-center">
+    <section id="about" className="py-20 text-center">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="max-w-3xl mx-auto text-muted-foreground">
             I'm an 18-year-old programmer from New Jersey with a passion for building beautiful and functional applications. From designing hackathon websites to contributing to open-source tools, I love exploring the intersection of technology and design. I'm currently leveling up in data structures and backend development, always seeking new challenges that push my creative and technical boundaries.
@@ -88,9 +88,9 @@ const App: React.FC = () => {
         <CommandMenu open={isCommandMenuOpen} setOpen={setCommandMenuOpen} />
         <main className="container mx-auto px-4">
           <Hero />
+          <About />
           <Projects />
         </main>
-        <About />
         <Footer />
       </div>
     </ThemeProvider>
