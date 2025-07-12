@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Project } from '../types';
 import { PROJECTS_DATA, ICONS, getTechIconComponent } from '../constants';
@@ -43,15 +42,15 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
         <div className="space-y-4 text-muted-foreground max-h-[60vh] overflow-y-auto pr-2">
             <div>
                 <h3 className="font-semibold text-lg text-foreground mb-1">Challenge</h3>
-                <p>{project.caseStudy.challenge}</p>
+                <p dangerouslySetInnerHTML={{ __html: project.caseStudy.challenge }} />
             </div>
             <div>
                 <h3 className="font-semibold text-lg text-foreground mb-1">Solution</h3>
-                <p>{project.caseStudy.solution}</p>
+                <p dangerouslySetInnerHTML={{ __html: project.caseStudy.solution }} />
             </div>
             <div>
                 <h3 className="font-semibold text-lg text-foreground mb-1">Key Learnings</h3>
-                <p>{project.caseStudy.learnings}</p>
+                <p dangerouslySetInnerHTML={{ __html: project.caseStudy.learnings }} />
             </div>
         </div>
       </div>
