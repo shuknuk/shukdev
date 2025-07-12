@@ -113,6 +113,119 @@ export const PROJECTS_DATA: Project[] = [
   },
 ];
 
+export const TECH_ICONS: { [key: string]: (props: React.SVGProps<SVGSVGElement>) => JSX.Element } = {
+  nextjs: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.18 15.41L12 8.88v8.53h-1.85V6.59h1.9l4.22 8.53V6.59h1.83v10.82h-1.82z" />
+    </svg>
+  ),
+  tailwindcss: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M12.001,4.5C7.228,4.5,3.5,5.645,3.5,7.563c0,1.917,3.728,3.062,8.501,3.062 c4.771,0,8.5-1.145,8.5-3.062C20.5,5.645,16.772,4.5,12.001,4.5z M12.001,13.5c-4.773,0-8.5,1.145-8.5,3.063 c0,1.917,3.727,3.062,8.5,3.062c4.771,0,8.5-1.145,8.5-3.062C20.5,14.645,16.772,13.5,12.001,13.5z"/>
+    </svg>
+  ),
+  'framer-motion': (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M4 12h8l-4 8V4l8 8H8"/>
+    </svg>
+  ),
+  python: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M17.5 11H14v-1c0-1.1-.9-2-2-2s-2 .9-2 2v1H7.5c-1.1 0-2 .9-2 2v1c0 1.1.9 2 2 2h3v1c0 1.1.9 2 2 2s2-.9 2-2v-1h2.5c1.1 0 2-.9 2-2v-1c0-1.1-.9-2-2-2zM12 1.5c-5.79 0-10.5 4.71-10.5 10.5s4.71 10.5 10.5 10.5 10.5-4.71 10.5-10.5S17.79 1.5 12 1.5zm0 19c-4.68 0-8.5-3.82-8.5-8.5S7.32 3.5 12 3.5s8.5 3.82 8.5 8.5-3.82 8.5-8.5 8.5z"/>
+    </svg>
+  ),
+  fastapi: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M7 2v11h3v9l7-12h-4l4-8z" /></svg>
+  ),
+  gemini: (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M12 2.5l1.5 4l4 1.5l-4 1.5l-1.5 4l-1.5-4l-4-1.5l4-1.5l1.5-4M12 21.5l-1.5-4l-4-1.5l4-1.5l1.5-4l1.5 4l4 1.5l-4 1.5l-1.5 4M4.5 9.5l-1-2.5l-2.5-1l2.5-1l1-2.5l1 2.5l2.5 1l-2.5 1l-1 2.5z" />
+    </svg>
+  ),
+  langchain: (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/>
+    </svg>
+  ),
+  docker: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M22.12,10.64a1.86,1.86,0,0,0-1.87-1.59H18.73V8.81a1.86,1.86,0,0,0-1.87-1.59H15.34V7a1.86,1.86,0,0,0-1.87-1.59H12.6V5.15A1.86,1.86,0,0,0,10.73,3.56H8.59A1.86,1.86,0,0,0,6.72,5.15V8.18H5.15A1.86,1.86,0,0,0,3.28,9.77v4.6a1.86,1.86,0,0,0,1.87,1.59H6.2v.32a2.38,2.38,0,0,0,2.39,2.44,2.5,2.5,0,0,0,2.3-.92.83.83,0,0,0,.15-.2,2.83,2.83,0,0,0,3.31,0,.83.83,0,0,0,.15.2,2.5,2.5,0,0,0,2.3.92,2.38,2.38,0,0,0,2.39-2.44v-.32h1.43a1.86,1.86,0,0,0,1.87-1.59V12.23A1.86,1.86,0,0,0,22.12,10.64ZM8.84,8.81V6.5h1.74V8.81ZM11.1,8.81V6.5h1.74V8.81ZM13.36,8.81V6.5h1.74V8.81Z"/>
+    </svg>
+  ),
+  vercel: (props) => (<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M12 2L2 22h20L12 2z"/></svg>),
+  css: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line>
+    </svg>
+  ),
+  html: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>
+    </svg>
+  ),
+  javascript: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <rect width="20" height="20" x="2" y="2" rx="2" ry="2" />
+      <path fill="hsl(var(--background))" d="M9.04,15.5H7.5V9.25h1.54V15.5z M14.6,12.64c0,1.44-0.81,2.25-2.03,2.25c-0.81,0-1.44-0.41-1.67-0.99h-0.05l-0.09,0.84H9.2V9.25h1.54v0.84h0.05c0.23-0.58,0.86-0.99,1.67-0.99C13.79,9.1,14.6,9.91,14.6,11.35V12.64z M13.06,12.5c0-0.72-0.36-1.22-0.95-1.22s-0.95,0.5-0.95,1.22v1.26c0,0.72,0.36,1.22,0.95,1.22s0.95-0.5,0.95-1.22V12.5z" />
+    </svg>
+  ),
+  nodejs: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M12,2.62L3.18,7.09v8.83L12,20.38l8.82-4.47V7.09Zm-.14,1.86,6.13,3.11L16,8.74,13.31,10.1l-2.45-1.28-2.69,1.38,1.4-2.81ZM5.11,8.34l5.36,2.77L8,12.39,5.55,11Zm8.34,5.43-1.42,2.83-2.69-1.38L11.8,13l2.65,1.36Zm-7.23-2L8,10.42l2.55,1.31,1.52-3.08Z"/>
+    </svg>
+  ),
+  discordjs: (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path d="M20.317 4.369a1.913 1.913 0 00-2.475-.221c-.73.434-1.356.924-1.92 1.464a13.32 13.32 0 00-3.324-1.028 12.33 12.33 0 00-1.18-.088 11.8 11.8 0 00-1.18.088 13.32 13.32 0 00-3.324 1.028 12.42 12.42 0 00-1.92-1.464 1.913 1.913 0 00-2.475.221 1.89 1.89 0 00-.387 2.656c.39.684.9 1.31 1.49 1.868a12.18 12.18 0 00-2.227 3.784 1.9 1.9 0 00.73 2.226 1.93 1.93 0 002.313.111c.42-.258.82-.55 1.188-.868a10.45 10.45 0 001.986 1.25c.5.29.98.56 1.45.82a1.86 1.86 0 002.083 0c.47-.26.95-.53 1.45-.82a10.45 10.45 0 001.986-1.25c.368.318.768.61 1.188.868a1.93 1.93 0 002.313-.111 1.9 1.9 0 00.73-2.226 12.18 12.18 0 00-2.227-3.784c.59-.558 1.1-1.184 1.49-1.868a1.89 1.89 0 00-.387-2.656zm-9.31 7.237c-.89 0-1.61-.83-1.61-1.854 0-1.025.72-1.854 1.61-1.854.89 0 1.61.83 1.61 1.854 0 1.025-.72 1.854-1.61 1.854zm5.32 0c-.89 0-1.61-.83-1.61-1.854 0-1.025.72-1.854 1.61-1.854.89 0 1.61.83 1.61 1.854 0 1.025-.72 1.854-1.61 1.854z" />
+    </svg>
+  ),
+  bash: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line>
+    </svg>
+  ),
+  react: (props) => (
+    <svg viewBox="-11.5 -10.23174 23 20.46348" fill="none" stroke="currentColor" strokeWidth="1" {...props}>
+        <circle cx="0" cy="0" r="2.05" fill="currentColor"></circle>
+        <g stroke="currentColor" strokeWidth="1" fill="none">
+            <ellipse rx="11" ry="4.2"></ellipse>
+            <ellipse rx="11" ry="4.2" transform="rotate(60)"></ellipse>
+            <ellipse rx="11" ry="4.2" transform="rotate(120)"></ellipse>
+        </g>
+    </svg>
+  ),
+};
+
+export const getTechIconComponent = (tech: string): ((props: React.SVGProps<SVGSVGElement>) => JSX.Element) | null => {
+  const lowerCaseTech = tech.toLowerCase();
+  const techMap: { [key: string]: string } = {
+    'next.js': 'nextjs',
+    'tailwind': 'tailwindcss',
+    'framer motion': 'framer-motion',
+    'python': 'python',
+    'fastapi': 'fastapi',
+    'gemini': 'gemini',
+    'langchain': 'langchain',
+    'docker': 'docker',
+    'vercel': 'vercel',
+    'css': 'css',
+    'html': 'html',
+    'javascript': 'javascript',
+    'node': 'nodejs',
+    'discord': 'discordjs',
+    'bash': 'bash',
+    'react': 'react',
+  };
+
+  for (const key in techMap) {
+    if (lowerCaseTech.includes(key)) {
+      return TECH_ICONS[techMap[key]];
+    }
+  }
+  return null;
+}
+
 export const ICONS = {
     sun: (props: React.SVGProps<SVGSVGElement>) => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>

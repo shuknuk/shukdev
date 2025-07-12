@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Project } from '../types';
-import { PROJECTS_DATA, ICONS } from '../constants';
+import { PROJECTS_DATA, ICONS, getTechIconComponent } from '../constants';
 
 type Tab = 'Featured Work' | 'Creative Labs';
 
@@ -103,9 +103,15 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> 
         </div>
         <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((t) => (
-            <span key={t} className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-md">{t}</span>
-          ))}
+          {project.tech.map((t) => {
+            const IconComponent = getTechIconComponent(t);
+            return (
+              <div key={t} className="flex items-center gap-1.5 px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-md">
+                {IconComponent && <IconComponent className="w-3.5 h-3.5" />}
+                <span>{t}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="mt-auto pt-4 flex items-center justify-between">
