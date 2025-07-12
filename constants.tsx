@@ -24,7 +24,7 @@ export const PROJECTS_DATA: Project[] = [
     id: 'energy-price-tracker',
     title: 'Energy Price Tracker',
     category: 'Featured Work',
-    rank: 'In Progress',
+    rank: 'Silver',
     description:
       'Interactive AI-powered app that visualizes synthetic hourly energy prices and recommends optimal appliance usage times via Google Gemini analysis.',
     tech: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'Gemini API'],
