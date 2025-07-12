@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Project } from './types';
 
@@ -58,7 +59,9 @@ export const PROJECTS_DATA: Project[] = [
     tech: ['Next.js', 'TailwindCSS', 'React Hooks'],
     links: {
       github: 'https://github.com/shuknuk/environmental-careers-guide',
+      live: 'https://environmental-careers-guide.vercel.app/',
     },
+    image: 'envCguides.png',
   },
   {
     id: 'forher',
@@ -69,6 +72,7 @@ export const PROJECTS_DATA: Project[] = [
     links: {
       github: 'https://github.com/shuknuk/forHer--',
     },
+    image: 'forher--.png',
   },
     {
     id: 'audiblesmiles',
@@ -79,6 +83,7 @@ export const PROJECTS_DATA: Project[] = [
     links: {
       github: 'https://github.com/shuknuk/audibleSmiles',
     },
+    image: 'audSmil.png',
   },
   {
     id: 'greencoin',
@@ -99,6 +104,7 @@ export const PROJECTS_DATA: Project[] = [
     links: {
       github: 'https://github.com/shuknuk/shuk-bot',
     },
+    image: 'dashukbot.png',
   },
   {
     id: '3pfs-in-1',
@@ -261,5 +267,8 @@ export const ICONS = {
     ),
     progress: (props: React.SVGProps<SVGSVGElement>) => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+    ),
+    image: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
     ),
 };

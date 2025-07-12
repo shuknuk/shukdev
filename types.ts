@@ -17,4 +17,5 @@ export interface Project {
     solution: string;
     learnings: string;
   };
+  image?: string;
 }

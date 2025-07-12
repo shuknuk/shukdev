@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Project } from '../types';
 import { PROJECTS_DATA, ICONS, getTechIconComponent } from '../constants';
@@ -58,8 +59,32 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
   );
 };
 
+const ImagePreviewDialog: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
+  if (!project.image) return null;
 
-const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> = ({ project, onCaseStudyClick }) => {
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div 
+        className="w-full max-w-5xl m-4 bg-card text-card-foreground rounded-lg border border-border shadow-lg p-4 relative fade-in-on-change"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button onClick={onClose} className="absolute top-3 right-3 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 z-10 transition-colors">
+          <ICONS.x className="h-5 w-5" />
+        </button>
+        <div className="relative aspect-video bg-black/10 rounded-md">
+            <img src={project.image} alt={`Screenshot of ${project.title}`} className="w-full h-full object-contain" />
+        </div>
+        <h2 className="text-lg font-bold text-foreground mt-4 px-1">{project.title}</h2>
+      </div>
+    </div>
+  );
+};
+
+
+const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; onImagePreviewClick: () => void; }> = ({ project, onCaseStudyClick, onImagePreviewClick }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -128,11 +153,19 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> 
               </a>
             )}
           </div>
-          {project.caseStudy && (
-            <button onClick={onCaseStudyClick} className="text-sm font-semibold text-primary hover:underline">
-              View Case Study
-            </button>
-          )}
+          <div className="flex items-center gap-4">
+            {project.image && (
+              <button onClick={onImagePreviewClick} className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                <ICONS.image className="w-4 h-4" />
+                View Picture
+              </button>
+            )}
+            {project.caseStudy && (
+              <button onClick={onCaseStudyClick} className="text-sm font-semibold text-primary hover:underline">
+                View Case Study
+              </button>
+            )}
+          </div>
       </div>
     </div>
   );
@@ -141,6 +174,7 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> 
 export function Projects() {
   const [activeTab, setActiveTab] = useState<Tab>('Featured Work');
   const [openModalId, setOpenModalId] = useState<string | null>(null);
+  const [openImageId, setOpenImageId] = useState<string | null>(null);
 
   const filteredProjects = PROJECTS_DATA.filter(p => p.category === activeTab);
 
@@ -151,8 +185,17 @@ export function Projects() {
   const closeCaseStudy = () => {
     setOpenModalId(null);
   };
+
+  const openImagePreview = (projectId: string) => {
+    setOpenImageId(projectId);
+  };
+  
+  const closeImagePreview = () => {
+    setOpenImageId(null);
+  };
   
   const projectToDisplayInModal = PROJECTS_DATA.find(p => p.id === openModalId);
+  const projectToDisplayInPreview = PROJECTS_DATA.find(p => p.id === openImageId);
 
   return (
     <section id="projects" className="py-20">
@@ -180,12 +223,20 @@ export function Projects() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in-on-change"
       >
         {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} onCaseStudyClick={() => openCaseStudy(project.id)} />
+          <ProjectCard 
+            key={project.id} 
+            project={project} 
+            onCaseStudyClick={() => openCaseStudy(project.id)}
+            onImagePreviewClick={() => openImagePreview(project.id)}
+          />
         ))}
       </div>
 
       {openModalId && projectToDisplayInModal && (
         <CaseStudyDialog project={projectToDisplayInModal} onClose={closeCaseStudy} />
+      )}
+      {openImageId && projectToDisplayInPreview && (
+        <ImagePreviewDialog project={projectToDisplayInPreview} onClose={closeImagePreview} />
       )}
     </section>
   );
