@@ -21,6 +21,28 @@ export const PROJECTS_DATA: Project[] = [
     },
   },
   {
+    id: 'energy-price-tracker',
+    title: 'Energy Price Tracker',
+    category: 'Featured Work',
+    rank: 'In Progress',
+    description:
+      'Interactive AI-powered app that visualizes synthetic hourly energy prices and recommends optimal appliance usage times via Google Gemini analysis.',
+    tech: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'Gemini API'],
+    links: {
+      github: 'https://github.com/shuknuk/Energy-Price-Tracker',
+      live: '',
+    },
+    image: 'enPrCk.png',
+    caseStudy: {
+      challenge:
+        'Design a dynamic tool to visualize historical electricity pricing and help users determine the cheapest hours to run appliances—using only AI-generated data without real-time utility inputs.',
+      solution:
+        'Built an AI-first frontend using <strong>React + TypeScript</strong>, <strong>Tailwind CSS</strong>, and <strong>Recharts</strong> for an intuitive UI. On each page load, the app queries <strong>Google Gemini API</strong> (via `@google/genai`) with structured prompts to generate a realistic 7‑day hourly price dataset. Users can enter appliance wattage and run-time to compute the optimal window using a sliding‑window cost algorithm. Gemini then analyzes its own generated dataset to supply a summary of trends, peak/off‑peak times, and actionable savings tips.',
+      learnings:
+        'This project taught me how to fuse <strong>AI-generated data with client-side logic</strong> to build a realistic simulator experience. I got hands-on with prompting strategies—prompting Gemini to generate JSON‑formatted price history and then separate analysis prompts. I also sharpened skills in frontend data modeling, charting logic, and algorithmic cost calculation, while maintaining a seamless and polished UI/UX.',
+    },
+  }, 
+  {
     id: 'resume-analyzer',
     title: 'Intelligent Resume Analyzer',
     category: 'Featured Work',
@@ -172,7 +194,7 @@ export const TECH_ICONS: { [key: string]: (props: React.SVGProps<SVGSVGElement>)
   javascript: (props) => (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
       <rect width="20" height="20" x="2" y="2" rx="2" ry="2" />
-      <path fill="hsl(var(--background))" d="M9.04,15.5H7.5V9.25h1.54V15.5z M14.6,12.64c0,1.44-0.81,2.25-2.03,2.25c-0.81,0-1.44-0.41-1.67-0.99h-0.05l-0.09,0.84H9.2V9.25h1.54v0.84h0.05c0.23-0.58,0.86-0.99,1.67-0.99C13.79,9.1,14.6,9.91,14.6,11.35V12.64z M13.06,12.5c0-0.72-0.36-1.22-0.95-1.22s-0.95,0.5-0.95,1.22v1.26c0,0.72,0.36,1.22,0.95,1.22s0.95-0.5,0.95-1.22V12.5z" />
+      <path fill="hsl(var(--background))" d="M9.04,15.5H7.5V9.25h1.54V15.5z M14.6,12.64c0,1.44-0.81,2.25-2.03,2.25c-0.81,0-1.44-0.41-1.67-0.99h-0.05l-0.09,0.84H9.2V9.25h1.54v0.84h0.05c0.23-0.58,0.86-0.99,1.67-0.99C13.79,9.1,14.6,9.91,14.6,11.35V12.64z M13.06,12.5c0-0.72-0.36-1.22-0.95-1.22s-0.95,0.5,0.95-1.22v1.26c0,0.72,0.36,1.22,0.95,1.22s0.95-0.5,0.95-1.22V12.5z" />
     </svg>
   ),
   nodejs: (props) => (
