@@ -20,24 +20,8 @@ const App: React.FC = () => {
     return () => document.removeEventListener('keydown', down)
   }, [])
 
-  const Header: React.FC = () => (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-end border-b border-border">
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={() => setCommandMenuOpen(true)}
-            className="text-sm text-muted-foreground bg-secondary px-3 py-1.5 rounded-md border border-border hidden sm:flex items-center gap-2"
-          >
-            <span>Cmd + K</span>
-          </button>
-          <ThemeToggle />
-        </div>
-      </div>
-    </header>
-  );
-
   const Hero: React.FC = () => (
-    <section id="home" className="pt-32 pb-20 text-center">
+    <section id="home" className="pt-20 pb-20 text-center">
       <h1 className="text-6xl md:text-8xl font-extrabold mb-4 tracking-tight">
         Kinshuk Goel
       </h1>
@@ -90,8 +74,17 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="kinshuk-portfolio-theme">
-      <div className="bg-background text-foreground min-h-screen font-sans">
-        <Header />
+      <div className="text-foreground min-h-screen font-sans">
+        <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
+          <button 
+            onClick={() => setCommandMenuOpen(true)}
+            className="text-sm text-muted-foreground bg-secondary px-3 py-1.5 rounded-md border border-border flex items-center gap-2 hover:bg-muted"
+          >
+            <span>Cmd + K</span>
+          </button>
+          <ThemeToggle />
+        </div>
+        
         <CommandMenu open={isCommandMenuOpen} setOpen={setCommandMenuOpen} />
         <main className="container mx-auto px-4">
           <Hero />

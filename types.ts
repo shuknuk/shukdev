@@ -5,7 +5,7 @@ export interface Project {
   id: string;
   title: string;
   category: 'Featured Work' | 'Creative Labs';
-  rank?: 'Gold' | 'Silver' | 'Bronze';
+  rank?: 'Gold' | 'Silver' | 'Bronze' | 'In Progress';
   description: string;
   tech: string[];
   links: {

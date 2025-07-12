@@ -24,7 +24,7 @@ export const PROJECTS_DATA: Project[] = [
     id: 'resume-analyzer',
     title: 'Intelligent Resume Analyzer',
     category: 'Featured Work',
-    rank: 'Gold',
+    rank: 'In Progress',
     description: 'An AI agent that analyzes resumes, compares them to job descriptions, and uses live web data to provide deeply tailored feedback.',
     tech: ['Next.js (TS)', 'Python (FastAPI)', 'Gemini API', 'LangChain', 'Docker', 'Vercel'],
     links: {},
@@ -48,7 +48,7 @@ export const PROJECTS_DATA: Project[] = [
     caseStudy: {
       challenge: 'For the inaugural BRHacks, our team had no existing infrastructure. The challenge was to build a credible and functional web presence from the ground up under a tight deadline. We needed a site that would legitimize our new event, build trust with potential attendees and sponsors, and reliably handle registration for our first cohort of hackers.',
       solution: 'I took on a significant role in the frontend development and design. My primary responsibility was to translate our team\'s collective vision into a tangible, user-friendly interface using Next.js. I focused on building a clean, responsive layout with clear calls-to-action for registration. I worked closely with the backend developers to ensure seamless integration of the user-facing forms with their server-side logic, using version control (Git/GitHub) as our collaboration backbone.',
-      learnings: 'This project was a masterclass in teamwork, communication, and shipping a minimum viable product (MVP). I learned how to effectively use Git for collaborative development, resolving merge conflicts and managing branches in a team setting. It taught me the importance of clear communication to bridge the gap between frontend and backend requirements, and the art of making pragmatic decisions to ensure we launched a functional product on time.',
+      learnings: 'This project was a masterclass in teamwork, communication, and shipping a minimum viable product (MVP). I learned how to effectively use Git for collaborative development, resolving merge conflicts and managing a team setting. It taught me the importance of clear communication to bridge the gap between frontend and backend requirements, and the art of making pragmatic decisions to ensure we launched a functional product on time.',
     },
   },
   {
@@ -146,5 +146,8 @@ export const ICONS = {
     ),
     medal: (props: React.SVGProps<SVGSVGElement>) => (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 17 17 23 15.79 13.88"/></svg>
+    ),
+    progress: (props: React.SVGProps<SVGSVGElement>) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
     ),
 };

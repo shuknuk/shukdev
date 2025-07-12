@@ -9,6 +9,7 @@ const rankColorMap = {
   Gold: 'bg-yellow-400/20 text-yellow-400 border-yellow-400/30',
   Silver: 'bg-gray-400/20 text-gray-400 border-gray-400/30',
   Bronze: 'bg-yellow-600/20 text-yellow-600 border-yellow-600/30',
+  'In Progress': 'bg-blue-400/20 text-blue-400 border-blue-400/30',
 };
 
 const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
@@ -67,7 +68,11 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> 
           <h3 className="text-lg font-bold text-foreground">{project.title}</h3>
           {project.rank && (
             <span className={`flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full border ${rankColorMap[project.rank]}`}>
-              <ICONS.medal className="w-3 h-3" />
+              {project.rank === 'In Progress' ? (
+                <ICONS.progress className="w-3 h-3" />
+              ) : (
+                <ICONS.medal className="w-3 h-3" />
+              )}
               <span>{project.rank}</span>
             </span>
           )}
