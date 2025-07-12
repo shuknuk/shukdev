@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Project } from '../types';
 import { PROJECTS_DATA, ICONS } from '../constants';
 
@@ -61,8 +61,32 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
 
 
 const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> = ({ project, onCaseStudyClick }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      cardRef.current.style.setProperty('--mouse-x', `${x}px`);
+      cardRef.current.style.setProperty('--mouse-y', `${y}px`);
+    };
+
+    card.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      if (card) {
+        card.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+
   return (
-    <div className="p-6 bg-card rounded-lg border border-border flex flex-col h-full transition-all duration-300 ease-in-out hover:shadow-md dark:hover:bg-secondary">
+    <div ref={cardRef} className="spotlight-card p-6 bg-card rounded-lg border border-border flex flex-col h-full transition-all duration-300 ease-in-out hover:shadow-md">
       <div className="flex-grow">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-lg font-bold text-foreground">{project.title}</h3>

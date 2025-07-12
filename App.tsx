@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
   const Hero: React.FC = () => (
     <section id="home" className="pt-20 pb-20 text-center">
-      <h1 className="text-6xl md:text-8xl font-extrabold mb-4 tracking-tight">
+      <h1 className="shiny-text text-6xl md:text-8xl font-extrabold mb-4 tracking-tight">
         Kinshuk Goel
       </h1>
       <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
