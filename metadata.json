@@ -1,5 +1,6 @@
 {
   "name": "portfolio v3",
   "description": "An advanced, interactive portfolio for Kinshuk Goel, a Computer Science student. Features include a command menu, project case studies, and a theme toggle, all built with React and Tailwind CSS.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "prompt": ""
 }

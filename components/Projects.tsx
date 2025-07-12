@@ -20,7 +20,7 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
       onClick={onClose}
     >
       <div 
-        className="w-full max-w-2xl m-4 bg-card text-card-foreground rounded-lg border border-border shadow-lg p-6 relative animate-in fade-in-0 zoom-in-95"
+        className="w-full max-w-2xl m-4 bg-card text-card-foreground rounded-lg border border-border shadow-lg p-6 relative fade-in-on-change"
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={onClose} className="absolute top-4 right-4 p-1 rounded-full hover:bg-muted">
@@ -61,7 +61,7 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
 
 const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void }> = ({ project, onCaseStudyClick }) => {
   return (
-    <div className="p-6 bg-card rounded-lg border border-border flex flex-col h-full transition-shadow hover:shadow-md">
+    <div className="p-6 bg-card rounded-lg border border-border flex flex-col h-full transition-all duration-300 ease-in-out hover:shadow-md dark:hover:bg-secondary">
       <div className="flex-grow">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-lg font-bold text-foreground">{project.title}</h3>
