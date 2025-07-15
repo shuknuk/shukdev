@@ -73,7 +73,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="kinshuk-portfolio-theme">
+    <ThemeProvider defaultTheme="light" storageKey="kinshuk-portfolio-theme">
       <div className="text-foreground min-h-screen font-sans">
         <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
           <button 
