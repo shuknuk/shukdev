@@ -9,7 +9,7 @@ export interface Project {
   description: string;
   tech: string[];
   links: {
-    github?: string;
+    github?: string | { label: string; url: string }[];
     live?: string;
   };
   caseStudy?: {

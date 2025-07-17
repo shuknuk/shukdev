@@ -15,6 +15,43 @@ const rankColorMap = {
 const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
   if (!project.caseStudy) return null;
 
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+
+  useEffect(() => {
+    const contentEl = contentRef.current;
+    if (!contentEl) return;
+
+    const onFirstScroll = () => {
+        setShowScrollIndicator(false);
+        contentEl.removeEventListener('scroll', onFirstScroll);
+    };
+
+    const checkAndSetIndicator = () => {
+        contentEl.removeEventListener('scroll', onFirstScroll);
+        const isScrollable = contentEl.scrollHeight > contentEl.clientHeight;
+        
+        if (isScrollable && contentEl.scrollTop === 0) {
+            setShowScrollIndicator(true);
+            contentEl.addEventListener('scroll', onFirstScroll);
+        } else {
+            setShowScrollIndicator(false);
+        }
+    };
+
+    const timeoutId = setTimeout(checkAndSetIndicator, 100);
+    const resizeObserver = new ResizeObserver(checkAndSetIndicator);
+    resizeObserver.observe(contentEl);
+
+    return () => {
+        clearTimeout(timeoutId);
+        resizeObserver.disconnect();
+        if (contentEl) {
+            contentEl.removeEventListener('scroll', onFirstScroll);
+        }
+    };
+  }, [project]);
+
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
@@ -28,19 +65,25 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
           <ICONS.x className="h-5 w-5 text-muted-foreground" />
         </button>
         <h2 className="text-2xl font-bold text-foreground mb-2">{project.title}</h2>
-        <div className="flex items-center space-x-2 mb-4">
-            {project.links.github && (
-              <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
-                <ICONS.github className="w-4 h-4 mr-1" /> GitHub
-              </a>
-            )}
+        <div className="flex items-center space-x-4 mb-4">
+            {project.links.github &&
+              (Array.isArray(project.links.github)
+                ? project.links.github.map(link => (
+                    <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
+                      <ICONS.github className="w-4 h-4 mr-1" /> GitHub ({link.label})
+                    </a>
+                  ))
+                : <a href={project.links.github as string} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
+                    <ICONS.github className="w-4 h-4 mr-1" /> GitHub
+                  </a>
+              )}
             {project.links.live && (
               <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
                 <ICONS.externalLink className="w-4 h-4 mr-1" /> Live Site
               </a>
             )}
         </div>
-        <div className="space-y-4 text-muted-foreground max-h-[60vh] overflow-y-auto pr-2">
+        <div ref={contentRef} className="space-y-4 text-muted-foreground max-h-[60vh] overflow-y-auto pr-2 relative">
             <div>
                 <h3 className="font-semibold text-lg text-foreground mb-1">Challenge</h3>
                 <p dangerouslySetInnerHTML={{ __html: project.caseStudy.challenge }} />
@@ -53,6 +96,11 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
                 <h3 className="font-semibold text-lg text-foreground mb-1">Key Learnings</h3>
                 <p dangerouslySetInnerHTML={{ __html: project.caseStudy.learnings }} />
             </div>
+            {showScrollIndicator && (
+              <div className="absolute bottom-0 right-2 left-0 h-20 bg-gradient-to-t from-card to-transparent pointer-events-none flex justify-center items-end pb-2">
+                <ICONS.chevronDown className="w-6 h-6 text-muted-foreground animate-bounce opacity-75" />
+              </div>
+            )}
         </div>
       </div>
     </div>
@@ -140,12 +188,19 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; on
       </div>
       <div className="mt-auto pt-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            {project.links.github && (
-              <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                <ICONS.github className="w-4 h-4" />
-                <span>GitHub</span>
-              </a>
-            )}
+            {project.links.github &&
+              (Array.isArray(project.links.github)
+                ? project.links.github.map(link => (
+                    <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      <ICONS.github className="w-4 h-4" />
+                      <span>GitHub ({link.label})</span>
+                    </a>
+                  ))
+                : <a href={project.links.github as string} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    <ICONS.github className="w-4 h-4" />
+                    <span>GitHub</span>
+                  </a>
+              )}
             {project.links.live && (
               <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <ICONS.externalLink className="w-4 h-4" />

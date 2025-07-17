@@ -20,40 +20,46 @@ export const PROJECTS_DATA: Project[] = [
       learnings: 'Leading the project solo taught me how to balance design with delivery—and how to use AI tools smartly. ChatGPT helped nail accessibility fixes, edge-case handling, and layout decisions; Copilot sped up boilerplate code; but I still directed every design and animation detail. Combining AI assistance with hands‑on coding showed me how automation can enhance productivity without sacrificing craftsmanship.',
     },
   },
-  {
-    id: 'energy-price-tracker',
-    title: 'Energy Price Tracker',
-    category: 'Featured Work',
-    rank: 'Silver',
-    description:
-      'Interactive AI-powered app that visualizes synthetic hourly energy prices and recommends optimal appliance usage times via Google Gemini analysis.',
-    tech: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'Gemini API'],
-    links: {
-      github: 'https://github.com/shuknuk/Energy-Price-Tracker',
-      live: '',
-    },
-    image: 'enPrCk.png',
-    caseStudy: {
-      challenge:
-        'Design a dynamic tool to visualize historical electricity pricing and help users determine the cheapest hours to run appliances—using only AI-generated data without real-time utility inputs.',
-      solution:
-        'Built an AI-first frontend using <strong>React + TypeScript</strong>, <strong>Tailwind CSS</strong>, and <strong>Recharts</strong> for an intuitive UI. On each page load, the app queries <strong>Google Gemini API</strong> (via `@google/genai`) with structured prompts to generate a realistic 7‑day hourly price dataset. Users can enter appliance wattage and run-time to compute the optimal window using a sliding‑window cost algorithm. Gemini then analyzes its own generated dataset to supply a summary of trends, peak/off‑peak times, and actionable savings tips.',
-      learnings:
-        'This project taught me how to fuse <strong>AI-generated data with client-side logic</strong> to build a realistic simulator experience. I got hands-on with prompting strategies—prompting Gemini to generate JSON‑formatted price history and then separate analysis prompts. I also sharpened skills in frontend data modeling, charting logic, and algorithmic cost calculation, while maintaining a seamless and polished UI/UX.',
-    },
-  }, 
+  // {
+  //   id: 'energy-price-tracker',
+  //   title: 'Energy Price Tracker',
+  //   category: 'Featured Work',
+  //   rank: 'Silver',
+  //   description:
+  //     'Interactive AI-powered app that visualizes synthetic hourly energy prices and recommends optimal appliance usage times via Google Gemini analysis.',
+  //   tech: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'Gemini API'],
+  //   links: {
+  //     github: 'https://github.com/shuknuk/Energy-Price-Tracker',
+  //     live: '',
+  //   },
+  //   image: 'enPrCk.png',
+  //   caseStudy: {
+  //     challenge:
+  //       'Design a dynamic tool to visualize historical electricity pricing and help users determine the cheapest hours to run appliances—using only AI-generated data without real-time utility inputs.',
+  //     solution:
+  //       'Built an AI-first frontend using <strong>React + TypeScript</strong>, <strong>Tailwind CSS</strong>, and <strong>Recharts</strong> for an intuitive UI. On each page load, the app queries <strong>Google Gemini API</strong> (via `@google/genai`) with structured prompts to generate a realistic 7‑day hourly price dataset. Users can enter appliance wattage and run-time to compute the optimal window using a sliding‑window cost algorithm. Gemini then analyzes its own generated dataset to supply a summary of trends, peak/off‑peak times, and actionable savings tips.',
+  //     learnings:
+  //       'This project taught me how to fuse <strong>AI-generated data with client-side logic</strong> to build a realistic simulator experience. I got hands-on with prompting strategies—prompting Gemini to generate JSON‑formatted price history and then separate analysis prompts. I also sharpened skills in frontend data modeling, charting logic, and algorithmic cost calculation, while maintaining a seamless and polished UI/UX.',
+  //   },
+  // }, 
   {
     id: 'resume-analyzer',
     title: 'Intelligent Resume Analyzer',
     category: 'Featured Work',
-    rank: 'In Progress',
-    description: 'An AI agent that analyzes resumes, compares them to job descriptions, and uses live web data to provide deeply tailored feedback.',
-    tech: ['Next.js (TS)', 'Python (FastAPI)', 'Gemini API', 'LangChain', 'Docker', 'Vercel'],
-    links: {},
+    rank: 'Gold',
+    description: 'An AI agent that provides hyper-personalized resume feedback by synthesizing insights from the resume, a job description, and live web data.',
+    tech: ['Next.js (TS)', 'shadcn/ui', 'Python (FastAPI)', 'Gemini 2.5 Pro', 'LangChain', 'Tavily Search API', 'Docker', 'Vercel', 'Render'],
+    links: {
+      github: [
+        { label: 'Backend', url: 'https://github.com/shuknuk/resume-analyzer' },
+        { label: 'Frontend', url: 'https://github.com/shuknuk/resume-analyzer-frontend' },
+      ],
+      live: 'https://ranalyzer.vercel.app/',
+    },
     caseStudy: {
-      challenge: 'Job seekers often struggle to tailor their resumes effectively for each application. Generic advice falls short because it lacks context about the specific role and the latest industry trends. The challenge was to build a tool that could provide personalized, actionable, and data-driven feedback to give applicants a genuine competitive edge.',
-      solution: 'The solution is a full-stack application leveraging the power of Large Language Models. A Python backend with FastAPI serves as the core, using the Gemini API and LangChain to create a sophisticated AI agent. This agent ingests a user\'s resume and a job description, analyzes the alignment, and grounds its feedback by searching for live web data on relevant skills and industry keywords. The frontend is built with Next.js and TypeScript, offering a clean, intuitive interface for users to upload documents and receive their detailed analysis.',
-      learnings: 'This is an ongoing project that has been an incredible learning experience in system architecture and AI integration. It involves designing a robust API, managing asynchronous tasks, and orchestrating complex prompts with LangChain. A key lesson has been in understanding the nuances of LLM responses and designing prompts that yield consistently helpful and structured output. It is a practical application of my skills in both frontend and backend development to solve a real-world problem.',
+      challenge: 'Standard resume advice is often generic and unhelpful. To truly stand out, a resume needs to be tailored not just to a job description, but to the specific culture and values of the target company. The challenge was to build a tool that could automate this deep, contextual analysis, going far beyond simple keyword matching to provide strategic career coaching.',
+      solution: "Instead of a simple AI-powered app, I built a full-stack <strong>AI Agent</strong> capable of autonomous reasoning and action. The frontend, built with React.js and shadcn/ui, provides a clean and responsive user interface. The backend, a Python FastAPI service, houses the agent's core logic. I used <b>LangChain</b> to orchestrate the agent, which leverages Google's <b>Gemini 2.5 Pro</b> model for its powerful reasoning capabilities. What makes this a true agent is its ability to use tools: when a user provides a company name, the agent autonomously uses the <b>Tavily Search API</b> to browse the web for information on the company's culture, tech stack, and values. This live data is then synthesized with the resume and job description to generate deeply tailored, actionable feedback. The entire application is containerized with <b>Docker</b> and deployed via CI/CD pipelines on <b>Render</b> (backend) and <b>Vercel</b> (frontend).",
+      learnings: 'This project was a deep dive into building modern, agentic AI systems. My key takeaway was understanding the fundamental difference between a simple AI feature and a true AI agent. By implementing the <b>ReAct (Reason and Act) framework</b>, I learned how to build a system that can autonomously decide it needs more information and then use tools to go find it. This required a robust, decoupled architecture and forced me to solve real-world deployment challenges, from managing CORS policies between the frontend and backend to pinning dependency versions in a Docker container to ensure stability. Ultimately, this project taught me how to orchestrate multiple technologies—Next.js, FastAPI, LangChain, and external APIs—to create a single, intelligent, and cohesive application.',
     },
   },
   {
@@ -292,5 +298,8 @@ export const ICONS = {
     ),
     image: (props: React.SVGProps<SVGSVGElement>) => (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    ),
+    chevronDown: (props: React.SVGProps<SVGSVGElement>) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m6 9 6 6 6-6"/></svg>
     ),
 };
