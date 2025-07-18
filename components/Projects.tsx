@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Project } from '../types';
 import { PROJECTS_DATA, ICONS, getTechIconComponent } from '../constants';
@@ -11,6 +10,63 @@ const rankColorMap = {
   Bronze: 'bg-yellow-600/20 text-yellow-600 border-yellow-600/30',
   'In Progress': 'bg-blue-400/20 text-blue-400 border-blue-400/30',
 };
+
+const GithubLinksDropdown: React.FC<{ links: { label: string; url: string }[] | string; isDialog?: boolean }> = ({ links, isDialog = false }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  if (!Array.isArray(links)) {
+    return (
+      <a href={links} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <ICONS.github className="w-4 h-4" />
+        <span>GitHub</span>
+      </a>
+    );
+  }
+
+  const baseClasses = "flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors";
+  const dropdownMenuPosition = isDialog ? "top-full mt-2" : "bottom-full mb-2";
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button onClick={() => setIsOpen(!isOpen)} className={baseClasses}>
+        <ICONS.github className="w-4 h-4" />
+        <span>GitHub</span>
+        <ICONS.chevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      {isOpen && (
+        <div className={`absolute ${dropdownMenuPosition} left-0 min-w-[150px] bg-popover border border-border rounded-md shadow-lg p-1 z-20 fade-in-on-change`}>
+          {(links as { label: string; url: string }[]).map(link => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center w-full text-left px-3 py-1.5 text-sm text-popover-foreground hover:bg-accent rounded-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              <ICONS.github className="w-4 h-4 mr-2" />
+              <span>{link.label}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 
 const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
   if (!project.caseStudy) return null;
@@ -66,17 +122,7 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
         </button>
         <h2 className="text-2xl font-bold text-foreground mb-2">{project.title}</h2>
         <div className="flex items-center space-x-4 mb-4">
-            {project.links.github &&
-              (Array.isArray(project.links.github)
-                ? project.links.github.map(link => (
-                    <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
-                      <ICONS.github className="w-4 h-4 mr-1" /> GitHub ({link.label})
-                    </a>
-                  ))
-                : <a href={project.links.github as string} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
-                    <ICONS.github className="w-4 h-4 mr-1" /> GitHub
-                  </a>
-              )}
+            {project.links.github && <GithubLinksDropdown links={project.links.github} isDialog={true} />}
             {project.links.live && (
               <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
                 <ICONS.externalLink className="w-4 h-4 mr-1" /> Live Site
@@ -188,19 +234,7 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; on
       </div>
       <div className="mt-auto pt-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            {project.links.github &&
-              (Array.isArray(project.links.github)
-                ? project.links.github.map(link => (
-                    <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      <ICONS.github className="w-4 h-4" />
-                      <span>GitHub ({link.label})</span>
-                    </a>
-                  ))
-                : <a href={project.links.github as string} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    <ICONS.github className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </a>
-              )}
+            {project.links.github && <GithubLinksDropdown links={project.links.github} />}
             {project.links.live && (
               <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <ICONS.externalLink className="w-4 h-4" />

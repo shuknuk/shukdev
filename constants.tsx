@@ -51,8 +51,8 @@ export const PROJECTS_DATA: Project[] = [
     tech: ['Next.js (TS)', 'shadcn/ui', 'Python (FastAPI)', 'Gemini 2.5 Pro', 'LangChain', 'Tavily Search API', 'Docker', 'Vercel', 'Render'],
     links: {
       github: [
-        { label: 'Backend', url: 'https://github.com/shuknuk/resume-analyzer' },
         { label: 'Frontend', url: 'https://github.com/shuknuk/resume-analyzer-frontend' },
+        { label: 'Backend', url: 'https://github.com/shuknuk/resume-analyzer' },
       ],
       live: 'https://ranalyzer.vercel.app/',
     },

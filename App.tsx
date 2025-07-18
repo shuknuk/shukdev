@@ -50,7 +50,10 @@ const App: React.FC = () => {
     <section id="about" className="py-20 text-center">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="max-w-3xl mx-auto text-muted-foreground">
-            I'm an 18-year-old programmer from New Jersey with a passion for building beautiful and functional applications. From designing hackathon websites to contributing to open-source tools, I love exploring the intersection of technology and design. I'm currently leveling up in data structures and backend development, always seeking new challenges that push my creative and technical boundaries.
+            I'm an 18-year-old programmer from New Jersey who loves building things that are clean, fast, and actually useful. Whether it's designing websites for hackathons, contributing to open-source tools, or crafting visuals that actually don't suck, I like to explore all sides of tech. 
+        </p>
+        <p className = "max-w-3xl mx-auto text-muted-foreground">
+          Currently leveling up in data structures, concurrency, and backend development — and working on side projects that blend design and functionality.
         </p>
     </section>
   );
