@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeProvider';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Projects } from './components/Projects';
+import { TechStack } from './components/TechStack';
 import { CommandMenu } from './components/CommandMenu';
 import { ICONS } from './constants';
 
@@ -92,6 +93,7 @@ const App: React.FC = () => {
         <main className="container mx-auto px-4">
           <Hero />
           <About />
+          <TechStack />
           <Projects />
         </main>
         <Footer />
