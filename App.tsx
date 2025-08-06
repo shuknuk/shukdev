@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeProvider';
 import { ThemeToggle } from './components/ThemeToggle';
-import { Projects } from './components/Projects';
+import { Blog } from './components/Blog';
 import { TechStack } from './components/TechStack';
 import { CommandMenu } from './components/CommandMenu';
 import { ICONS } from './constants';
@@ -32,7 +32,7 @@ const App: React.FC = () => {
       </p>
       <div className="flex justify-center items-center gap-4">
         <button 
-          onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={() => document.getElementById('work-timeline')?.scrollIntoView({ behavior: 'smooth' })}
           className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold hover:bg-primary/90"
         >
           View My Work
@@ -94,7 +94,7 @@ const App: React.FC = () => {
           <Hero />
           <About />
           <TechStack />
-          <Projects />
+          <Blog />
         </main>
         <Footer />
       </div>
