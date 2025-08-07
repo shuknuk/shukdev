@@ -141,11 +141,6 @@ const TECH_STACK = {
             color: 'bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border-cyan-300 dark:border-cyan-400/30'
         },
         {
-            name: 'LangChain',
-            icon: TECH_ICONS.LangChain,
-            color: 'bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-400 border-purple-300 dark:border-purple-400/30'
-        },
-        {
             name: 'Docker',
             icon: TECH_ICONS.Docker,
             color: 'bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 border-blue-300 dark:border-blue-400/30'
@@ -179,7 +174,7 @@ export function TechStack() {
             <h2 className="text-3xl font-bold text-center mb-10">Tech Stack</h2>
 
             <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
                     {/* Languages */}
                     <div className="text-center">
                         <h3 className="text-xl font-semibold text-foreground mb-6">

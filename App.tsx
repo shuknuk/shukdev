@@ -4,6 +4,7 @@ import { ThemeProvider } from './contexts/ThemeProvider';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Blog } from './components/Blog';
 import { TechStack } from './components/TechStack';
+import { AIStack } from './components/AIStack';
 import { CommandMenu } from './components/CommandMenu';
 import { ICONS } from './constants';
 
@@ -94,6 +95,7 @@ const App: React.FC = () => {
           <Hero />
           <About />
           <TechStack />
+          <AIStack />
           <Blog />
         </main>
         <Footer />
