@@ -1,5 +1,4 @@
 import React from 'react';
-import './Car.css';
 
 const Car: React.FC = () => {
   return (

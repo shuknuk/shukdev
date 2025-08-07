@@ -5,8 +5,8 @@ import { ThemeToggle } from './components/ThemeToggle';
 import { Blog } from './components/Blog';
 import { TechStack } from './components/TechStack';
 import { CommandMenu } from './components/CommandMenu';
+import { Car } from './components/Car'; 
 import { ICONS } from './constants';
-import Car from './components/Car';
 
 const App: React.FC = () => {
   const [isCommandMenuOpen, setCommandMenuOpen] = useState(false);
@@ -91,7 +91,7 @@ const App: React.FC = () => {
           <ThemeToggle />
         </div>
         
-        <CommandMenu open={isCommandMenuOpen} setOpen={setOpen} />
+        <CommandMenu open={isCommandMenuOpen} setOpen={setCommandMenuOpen} />
         <main className="container mx-auto px-4">
           <Hero />
           <About />
