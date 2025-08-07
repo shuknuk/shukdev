@@ -1,0 +1,125 @@
+.car {
+  position: relative;
+  width: 400px;
+  height: 160px;
+  margin: 50px auto;
+}
+
+.car-body {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 380px;
+  height: 100px;
+  background: #f00;
+  border-radius: 20px 30px 10px 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.car-top {
+  position: absolute;
+  top: -30px;
+  left: 60px;
+  width: 250px;
+  height: 80px;
+  background: #f00;
+  border-radius: 30px 30px 0 0;
+}
+
+.window {
+  position: absolute;
+  top: 10px;
+  width: 120px;
+  height: 60px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.window-front {
+  left: 10px;
+  border-radius: 20px 10px 10px 10px;
+}
+
+.window-back {
+  right: 10px;
+  border-radius: 10px 20px 10px 10px;
+}
+
+.wheel {
+  position: absolute;
+  bottom: 0;
+  width: 60px;
+  height: 60px;
+  background: #333;
+  border: 5px solid #ccc;
+  border-radius: 50%;
+}
+
+.wheel-front {
+  left: 40px;
+}
+
+.wheel-back {
+  right: 40px;
+}
+
+.hubcap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: #aaa;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.headlight {
+  position: absolute;
+  top: 40px;
+  width: 20px;
+  height: 10px;
+  background: #ff0;
+  border-radius: 5px;
+}
+
+.headlight-front {
+  left: 15px;
+}
+
+.taillight {
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    width: 20px;
+    height: 10px;
+    background: #f00;
+    border-radius: 5px;
+}
+
+/* Animation */
+.car {
+  animation: drive 5s linear infinite;
+}
+
+@keyframes drive {
+  from {
+    transform: translateX(-500px);
+  }
+  to {
+    transform: translateX(1500px);
+  }
+}
+
+.wheel {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
