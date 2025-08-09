@@ -97,11 +97,54 @@ const GlowingEffect = memo(({
   useEffect(() => {
     if (disabled) return;
 
+    let fadeTimeout: NodeJS.Timeout;
+
     const handleScroll = () => handleMove();
     const handlePointerMove = (e: PointerEvent) => handleMove(e);
+    
+    // Handle touch interactions
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        handleMove({ x: touch.clientX, y: touch.clientY });
+        
+        // Clear any existing fade timeout
+        if (fadeTimeout) {
+          clearTimeout(fadeTimeout);
+        }
+      }
+    };
 
+    const handleTouchEnd = () => {
+      // Fade out the glow effect after touch ends
+      fadeTimeout = setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.style.setProperty("--active", "0");
+        }
+      }, 1000); // Fade out after 1 second
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        handleMove({ x: touch.clientX, y: touch.clientY });
+      }
+    };
+
+    // Mouse/pointer events
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.body.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+
+    // Touch events
+    document.body.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    document.body.addEventListener("touchmove", handleTouchMove, {
+      passive: true,
+    });
+    document.body.addEventListener("touchend", handleTouchEnd, {
       passive: true,
     });
 
@@ -109,8 +152,18 @@ const GlowingEffect = memo(({
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      if (fadeTimeout) {
+        clearTimeout(fadeTimeout);
+      }
+      
+      // Remove mouse/pointer events
       window.removeEventListener("scroll", handleScroll);
       document.body.removeEventListener("pointermove", handlePointerMove);
+      
+      // Remove touch events
+      document.body.removeEventListener("touchstart", handleTouchStart);
+      document.body.removeEventListener("touchmove", handleTouchMove);
+      document.body.removeEventListener("touchend", handleTouchEnd);
     };
   }, [handleMove, disabled]);
 

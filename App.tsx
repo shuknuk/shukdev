@@ -7,6 +7,7 @@ import { TechStack } from './components/TechStack';
 
 import { CommandMenu } from './components/CommandMenu';
 import { NavBar } from './components/ui/tubelight-navbar';
+import { Typewriter } from './components/ui/typewriter';
 import { Home, User, Briefcase, FileText, Code } from 'lucide-react';
 import { ICONS } from './constants';
 
@@ -31,31 +32,47 @@ const App: React.FC = () => {
     { name: 'Blog', url: '#blog', icon: FileText }
   ];
 
-  const Hero: React.FC = () => (
-    <section id="home" className="pt-20 pb-20 text-center">
-      <h1 className="shiny-text text-6xl md:text-8xl font-extrabold mb-4 tracking-tight">
-        Kinshuk Goel
-      </h1>
-      <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-        Developer & Designer. Incoming CS Student @ Rutgers University. <br/>
-        I build things that are clean, fast, and actually useful.
-      </p>
-      <div className="flex justify-center items-center gap-4">
-        <button 
-          onClick={() => document.getElementById('work-timeline')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold hover:bg-primary/90"
-        >
-          View My Work
-        </button>
-        <button 
-          onClick={() => setCommandMenuOpen(true)}
-          className="bg-secondary text-secondary-foreground px-6 py-3 rounded-md font-semibold hover:bg-muted"
-        >
-          Contact Me
-        </button>
-      </div>
-    </section>
-  );
+  const Hero: React.FC = () => {
+    const [showSpotlight, setShowSpotlight] = useState(false);
+
+    return (
+      <section id="home" className="pt-20 pb-20 text-center">
+        <h1 className={`text-6xl md:text-8xl font-extrabold mb-4 tracking-tight ${showSpotlight ? 'shiny-text' : ''}`}>
+          <Typewriter
+            text="Kinshuk Goel"
+            speed={100}
+            initialDelay={500}
+            loop={false}
+            showCursor={true}
+            cursorChar="_"
+            className="text-foreground"
+            onComplete={() => {
+              // Start spotlight animation after typing is complete
+              setTimeout(() => setShowSpotlight(true), 300);
+            }}
+          />
+        </h1>
+        <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+          Developer & Designer. Incoming CS Student @ Rutgers University. <br/>
+          I build things that are clean, fast, and actually useful.
+        </p>
+        <div className="flex justify-center items-center gap-4">
+          <button 
+            onClick={() => document.getElementById('work-timeline')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold hover:bg-primary/90"
+          >
+            View My Work
+          </button>
+          <button 
+            onClick={() => setCommandMenuOpen(true)}
+            className="bg-secondary text-secondary-foreground px-6 py-3 rounded-md font-semibold hover:bg-muted"
+          >
+            Contact Me
+          </button>
+        </div>
+      </section>
+    );
+  };
 
   const About: React.FC = () => (
     <section id="about" className="py-20 text-center">
