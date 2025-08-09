@@ -6,6 +6,8 @@ import { Blog } from './components/Blog';
 import { TechStack } from './components/TechStack';
 import { AIStack } from './components/AIStack';
 import { CommandMenu } from './components/CommandMenu';
+import { NavBar } from './components/ui/tubelight-navbar';
+import { Home, User, Briefcase, FileText, Code } from 'lucide-react';
 import { ICONS } from './constants';
 
 const App: React.FC = () => {
@@ -21,6 +23,13 @@ const App: React.FC = () => {
     document.addEventListener('keydown', down)
     return () => document.removeEventListener('keydown', down)
   }, [])
+
+  const navItems = [
+    { name: 'Home', url: '#home', icon: Home },
+    { name: 'About', url: '#about', icon: User },
+    { name: 'Tech', url: '#tech', icon: Code },
+    { name: 'Blog', url: '#blog', icon: FileText }
+  ];
 
   const Hero: React.FC = () => (
     <section id="home" className="pt-20 pb-20 text-center">
@@ -80,7 +89,9 @@ const App: React.FC = () => {
   return (
     <ThemeProvider defaultTheme="light" storageKey="kinshuk-portfolio-theme">
       <div className="text-foreground min-h-screen font-sans">
-        <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
+        <NavBar items={navItems} />
+        
+        <div className="fixed top-4 right-4 z-40 flex items-center gap-4">
           <button 
             onClick={() => setCommandMenuOpen(true)}
             className="text-sm text-muted-foreground bg-secondary px-3 py-1.5 rounded-md border border-border flex items-center gap-2 hover:bg-muted"
@@ -94,9 +105,13 @@ const App: React.FC = () => {
         <main className="container mx-auto px-4">
           <Hero />
           <About />
-          <TechStack />
-          <AIStack />
-          <Blog />
+          <div id="tech">
+            <TechStack />
+            <AIStack />
+          </div>
+          <div id="blog">
+            <Blog />
+          </div>
         </main>
         <Footer />
       </div>
