@@ -17,17 +17,7 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  const [activeTab, setActiveTab] = useState("")
 
   // Scroll detection to update active tab
   useEffect(() => {
@@ -49,7 +39,7 @@ export function NavBar({ items, className }: NavBarProps) {
 
       // Find which section is currently in view
       const viewportHeight = window.innerHeight
-      const currentSection = sections.find(section => {
+      let currentSection = sections.find(section => {
         if (section) {
           // Section is considered active if its top is above middle of viewport
           // and its bottom is below middle of viewport
@@ -58,16 +48,38 @@ export function NavBar({ items, className }: NavBarProps) {
         return false
       })
 
+      // If no section is in the middle, find the closest one to the top
+      if (!currentSection) {
+        currentSection = sections.reduce((closest, section) => {
+          if (!section) return closest
+          if (!closest) return section
+          
+          const sectionDistance = Math.abs(section.top)
+          const closestDistance = Math.abs(closest.top)
+          
+          return sectionDistance < closestDistance ? section : closest
+        }, null)
+      }
+
       if (currentSection) {
         setActiveTab(currentSection.name)
+      } else if (sections.length > 0 && sections[0]) {
+        // Default to first section if nothing else matches
+        setActiveTab(sections[0].name)
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    // Call once on mount to set initial active section
-    handleScroll()
+    // Add a small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      handleScroll()
+    }, 100)
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      clearTimeout(timeoutId)
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [items])
 
   const handleNavClick = (e: React.MouseEvent, item: NavItem) => {
@@ -91,7 +103,7 @@ export function NavBar({ items, className }: NavBarProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed bottom-4 md:bottom-auto md:top-4 left-0 right-0 flex justify-center z-50",
+        "fixed bottom-4 md:bottom-auto md:top-4 left-0 right-0 flex justify-center z-30",
         className,
       )}
     >

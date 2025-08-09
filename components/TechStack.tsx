@@ -1,5 +1,6 @@
 import React from 'react';
 import { GlowingEffect } from './ui/glowing-effect';
+import { getTechColor } from '../constants';
 
 // Tech stack icons
 const TECH_ICONS = {
@@ -245,10 +246,11 @@ const SkillCard: React.FC<SkillCardProps> = ({ title, skills }) => {
                 <div className="flex flex-wrap gap-2">
                     {skills.map((skill) => {
                         const IconComponent = skill.icon;
+                        const colorClasses = getTechColor(skill.name);
                         return (
                             <div
                                 key={skill.name}
-                                className="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full bg-muted/50 border border-border/50 transition-all duration-200 hover:scale-105 hover:bg-muted"
+                                className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full border transition-all duration-200 hover:scale-105 ${colorClasses}`}
                             >
                                 {IconComponent && <IconComponent className="w-4 h-4" />}
                                 <span>{skill.name}</span>

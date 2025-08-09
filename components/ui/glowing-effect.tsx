@@ -137,7 +137,7 @@ const GlowingEffect = memo(({
             "--gradient":
               variant === "white"
                 ? `repeating-conic-gradient(from 236.84deg at 50% 50%,#ffffff,#ffffff calc(25% / var(--repeating-conic-gradient-times)))`
-                : `repeating-conic-gradient(from 236.84deg at 50% 50%,#000000 0%,#333333 calc(25% / var(--repeating-conic-gradient-times)),#000000 calc(50% / var(--repeating-conic-gradient-times)), #333333 calc(75% / var(--repeating-conic-gradient-times)),#000000 calc(100% / var(--repeating-conic-gradient-times)))`,
+                : `repeating-conic-gradient(from 236.84deg at 50% 50%,hsl(var(--foreground)) 0%,hsl(var(--muted-foreground)) calc(25% / var(--repeating-conic-gradient-times)),hsl(var(--foreground)) calc(50% / var(--repeating-conic-gradient-times)), hsl(var(--muted-foreground)) calc(75% / var(--repeating-conic-gradient-times)),hsl(var(--foreground)) calc(100% / var(--repeating-conic-gradient-times)))`,
           } as React.CSSProperties
         }
         className={cn(
