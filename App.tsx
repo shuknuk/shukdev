@@ -4,7 +4,7 @@ import { ThemeProvider } from './contexts/ThemeProvider';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Blog } from './components/Blog';
 import { TechStack } from './components/TechStack';
-import { AIStack } from './components/AIStack';
+
 import { CommandMenu } from './components/CommandMenu';
 import { NavBar } from './components/ui/tubelight-navbar';
 import { Home, User, Briefcase, FileText, Code } from 'lucide-react';
@@ -107,7 +107,6 @@ const App: React.FC = () => {
           <About />
           <div id="tech">
             <TechStack />
-            <AIStack />
           </div>
           <div id="blog">
             <Blog />
