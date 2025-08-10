@@ -53,8 +53,8 @@ const App: React.FC = () => {
           />
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-          Developer & Designer. Incoming CS Student @ Rutgers University. <br/>
-          I build things that are clean, fast, and actually useful.
+          AI Systems Engineer & Full-Stack Developer — Incoming CS Student @ Rutgers University <br/>
+          I design and deploy intelligent, scalable applications — from custom AI agents to full-stack platforms — blending solid engineering with human-focused design.
         </p>
         <div className="flex justify-center items-center gap-4">
           <button 
@@ -78,10 +78,10 @@ const App: React.FC = () => {
     <section id="about" className="py-20 text-center">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="max-w-3xl mx-auto text-muted-foreground">
-            I'm an 18-year-old programmer from New Jersey who loves building things that are clean, fast, and actually useful. Whether it's designing websites for hackathons, contributing to open-source tools, or crafting visuals that actually don't suck, I like to explore all sides of tech. 
+            I’m an 18-year-old programmer from New Jersey with a focus on AI systems engineering — building everything from LLM-powered agents to full-stack applications that integrate AI into real-world workflows. My background spans frontend/UI design, backend development, and cloud deployment, giving me the ability to take AI projects from research concept to production-ready system.
         </p>
-        <p className = "max-w-3xl mx-auto text-muted-foreground">
-          Currently leveling up in data structures, concurrency, and backend development — and working on side projects that blend design and functionality.
+        <p className="max-w-3xl mx-auto text-muted-foreground mt-4">
+            Right now, I’m leveling up in machine learning theory, deep learning with PyTorch, and LLM fine-tuning, with the goal of engineering the next generation of intelligent, autonomous applications.
         </p>
     </section>
   );
