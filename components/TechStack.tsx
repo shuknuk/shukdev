@@ -137,6 +137,11 @@ const TECH_ICONS = {
             <path d="m3.5 8.5 1.5 1.5m12 0 1.5-1.5m-1.5 7 1.5 1.5m-12 0-1.5-1.5" />
         </svg>
     ),
+    'Google Cloud': (props: React.SVGProps<SVGSVGElement>) => (
+        <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4C9.11 4 6.6 5.64 5.35 8.04C2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96z"/>
+        </svg>
+    ),
 
     // Design & Visualization
     Figma: (props: React.SVGProps<SVGSVGElement>) => (
@@ -207,6 +212,7 @@ const TECH_STACK = {
     ],
     devops: [
         { name: 'Docker', icon: TECH_ICONS.Docker },
+        { name: 'Google Cloud', icon: TECH_ICONS['Google Cloud'] },
         { name: 'Vercel', icon: TECH_ICONS.Vercel },
         { name: 'Render', icon: TECH_ICONS.Render },
         { name: 'Git', icon: TECH_ICONS.Git },
