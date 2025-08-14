@@ -9,7 +9,7 @@ export const PROJECTS_DATA: Project[] = [
     category: 'Featured Work',
     rank: 'Gold',
     description: 'Designed and developed the full website for our second annual high school hackathon. Fully responsive, animated, and deployed on Vercel. ~100+ attendees used the site to register and access event info.',
-    tech: ['Next.js', 'TailwindCSS', 'Framer Motion'],
+    tech: ['Next.js', 'TailwindCSS', 'Framer Motion', 'AI-Assisted Development', 'ChatGPT', 'GitHub Copilot', 'Vercel'],
     links: {
       github: 'https://github.com/shuknuk/brhacks24',
       live: 'https://brhacks24.vercel.app/',
