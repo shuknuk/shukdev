@@ -48,7 +48,7 @@ export const PROJECTS_DATA: Project[] = [
     category: 'Featured Work',
     rank: 'Gold',
     description: 'An AI agent that provides hyper-personalized resume feedback by synthesizing insights from the resume, a job description, and live web data.',
-    tech: ['Next.js (TS)', 'shadcn/ui', 'Python (FastAPI)', 'Gemini 2.5 Pro', 'LangChain', 'Tavily Search API', 'Docker', 'Vercel', 'Render'],
+    tech: ['Next.js (TS)', 'shadcn/ui', 'Python (FastAPI)', 'Gemini 2.5 Flash', 'LangChain', 'Tavily Search API', 'Docker', 'Vercel', 'Render'],
     links: {
       github: [
         { label: 'Frontend', url: 'https://github.com/shuknuk/resume-analyzer-frontend' },
