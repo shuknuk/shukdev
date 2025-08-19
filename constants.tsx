@@ -26,7 +26,7 @@ export const PROJECTS_DATA: Project[] = [
     rank: 'Gold',
     category: 'Featured Work',
     description: `A personal portfolio website designed and developed from the ground up to showcase my skills, projects, and technical interests. Built with Next.js, TailwindCSS, and deployed on Vercel, it serves as both my digital resume and a platform to experiment with new frontend frameworks.`,
-    tech: ['Next.js', 'TailwindCSS', 'shadcn/ui', 'Framer Motion', 'Vercel'],
+    tech: ['Vite', 'TailwindCSS', 'shadcn/ui', 'Framer Motion', 'Vercel'],
     links: {
       github: 'https://github.com/shuknuk/shukdev',
       live: 'https://kinshuk-goel.vercel.app/',
@@ -246,6 +246,12 @@ export const TECH_ICONS: { [key: string]: (props: React.SVGProps<SVGSVGElement>)
       </g>
     </svg>
   ),
+  vite: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
+      <path d="M12 6.5v9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
 };
 
 // Centralized tech color mapping for consistent styling across the website
@@ -301,6 +307,9 @@ export const getTechColor = (tech: string): string => {
     'designsystems': 'bg-slate-100 dark:bg-slate-500/20 text-slate-700 dark:text-slate-400 border-slate-300 dark:border-slate-400/30',
     'datavisualizationprinciples': 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-400/30',
 
+  // Vite
+  'vite': 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-400/30',
+
     // Additional project-specific technologies
     'recharts': 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-400 border-indigo-300 dark:border-indigo-400/30',
     'geminiapi': 'bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 border-yellow-300 dark:border-yellow-400/30',
@@ -347,6 +356,8 @@ export const getTechIconComponent = (tech: string): ((props: React.SVGProps<SVGS
       return TECH_ICONS[techMap[key]];
     }
   }
+  // explicit vite mapping
+  if (lowerCaseTech.includes('vite')) return TECH_ICONS['vite'];
   return null;
 }
 
