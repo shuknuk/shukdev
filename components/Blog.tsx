@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Project } from '../types';
-import { PROJECTS_DATA, ICONS, getTechIconComponent, getTechColor } from '../constants';
+import { PROJECTS_DATA, ICONS, getTechColor } from '../constants';
 
 // Tech stack icons with proper styling (matching TechStack component)
 const TECH_ICONS = {
@@ -180,6 +180,7 @@ const getTechIcon = (tech: string) => {
 const PROJECT_DATES: { [key: string]: string } = {
     // Featured Work
     'resume-analyzer': '2025-07-23',
+    'portfolio-website': '2025-07-08',
     'brhacks24': '2024-10-07',
     'brhacks23': '2023-10-08',
     // Creative Labs

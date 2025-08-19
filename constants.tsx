@@ -20,6 +20,24 @@ export const PROJECTS_DATA: Project[] = [
       learnings: 'Leading this production deployment taught me how to build systems that real people depend on, not just demos that work on localhost. I learned to design for actual user load traffic, implement proper error handling, and ensure zero-downtime deployments. Orchestrating AI assistance within a production engineering workflow gave me hands‑on experience building reliable, AI‑powered applications where uptime and performance can\'t be compromised.',
     },
   },
+  {
+    id: 'portfolio-website',
+    title: 'This Portfolio Website',
+    rank: 'Gold',
+    category: 'Featured Work',
+    description: `A personal portfolio website designed and developed from the ground up to showcase my skills, projects, and technical interests. Built with Next.js, TailwindCSS, and deployed on Vercel, it serves as both my digital resume and a platform to experiment with new frontend frameworks.`,
+    tech: ['Next.js', 'TailwindCSS', 'shadcn/ui', 'Framer Motion', 'Vercel'],
+    links: {
+      github: 'https://github.com/shuknuk/shukdev',
+      live: 'https://kinshuk-goel.vercel.app/',
+    },
+    caseStudy: {
+      // We'll place the detailed "Read More" content in the `solution` field so it shows up under the "Solution" heading in the dialog
+      challenge: 'Overview of the project and goals.',
+      solution: `This site is more than just a digital resume — it’s a hands-on demo of my full-stack capabilities and design process. I architected it using Next.js for SSR and performance, styled with TailwindCSS for rapid UI development, and utilized shadcn/ui for accessible components. The entire site is fully responsive, mobile-optimized, and theme-aware (light/dark).<br/><br/>Key highlights:<ul><li>Custom “My Work” section to chronicle personal and collaborative projects.</li><li>Blog integration to share insights on AI engineering, coding, and university life.</li><li>Designed and iterated in Figma before development, focusing on visual clarity and user experience.</li><li>CI/CD and instant deployment using GitHub and Vercel, with automated builds & previews for every update.</li></ul>`,
+      learnings: `This project reflects my commitment to both functional engineering and polished design, always pushing for the intersection of usability and technical rigor.`,
+    },
+  },
   // {
   //   id: 'energy-price-tracker',
   //   title: 'Energy Price Tracker',
