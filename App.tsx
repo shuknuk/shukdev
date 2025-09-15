@@ -53,8 +53,9 @@ const App: React.FC = () => {
           />
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-          AI Systems Engineer & Full-Stack Developer — Incoming CS Student @ Rutgers University <br/>
-          I design and deploy intelligent, scalable applications — from custom AI agents to full-stack platforms — blending solid engineering with human-focused design.
+          Full-Stack Developer & AI Systems Engineer | CS Student @ Rutgers University
+          <br/>
+          I build AI tools and full-stack applications that are simple, reliable, and easy to use.
         </p>
         <div className="flex justify-center items-center gap-4">
           <button 
@@ -78,10 +79,12 @@ const App: React.FC = () => {
     <section id="about" className="py-20 text-center">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="max-w-3xl mx-auto text-muted-foreground">
-            I’m an 18-year-old programmer from New Jersey with a focus on AI systems engineering — building everything from LLM-powered agents to full-stack applications that integrate AI into real-world workflows. My background spans frontend/UI design, backend development, and cloud deployment, giving me the ability to take AI projects from research concept to production-ready system.
+            {/* I’m an 18-year-old programmer from New Jersey with a focus on AI systems engineering — building everything from LLM-powered agents to full-stack applications that integrate AI into real-world workflows. My background spans frontend/UI design, backend development, and cloud deployment, giving me the ability to take AI projects from research concept to production-ready system. */}
+            I’m a CS student at Rutgers and a programmer from New Jersey. I like building AI tools and full-stack apps — stuff like LLM agents and platforms that actually get used in real workflows. I’ve worked across frontend, backend, and cloud, so I know how to take a project from an idea to something people can use. 
         </p>
         <p className="max-w-3xl mx-auto text-muted-foreground mt-4">
-            Right now, I’m leveling up in machine learning theory, deep learning with PyTorch, and LLM fine-tuning, with the goal of engineering the next generation of intelligent, autonomous applications.
+            {/* Right now, I’m leveling up in machine learning theory, deep learning with PyTorch, and LLM fine-tuning, with the goal of engineering the next generation of intelligent, autonomous applications. */}
+            Right now, I’m digging into ML theory, PyTorch, and LLM fine-tuning so I can build smarter, more autonomous systems.
         </p>
     </section>
   );
