@@ -144,7 +144,7 @@ const TECH_ICONS = {
     ),
     'Google Cloud': (props: React.SVGProps<SVGSVGElement>) => (
         <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4C9.11 4 6.6 5.64 5.35 8.04C2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96z"/>
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4C9.11 4 6.6 5.64 5.35 8.04C2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96z" />
         </svg>
     ),
 
@@ -191,47 +191,28 @@ const TECH_ICONS = {
 
 // Tech stack data organized by categories
 const TECH_STACK = {
-    aiMl: [
+    aiEngineering: [
+        { name: 'PyTorch', icon: TECH_ICONS['PyTorch (in progress)'] },
         { name: 'LangChain', icon: TECH_ICONS.LangChain },
-        { name: 'Hugging Face', icon: TECH_ICONS['Hugging Face'] },
         { name: 'Gemini 2.5 Pro', icon: TECH_ICONS['Gemini 2.5 Pro'] },
+        { name: 'Hugging Face', icon: TECH_ICONS['Hugging Face'] },
         { name: 'ReAct Framework', icon: TECH_ICONS['ReAct Framework'] },
-        { name: 'Tavily Search API', icon: TECH_ICONS['Tavily Search API'] },
+        { name: 'Tavily API', icon: TECH_ICONS['Tavily Search API'] },
     ],
-    languages: [
-        { name: 'Python', icon: TECH_ICONS.Python },
-        { name: 'JavaScript', icon: TECH_ICONS.JavaScript },
-        { name: 'TypeScript', icon: TECH_ICONS.TypeScript },
-        { name: 'Java', icon: TECH_ICONS.Java },
-        { name: 'HTML', icon: TECH_ICONS.HTML },
-        { name: 'CSS', icon: TECH_ICONS.CSS },
-        { name: 'Bash', icon: TECH_ICONS.Bash },
-    ],
-    frameworks: [
-        { name: 'PyTorch (in progress)', icon: TECH_ICONS['PyTorch (in progress)'] },
+    fullStack: [
         { name: 'Next.js', icon: TECH_ICONS['Next.js'] },
-    { name: 'Vite', icon: TECH_ICONS.Vite },
+        { name: 'TypeScript', icon: TECH_ICONS.TypeScript },
+        { name: 'Python', icon: TECH_ICONS.Python },
         { name: 'FastAPI', icon: TECH_ICONS.FastAPI },
-        { name: 'TailwindCSS', icon: TECH_ICONS.TailwindCSS },
         { name: 'Node.js', icon: TECH_ICONS['Node.js'] },
-        { name: 'shadcn/ui', icon: TECH_ICONS['shadcn/ui'] },
+        { name: 'TailwindCSS', icon: TECH_ICONS.TailwindCSS },
     ],
-    devops: [
+    infrastructure: [
         { name: 'Docker', icon: TECH_ICONS.Docker },
         { name: 'Google Cloud', icon: TECH_ICONS['Google Cloud'] },
         { name: 'Vercel', icon: TECH_ICONS.Vercel },
-        { name: 'Render', icon: TECH_ICONS.Render },
-        { name: 'Git', icon: TECH_ICONS.Git },
-        { name: 'GitHub', icon: TECH_ICONS.GitHub },
-        { name: 'CI/CD Pipelines', icon: TECH_ICONS['CI/CD Pipelines'] },
-    ],
-    design: [
-        { name: 'Figma', icon: TECH_ICONS.Figma },
         { name: 'Framer Motion', icon: TECH_ICONS['Framer Motion'] },
-        { name: 'Data Visualization Principles', icon: TECH_ICONS['Data Visualization Principles'] },
-        { name: 'UI/UX Design', icon: TECH_ICONS['UI/UX Design'] },
-        { name: 'Responsive Design', icon: TECH_ICONS['Responsive Design'] },
-        { name: 'Design Systems', icon: TECH_ICONS['Design Systems'] },
+        { name: 'Figma', icon: TECH_ICONS.Figma },
     ],
 };
 
@@ -281,17 +262,10 @@ export function TechStack() {
             <h2 className="text-3xl font-bold text-center mb-12">Skills</h2>
 
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Top row - 3 cards on desktop, 2 on tablet, 1 on mobile */}
-                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <SkillCard title="AI & ML Tools" skills={TECH_STACK.aiMl} />
-                        <SkillCard title="Programming Languages" skills={TECH_STACK.languages} />
-                        <SkillCard title="Frameworks & Libraries" skills={TECH_STACK.frameworks} />
-                    </div>
-
-                    {/* Bottom row - 2 cards equally spaced */}
-                    <SkillCard title="DevOps & Deployment" skills={TECH_STACK.devops} />
-                    <SkillCard title="Design & Visualization" skills={TECH_STACK.design} />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <SkillCard title="AI & Intelligent Systems" skills={TECH_STACK.aiEngineering} />
+                    <SkillCard title="Full Stack Engineering" skills={TECH_STACK.fullStack} />
+                    <SkillCard title="Cloud & Design" skills={TECH_STACK.infrastructure} />
                 </div>
             </div>
         </section>

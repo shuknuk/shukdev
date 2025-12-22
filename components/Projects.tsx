@@ -79,20 +79,20 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
     if (!contentEl) return;
 
     const onFirstScroll = () => {
-        setShowScrollIndicator(false);
-        contentEl.removeEventListener('scroll', onFirstScroll);
+      setShowScrollIndicator(false);
+      contentEl.removeEventListener('scroll', onFirstScroll);
     };
 
     const checkAndSetIndicator = () => {
-        contentEl.removeEventListener('scroll', onFirstScroll);
-        const isScrollable = contentEl.scrollHeight > contentEl.clientHeight;
-        
-        if (isScrollable && contentEl.scrollTop === 0) {
-            setShowScrollIndicator(true);
-            contentEl.addEventListener('scroll', onFirstScroll);
-        } else {
-            setShowScrollIndicator(false);
-        }
+      contentEl.removeEventListener('scroll', onFirstScroll);
+      const isScrollable = contentEl.scrollHeight > contentEl.clientHeight;
+
+      if (isScrollable && contentEl.scrollTop === 0) {
+        setShowScrollIndicator(true);
+        contentEl.addEventListener('scroll', onFirstScroll);
+      } else {
+        setShowScrollIndicator(false);
+      }
     };
 
     const timeoutId = setTimeout(checkAndSetIndicator, 100);
@@ -100,20 +100,20 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
     resizeObserver.observe(contentEl);
 
     return () => {
-        clearTimeout(timeoutId);
-        resizeObserver.disconnect();
-        if (contentEl) {
-            contentEl.removeEventListener('scroll', onFirstScroll);
-        }
+      clearTimeout(timeoutId);
+      resizeObserver.disconnect();
+      if (contentEl) {
+        contentEl.removeEventListener('scroll', onFirstScroll);
+      }
     };
   }, [project]);
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
       onClick={onClose}
     >
-      <div 
+      <div
         className="w-full max-w-2xl m-4 bg-card text-card-foreground rounded-lg border border-border shadow-lg p-6 relative fade-in-on-change"
         onClick={(e) => e.stopPropagation()}
       >
@@ -122,31 +122,31 @@ const CaseStudyDialog: React.FC<{ project: Project; onClose: () => void }> = ({ 
         </button>
         <h2 className="text-2xl font-bold text-foreground mb-2">{project.title}</h2>
         <div className="flex items-center space-x-4 mb-4">
-            {project.links.github && <GithubLinksDropdown links={project.links.github} isDialog={true} />}
-            {project.links.live && (
-              <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
-                <ICONS.externalLink className="w-4 h-4 mr-1" /> Live Site
-              </a>
-            )}
+          {project.links.github && <GithubLinksDropdown links={project.links.github} isDialog={true} />}
+          {project.links.live && (
+            <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground">
+              <ICONS.externalLink className="w-4 h-4 mr-1" /> Live Site
+            </a>
+          )}
         </div>
         <div ref={contentRef} className="space-y-4 text-muted-foreground max-h-[60vh] overflow-y-auto pr-2 relative">
-            <div>
-                <h3 className="font-semibold text-lg text-foreground mb-1">Challenge</h3>
-                <p dangerouslySetInnerHTML={{ __html: project.caseStudy.challenge }} />
+          <div>
+            <h3 className="font-semibold text-lg text-foreground mb-1">Challenge</h3>
+            <p dangerouslySetInnerHTML={{ __html: project.caseStudy.challenge }} />
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg text-foreground mb-1">Solution</h3>
+            <p dangerouslySetInnerHTML={{ __html: project.caseStudy.solution }} />
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg text-foreground mb-1">Key Learnings</h3>
+            <p dangerouslySetInnerHTML={{ __html: project.caseStudy.learnings }} />
+          </div>
+          {showScrollIndicator && (
+            <div className="absolute bottom-0 right-2 left-0 h-20 bg-gradient-to-t from-card to-transparent pointer-events-none flex justify-center items-end pb-2">
+              <ICONS.chevronDown className="w-6 h-6 text-muted-foreground animate-bounce opacity-75" />
             </div>
-            <div>
-                <h3 className="font-semibold text-lg text-foreground mb-1">Solution</h3>
-                <p dangerouslySetInnerHTML={{ __html: project.caseStudy.solution }} />
-            </div>
-            <div>
-                <h3 className="font-semibold text-lg text-foreground mb-1">Key Learnings</h3>
-                <p dangerouslySetInnerHTML={{ __html: project.caseStudy.learnings }} />
-            </div>
-            {showScrollIndicator && (
-              <div className="absolute bottom-0 right-2 left-0 h-20 bg-gradient-to-t from-card to-transparent pointer-events-none flex justify-center items-end pb-2">
-                <ICONS.chevronDown className="w-6 h-6 text-muted-foreground animate-bounce opacity-75" />
-              </div>
-            )}
+          )}
         </div>
       </div>
     </div>
@@ -157,11 +157,11 @@ const ImagePreviewDialog: React.FC<{ project: Project; onClose: () => void }> = 
   if (!project.image) return null;
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
       onClick={onClose}
     >
-      <div 
+      <div
         className="w-full max-w-5xl m-4 bg-card text-card-foreground rounded-lg border border-border shadow-lg p-4 relative fade-in-on-change"
         onClick={(e) => e.stopPropagation()}
       >
@@ -169,7 +169,7 @@ const ImagePreviewDialog: React.FC<{ project: Project; onClose: () => void }> = 
           <ICONS.x className="h-5 w-5" />
         </button>
         <div className="relative aspect-video bg-black/10 rounded-md">
-            <img src={project.image} alt={`Screenshot of ${project.title}`} className="w-full h-full object-contain" />
+          <img src={project.image} alt={`Screenshot of ${project.title}`} className="w-full h-full object-contain" />
         </div>
         <h2 className="text-lg font-bold text-foreground mt-4 px-1">{project.title}</h2>
       </div>
@@ -178,7 +178,7 @@ const ImagePreviewDialog: React.FC<{ project: Project; onClose: () => void }> = 
 };
 
 
-const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; onImagePreviewClick: () => void; }> = ({ project, onCaseStudyClick, onImagePreviewClick }) => {
+const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; onImagePreviewClick: () => void; className?: string }> = ({ project, onCaseStudyClick, onImagePreviewClick, className }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -204,57 +204,71 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; on
   }, []);
 
   return (
-    <div ref={cardRef} className="spotlight-card p-6 bg-card rounded-lg border border-border flex flex-col h-full transition-all duration-300 ease-in-out hover:shadow-md">
-      <div className="flex-grow">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="text-lg font-bold text-foreground">{project.title}</h3>
+    <div ref={cardRef} className={`spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-lg dark:hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.3)] ${className}`}>
+      {/* Background Glow Effect on Hover via CSS (assumed spotlight-card class handles this or we add it) */}
+
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="flex justify-between items-start mb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-secondary/50 rounded-lg">
+              {/* Placeholder or specific icon if available, otherwise generic folder */}
+              <ICONS.folder className="w-5 h-5 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground tracking-tight">{project.title}</h3>
+          </div>
           {project.rank && (
-            <span className={`flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full border ${rankColorMap[project.rank]}`}>
-              {project.rank === 'In Progress' ? (
-                <ICONS.progress className="w-3 h-3" />
-              ) : (
-                <ICONS.medal className="w-3 h-3" />
-              )}
-              <span>{project.rank}</span>
+            <span className={`px-2.5 py-0.5 text-xs font-medium rounded-full border ${rankColorMap[project.rank]} backdrop-blur-sm`}>
+              {project.rank}
             </span>
           )}
         </div>
-        <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((t) => {
-            const IconComponent = getTechIconComponent(t);
-            return (
-              <div key={t} className="flex items-center gap-1.5 px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-md">
-                {IconComponent && <IconComponent className="w-3.5 h-3.5" />}
-                <span>{t}</span>
-              </div>
-            );
-          })}
+
+        <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
+          {project.description}
+        </p>
+
+        <div className="mt-auto">
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.tech.slice(0, 5).map((t) => {
+              const IconComponent = getTechIconComponent(t);
+              return (
+                <div key={t} className="flex items-center gap-1.5 px-2 py-1 text-[10px] uppercase tracking-wider font-semibold bg-secondary/60 text-secondary-foreground rounded-md border border-border/50">
+                  {IconComponent && <IconComponent className="w-3 h-3" />}
+                  <span>{t}</span>
+                </div>
+              );
+            })}
+            {project.tech.length > 5 && (
+              <span className="text-[10px] py-1 text-muted-foreground">+ {project.tech.length - 5} more</span>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between border-t border-border/50 pt-4">
+            <div className="flex items-center gap-3">
+              {project.links.github && <GithubLinksDropdown links={project.links.github} />}
+              {project.links.live && (
+                <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                  <ICONS.externalLink className="w-4 h-4" />
+                  <span>Visit</span>
+                </a>
+              )}
+            </div>
+
+            <div className="flex gap-2">
+              {project.image && (
+                <button onClick={onImagePreviewClick} className="p-2 hover:bg-muted rounded-full transition-colors group/btn" title="View Preview">
+                  <ICONS.image className="w-4 h-4 text-muted-foreground group-hover/btn:text-primary" />
+                </button>
+              )}
+              {project.caseStudy && (
+                <button onClick={onCaseStudyClick} className="flex items-center gap-1 text-xs font-semibold bg-primary/10 text-primary hover:bg-primary/20 px-3 py-1.5 rounded-full transition-colors">
+                  Case Study
+                  <ICONS.chevronDown className="w-3 h-3 -rotate-90" />
+                </button>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="mt-auto pt-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {project.links.github && <GithubLinksDropdown links={project.links.github} />}
-            {project.links.live && (
-              <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                <ICONS.externalLink className="w-4 h-4" />
-                <span>Live Site</span>
-              </a>
-            )}
-          </div>
-          <div className="flex items-center gap-4">
-            {project.image && (
-              <button onClick={onImagePreviewClick} className="flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
-                <ICONS.image className="w-4 h-4" />
-                View Picture
-              </button>
-            )}
-            {project.caseStudy && (
-              <button onClick={onCaseStudyClick} className="text-sm font-semibold text-primary hover:underline">
-                View Case Study
-              </button>
-            )}
-          </div>
       </div>
     </div>
   );
@@ -270,7 +284,7 @@ export function Projects() {
   const openCaseStudy = (projectId: string) => {
     setOpenModalId(projectId);
   };
-  
+
   const closeCaseStudy = () => {
     setOpenModalId(null);
   };
@@ -278,47 +292,66 @@ export function Projects() {
   const openImagePreview = (projectId: string) => {
     setOpenImageId(projectId);
   };
-  
+
   const closeImagePreview = () => {
     setOpenImageId(null);
   };
-  
+
   const projectToDisplayInModal = PROJECTS_DATA.find(p => p.id === openModalId);
   const projectToDisplayInPreview = PROJECTS_DATA.find(p => p.id === openImageId);
 
   return (
-    <section id="projects" className="py-20">
-      <h2 className="text-3xl font-bold text-center mb-10">My Work</h2>
-      
-      <div className="flex justify-center mb-8">
-        <div className="p-1 bg-secondary rounded-lg">
-          <button
-            onClick={() => setActiveTab('Featured Work')}
-            className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === 'Featured Work' ? 'bg-background shadow-sm text-primary' : 'text-muted-foreground hover:bg-muted/50'}`}
-          >
-            Featured Work
-          </button>
-          <button
-            onClick={() => setActiveTab('Creative Labs')}
-            className={`px-6 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === 'Creative Labs' ? 'bg-background shadow-sm text-primary' : 'text-muted-foreground hover:bg-muted/50'}`}
-          >
-            Creative Labs
-          </button>
+    <section id="projects" className="py-24 relative">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl opacity-30" />
+      <div className="absolute bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-secondary/30 rounded-full blur-3xl opacity-30" />
+
+      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div className="text-left">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Selected Work</h2>
+          <p className="text-muted-foreground text-lg max-w-xl">
+            A collection of projects where I've engineered AI systems, built full-stack platforms, and experimented with new interfaces.
+          </p>
+        </div>
+
+        <div className="bg-secondary/50 p-1 rounded-full backdrop-blur-md border border-border">
+          {['Featured Work', 'Creative Labs'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab as Tab)}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
+                  ? 'bg-background text-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'
+                }`}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div 
-        key={activeTab}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in-on-change"
-      >
-        {filteredProjects.map((project) => (
-          <ProjectCard 
-            key={project.id} 
-            project={project} 
-            onCaseStudyClick={() => openCaseStudy(project.id)}
-            onImagePreviewClick={() => openImagePreview(project.id)}
-          />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+        {filteredProjects.map((project, index) => {
+          // Simple logic for bento grid layout
+          // First item spans 2 cols on large screens
+          // Fourth item spans 2 cols on large screens
+          let spanClass = "";
+          if (activeTab === 'Featured Work') {
+            if (index === 0 || index === 3) {
+              spanClass = "md:col-span-2";
+            }
+          }
+
+          return (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              className={spanClass}
+              onCaseStudyClick={() => openCaseStudy(project.id)}
+              onImagePreviewClick={() => openImagePreview(project.id)}
+            />
+          );
+        })}
       </div>
 
       {openModalId && projectToDisplayInModal && (

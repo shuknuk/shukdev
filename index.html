@@ -1,21 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kinshuk Goel</title>
-  <meta name="description" content="Portfolio of Kinshuk Goel, a software engineer specializing in web development, AI, and open source contributions. Explore projects, blogs, and more." />
+  <meta name="description"
+    content="Portfolio of Kinshuk Goel, a software engineer specializing in web development, AI, and open source contributions. Explore projects, blogs, and more." />
 
-  <meta name="keywords" content="Kinshuk Goel, software engineer, web development, AI, open source, portfolio, kinshuk goel bridgewater nj, kinshuk goel brhs, kinshuk goel br, goel kinshuk, kinshuk goel rutgers university" />
+  <meta name="keywords"
+    content="Kinshuk Goel, software engineer, web development, AI, open source, portfolio, kinshuk goel bridgewater nj, kinshuk goel brhs, kinshuk goel br, goel kinshuk, kinshuk goel rutgers university" />
   <meta name="author" content="Kinshuk Goel" />
   <link rel="canonical" href="https://kinshuk-goel.vercel.app/" />
 
   <!-- LinkedIn Info-->
   <meta property="og:url" content="https://kinshuk-goel.vercel.app/" />
   <meta property="og:title" content="Kinshuk Goel" />
-  <meta property="og:description" content="Portfolio of Kinshuk Goel, a software engineer specializing in web development, AI, and open source contributions. Explore projects, blogs, and more." />
+  <meta property="og:description"
+    content="Portfolio of Kinshuk Goel, a software engineer specializing in web development, AI, and open source contributions. Explore projects, blogs, and more." />
   <meta property="og:image" content="https://kinshuk-goel.vercel.app/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -31,7 +34,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@your_twitter_handle" />
   <meta name="twitter:title" content="Kinshuk Goel — Portfolio" />
-  <meta name="twitter:description" content="Portfolio of Kinshuk Goel, a software engineer specializing in web development, AI, and open source contributions." />
+  <meta name="twitter:description"
+    content="Portfolio of Kinshuk Goel, a software engineer specializing in web development, AI, and open source contributions." />
   <meta name="twitter:image" content="https://kinshuk-goel.vercel.app/og-image.jpg" />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -86,7 +90,7 @@
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-    
+
     :root {
       --background: 0 0% 100%;
       --foreground: 240 10% 3.9%;
@@ -109,7 +113,7 @@
       --ring: 240 10% 3.9%;
       --radius: 0.5rem;
     }
- 
+
     .dark {
       --background: 240 10% 3.9%;
       --foreground: 0 0% 98%;
@@ -141,20 +145,32 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
+
     .fade-in-on-change {
       animation: fadeIn 400ms ease-in-out;
     }
-    
+
     /* === ANIMATION STYLES START === */
 
     /* Animated Shiny Header */
     @keyframes shine {
-      from { background-position: 200% center; }
-      to { background-position: -200% center; }
+      from {
+        background-position: 200% center;
+      }
+
+      to {
+        background-position: -200% center;
+      }
     }
+
     .shiny-text {
       background: linear-gradient(to right, hsl(var(--foreground)) 20%, hsl(var(--muted-foreground)) 40%, hsl(var(--muted-foreground)) 60%, hsl(var(--foreground)) 80%);
       background-size: 200% auto;
@@ -169,6 +185,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .spotlight-card::before {
       content: "";
       position: absolute;
@@ -182,6 +199,7 @@
       transition: opacity 0.3s;
       pointer-events: none;
     }
+
     .spotlight-card:hover::before {
       opacity: 1;
     }
@@ -190,31 +208,30 @@
     .transform-gpu {
       transform: translateZ(0);
     }
-    
+
     .perspective-1000 {
       perspective: 1000px;
     }
-    
+
     .preserve-3d {
       transform-style: preserve-3d;
     }
-    
+
     .rotateY-0 {
       transform: perspective(1000px) rotateY(0deg);
     }
-    
+
     .rotateY-90 {
       transform: perspective(1000px) rotateY(90deg);
     }
-    
+
     .-rotateY-90 {
       transform: perspective(1000px) rotateY(-90deg);
     }
 
     /* === ANIMATION STYLES END === */
-
   </style>
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
     "react/": "https://esm.sh/react@^19.1.0/",
@@ -223,7 +240,7 @@
   }
 }
 </script>
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -251,10 +268,12 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
+
 <body>
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
