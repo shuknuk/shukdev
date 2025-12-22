@@ -1,28 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ThemeProvider } from './contexts/ThemeProvider';
 import { Projects } from './components/Projects';
 import { TechStack } from './components/TechStack';
 import { ThemeToggle } from './components/ThemeToggle';
-import { CommandMenu } from './components/CommandMenu';
+import { Contact } from './components/Contact';
 import { NavBar } from './components/ui/tubelight-navbar';
 import { Typewriter } from './components/ui/typewriter';
 import { Home, User, Briefcase, Code } from 'lucide-react';
 import { ICONS } from './constants';
 
 const App: React.FC = () => {
-  const [isCommandMenuOpen, setCommandMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setCommandMenuOpen((open) => !open)
-      }
-    }
-    document.addEventListener('keydown', down)
-    return () => document.removeEventListener('keydown', down)
-  }, [])
 
   const navItems = [
     { name: 'Home', url: '#home', icon: Home },
@@ -66,7 +55,7 @@ const App: React.FC = () => {
             <ICONS.chevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
           </button>
           <button
-            onClick={() => setCommandMenuOpen(true)}
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-3 rounded-full border border-border bg-background text-foreground font-semibold hover:bg-secondary/50 transition-colors"
           >
             Contact
@@ -94,10 +83,10 @@ const App: React.FC = () => {
     <footer className="border-t border-border py-8">
       <div className="container mx-auto px-4 text-center text-muted-foreground">
         <div className="flex justify-center gap-6 mb-4">
-          <a href="https://www.linkedin.com/in/kinshuk-goel-7137a1281/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+          <a href="https://linkedin.com/in/kinshukgoel2" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
             <ICONS.linkedin className="w-6 h-6" />
           </a>
-          <a href="https://github.com/shuknuk" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+          <a href="https://github.com/shuknuk/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
             <ICONS.github className="w-6 h-6" />
           </a>
         </div>
@@ -113,16 +102,9 @@ const App: React.FC = () => {
         <NavBar items={navItems} />
 
         <div className="fixed top-4 right-4 z-40 flex items-center gap-4">
-          <button
-            onClick={() => setCommandMenuOpen(true)}
-            className="text-sm text-muted-foreground bg-secondary px-3 py-1.5 rounded-md border border-border flex items-center gap-2 hover:bg-muted"
-          >
-            <span>Cmd + K</span>
-          </button>
           <ThemeToggle />
         </div>
 
-        <CommandMenu open={isCommandMenuOpen} setOpen={setCommandMenuOpen} />
         <main className="container mx-auto px-4">
           <Hero />
           <About />
@@ -130,6 +112,7 @@ const App: React.FC = () => {
           <div id="tech">
             <TechStack />
           </div>
+          <Contact />
         </main>
         <Footer />
       </div>
