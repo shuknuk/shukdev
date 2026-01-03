@@ -268,6 +268,45 @@ export const TECH_ICONS: { [key: string]: (props: React.SVGProps<SVGSVGElement>)
       <path d="M12 6.5v9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
+  typescript: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <rect width="20" height="20" x="2" y="2" rx="2" ry="2" />
+      <path fill="hsl(var(--background))" d="M14.5 9.5v1.25h-2v6.75h-1.5v-6.75h-2V9.5h5.5z" />
+    </svg>
+  ),
+  shadcn: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <path d="M12 3 2 12h3v8h14v-8h3L12 3z" />
+    </svg>
+  ),
+  tavily: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.35-4.35" />
+    </svg>
+  ),
+  render: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <circle cx="12" cy="12" r="10" />
+      <path fill="hsl(var(--background))" d="M12 6v6l4 2" />
+    </svg>
+  ),
+  git: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187" />
+    </svg>
+  ),
+  github: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+    </svg>
+  ),
+  chrome: (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="4" />
+    </svg>
+  ),
 };
 
 // Centralized tech color mapping for consistent styling across the website
@@ -350,32 +389,67 @@ export const getTechColor = (tech: string): string => {
 
 export const getTechIconComponent = (tech: string): ((props: React.SVGProps<SVGSVGElement>) => React.ReactElement) | null => {
   const lowerCaseTech = tech.toLowerCase();
+
+  // Comprehensive tech to icon mapping
   const techMap: { [key: string]: string } = {
+    // Frameworks
     'next.js': 'nextjs',
-    'tailwind': 'tailwindcss',
-    'framer motion': 'framer-motion',
+    'nextjs': 'nextjs',
+    'react': 'react',
+    'vite': 'vite',
+
+    // Languages
     'python': 'python',
+    'javascript': 'javascript',
+    'typescript': 'typescript',
+    'html': 'html',
+    'html5': 'html',
+    'css': 'css',
+    'css3': 'css',
+    'bash': 'bash',
+
+    // Styling
+    'tailwind': 'tailwindcss',
+    'tailwindcss': 'tailwindcss',
+    'framer motion': 'framer-motion',
+    'framer': 'framer-motion',
+
+    // Backend
     'fastapi': 'fastapi',
+    'node': 'nodejs',
+    'node.js': 'nodejs',
+
+    // AI/ML
     'gemini': 'gemini',
     'langchain': 'langchain',
+    'tavily': 'tavily',
+
+    // DevOps
     'docker': 'docker',
     'vercel': 'vercel',
-    'css': 'css',
-    'html': 'html',
-    'javascript': 'javascript',
-    'node': 'nodejs',
+    'render': 'render',
+    'git': 'git',
+    'github': 'github',
+
+    // UI Libraries
+    'shadcn': 'shadcn',
+    'shadcn/ui': 'shadcn',
+
+    // Discord
     'discord': 'discordjs',
-    'bash': 'bash',
-    'react': 'react',
+    'discord.js': 'discordjs',
+
+    // Browser Extensions
+    'chrome': 'chrome',
+    'manifest': 'chrome',
   };
 
   for (const key in techMap) {
     if (lowerCaseTech.includes(key)) {
-      return TECH_ICONS[techMap[key]];
+      return TECH_ICONS[techMap[key]] || null;
     }
   }
-  // explicit vite mapping
-  if (lowerCaseTech.includes('vite')) return TECH_ICONS['vite'];
+
   return null;
 }
 
