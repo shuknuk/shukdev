@@ -22,8 +22,25 @@ const App: React.FC = () => {
 
   const Hero: React.FC = () => {
     return (
-      <section id="home" className="relative pt-24 pb-16 md:pt-40 md:pb-24">
-        <div className="section-container max-w-4xl mx-auto text-center">
+      <section id="home" className="relative pt-24 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+        {/* Floating Doodles */}
+        <div className="hero-doodle top-20 left-[10%] -rotate-12">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
+            <path d="M20 10V20L25 25" stroke="currentColor" strokeWidth="0.5" />
+          </svg>
+        </div>
+        <div className="hero-doodle bottom-40 right-[15%] rotate-12">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 5L10 10M20 5L15 10M5 20L10 15M20 20L15 15" stroke="currentColor" strokeWidth="0.5" />
+            <circle cx="12.5" cy="12.5" r="2" fill="currentColor" />
+          </svg>
+        </div>
+        <div className="hero-doodle top-1/2 left-[5%] opacity-10">
+          <div className="pattern-dots w-20 h-20"></div>
+        </div>
+
+        <div className="section-container max-w-4xl mx-auto text-center relative z-10">
           <div className="space-y-6">
             <div className="inline-block px-4 py-1.5 border-dotted-accent text-sm font-medium text-primary mb-4">
               <span className="font-mono">// software engineer</span>

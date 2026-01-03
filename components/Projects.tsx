@@ -204,7 +204,7 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; on
   }, []);
 
   return (
-    <div ref={cardRef} className={`glass-card group relative flex flex-col justify-between overflow-hidden p-5 glow-accent-hover ${className}`}>
+    <div ref={cardRef} className={`glass-card pattern-grid group relative flex flex-col justify-between overflow-hidden p-5 glow-accent-hover ${className}`}>
       {/* Background Glow Effect on Hover via CSS (assumed spotlight-card class handles this or we add it) */}
 
       <div className="relative z-10 flex flex-col h-full">

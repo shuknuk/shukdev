@@ -216,6 +216,38 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%2381A1C1' fill-opacity='0.1' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3Cpath fill='%2381A1C1' fill-opacity='0.06' d='M0,288L48,272C96,256,192,224,288,218.7C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,208C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
     }
 
+    /* === DOODLE PATTERNS === */
+    .pattern-dots {
+      background-image: radial-gradient(hsl(var(--primary) / 0.2) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .pattern-grid {
+      background-image:
+        linear-gradient(to right, hsl(var(--primary) / 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .hero-doodle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.4;
+      z-index: 0;
+      color: hsl(var(--primary));
+    }
+
+    .light .hero-doodle {
+      opacity: 0.3;
+      color: hsl(var(--primary));
+    }
+
+    /* Ensure patterns show over card background */
+    .glass-card.pattern-dots,
+    .glass-card.pattern-grid {
+      background-blend-mode: overlay;
+    }
+
     /* === DOTTED/DASHED BORDER UTILITIES === */
     .border-dotted-box {
       border: 1px dashed hsl(var(--border));
