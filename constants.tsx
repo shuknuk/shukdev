@@ -38,6 +38,22 @@ export const PROJECTS_DATA: Project[] = [
       learnings: `This project reflects my commitment to both functional engineering and polished design, always pushing for the intersection of usability and technical rigor.`,
     },
   },
+  {
+    id: 'zentreetabs',
+    title: 'ZenTree Tabs',
+    category: 'Featured Work',
+    rank: 'Silver',
+    description: 'A modern Chrome Extension that organizes tabs into a vertical tree structure in the Side Panel. Features automatic nesting, native tab group integration, multi-select, drag & drop, and a glassmorphic "Arc-inspired" UI with 5 custom themes—all built with vanilla JavaScript.',
+    tech: ['JavaScript', 'CSS3', 'HTML5', 'Chrome Extensions', 'Manifest V3'],
+    links: {
+      github: 'https://github.com/shuknuk/zentreetabs',
+    },
+    caseStudy: {
+      challenge: 'Browser tabs quickly spiral out of control during deep research sessions. I wanted a better way to visualize tab relationships and context without switching to an entirely different browser. The challenge was building a polished, production-ready Chrome extension that felt native, performant, and minimalist—while handling complex UI interactions like drag-and-drop reordering and multi-select.',
+      solution: 'I built <strong>ZenTree Tabs</strong> entirely in <strong>vanilla JavaScript, CSS3, and HTML5</strong>—no frameworks, no heavy dependencies. The extension uses <strong>Manifest V3</strong> and Chrome\'s Side Panel API to display tabs in an intuitive vertical tree. Tabs automatically nest under their "opener" to preserve research context. Native <strong>Tab Groups</strong> render as collapsible folders. I implemented full <strong>drag-and-drop</strong> (HTML5 API), <strong>multi-select</strong> (Ctrl/Shift + click), and local <strong>tab renaming</strong>. The UI features glassmorphism, smooth hover effects, a background mesh toggle, and <strong>5 themes</strong> (Ocean, Sunset, Forest, Berry, Monochrome). I also integrated a <strong>Bookmarks Manager</strong> and <strong>Downloads Manager</strong> directly into the panel for a unified workspace experience.',
+      learnings: 'This project taught me how to build browser extensions the right way—lightweight, performant, and compliant with modern Manifest V3 standards. Working without a framework forced me to deeply understand the DOM, event delegation, and Chrome\'s extension APIs. Designing a cohesive, themeable UI from scratch strengthened my CSS skills and appreciation for design systems. Shipping a usable product that I actually use every day has been incredibly rewarding.',
+    },
+  },
   // {
   //   id: 'energy-price-tracker',
   //   title: 'Energy Price Tracker',
@@ -93,7 +109,7 @@ export const PROJECTS_DATA: Project[] = [
     },
     caseStudy: {
       challenge: 'For my high school\'s inaugural BRHacks hackathon, we had zero existing infrastructure and tight deadlines. The challenge was to build a credible, production-ready web presence that would handle real attendees and sponsors. This side would not just showcase our brand, but it also served as our primary registeration system, so there was no room for downtime or errors.',
-      solution: 'I designed and built the entire full‑stack site in <strong>Next.js</strong>, focusing on a responsive layout, clear navigation, and registration flows that were easy to use on any device. I took on both the visual design and the backend logic, setting up secure user registration, managing dynamic content, and tuning performance. Throughout the build, I used ChatGPT‑3.5 as a brainstorming and debugging partner, but I made all final architectural decisions and handled deployment, testing, and optimizations myself to ensure the site felt polished and reliable for our audience.',      
+      solution: 'I designed and built the entire full‑stack site in <strong>Next.js</strong>, focusing on a responsive layout, clear navigation, and registration flows that were easy to use on any device. I took on both the visual design and the backend logic, setting up secure user registration, managing dynamic content, and tuning performance. Throughout the build, I used ChatGPT‑3.5 as a brainstorming and debugging partner, but I made all final architectural decisions and handled deployment, testing, and optimizations myself to ensure the site felt polished and reliable for our audience.',
       learnings: 'This project was a crash course in <strong>shipping under pressure with real stakes</strong>. I learned that building for real users is fundamentally different from building demos. Every bug impacts real people, every design decision affects user conversion, and every deployment needs to be bulletproof. The experience of collaborating through Git while maintaining production quality taught me how to balance speed with reliability, a crucial skill for any production engineering role.',
     },
   },
@@ -307,8 +323,8 @@ export const getTechColor = (tech: string): string => {
     'designsystems': 'bg-slate-100 dark:bg-slate-500/20 text-slate-700 dark:text-slate-400 border-slate-300 dark:border-slate-400/30',
     'datavisualizationprinciples': 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-400/30',
 
-  // Vite
-  'vite': 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-400/30',
+    // Vite
+    'vite': 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-400/30',
 
     // Additional project-specific technologies
     'recharts': 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-400 border-indigo-300 dark:border-indigo-400/30',
@@ -318,6 +334,8 @@ export const getTechColor = (tech: string): string => {
     'hackathons': 'bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-400 border-orange-300 dark:border-orange-400/30',
     'ai': 'bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-400 border-purple-300 dark:border-purple-400/30',
     'fullstack': 'bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 border-green-300 dark:border-green-400/30',
+    'chromeextensions': 'bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 border-yellow-300 dark:border-yellow-400/30',
+    'manifestv3': 'bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 border-amber-300 dark:border-amber-400/30',
   };
 
   // Check for exact matches first, then partial matches for flexibility
