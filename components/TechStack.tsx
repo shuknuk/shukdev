@@ -1,6 +1,4 @@
 import React from 'react';
-import { GlowingEffect } from './ui/glowing-effect';
-import { getTechColor } from '../constants';
 
 // Tech stack icons
 const TECH_ICONS = {
@@ -223,34 +221,23 @@ interface SkillCardProps {
 
 const SkillCard: React.FC<SkillCardProps> = ({ title, skills }) => {
     return (
-        <div className="relative rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
-            <GlowingEffect
-                spread={40}
-                glow={true}
-                disabled={false}
-                proximity={64}
-                inactiveZone={0.01}
-                borderWidth={2}
-            />
-            <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] bg-background p-4 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)]">
-                <h3 className="text-lg font-semibold text-foreground">
-                    <span className="text-muted-foreground">{title}</span>
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                    {skills.map((skill) => {
-                        const IconComponent = skill.icon;
-                        const colorClasses = getTechColor(skill.name);
-                        return (
-                            <div
-                                key={skill.name}
-                                className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full border transition-all duration-200 hover:scale-105 ${colorClasses}`}
-                            >
-                                {IconComponent && <IconComponent className="w-4 h-4" />}
-                                <span>{skill.name}</span>
-                            </div>
-                        );
-                    })}
-                </div>
+        <div className="glass-card p-4">
+            <h3 className="text-base font-semibold text-foreground mb-3">
+                <span className="text-muted-foreground">{title}</span>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => {
+                    const IconComponent = skill.icon;
+                    return (
+                        <div
+                            key={skill.name}
+                            className="flex items-center gap-1.5 px-2 py-1 text-xs font-medium rounded-md border-dotted-subtle bg-secondary/30 text-secondary-foreground transition-all duration-200 hover:bg-primary/10 hover:text-primary"
+                        >
+                            {IconComponent && <IconComponent className="w-3 h-3" />}
+                            <span>{skill.name}</span>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
@@ -259,10 +246,14 @@ const SkillCard: React.FC<SkillCardProps> = ({ title, skills }) => {
 export function TechStack() {
     return (
         <section className="py-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Skills</h2>
+            <div className="section-container">
+                <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-px bg-primary/50"></div>
+                    <span className="text-sm font-mono text-primary uppercase tracking-wider">/skills</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8 text-foreground">Tech Stack</h2>
 
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <SkillCard title="AI & Intelligent Systems" skills={TECH_STACK.aiEngineering} />
                     <SkillCard title="Full Stack Engineering" skills={TECH_STACK.fullStack} />
                     <SkillCard title="Cloud & Design" skills={TECH_STACK.infrastructure} />

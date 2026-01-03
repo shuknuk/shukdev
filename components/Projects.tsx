@@ -204,7 +204,7 @@ const ProjectCard: React.FC<{ project: Project; onCaseStudyClick: () => void; on
   }, []);
 
   return (
-    <div ref={cardRef} className={`spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-lg dark:hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.3)] ${className}`}>
+    <div ref={cardRef} className={`glass-card group relative flex flex-col justify-between overflow-hidden p-5 glow-accent-hover ${className}`}>
       {/* Background Glow Effect on Hover via CSS (assumed spotlight-card class handles this or we add it) */}
 
       <div className="relative z-10 flex flex-col h-full">
@@ -301,40 +301,39 @@ export function Projects() {
   const projectToDisplayInPreview = PROJECTS_DATA.find(p => p.id === openImageId);
 
   return (
-    <section id="projects" className="py-24 relative">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl opacity-30" />
-      <div className="absolute bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-secondary/30 rounded-full blur-3xl opacity-30" />
+    <section id="projects" className="py-16">
+      <div className="section-container mb-8">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-px bg-primary/50"></div>
+              <span className="text-sm font-mono text-primary uppercase tracking-wider">/projects</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 text-foreground">Selected Work</h2>
+            <p className="text-muted-foreground max-w-xl">
+              A collection of projects where I've engineered AI systems, built full-stack platforms, and experimented with new interfaces.
+            </p>
+          </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-        <div className="text-left">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Selected Work</h2>
-          <p className="text-muted-foreground text-lg max-w-xl">
-            A collection of projects where I've engineered AI systems, built full-stack platforms, and experimented with new interfaces.
-          </p>
-        </div>
-
-        <div className="bg-secondary/50 p-1 rounded-full backdrop-blur-md border border-border">
-          {['Featured Work', 'Creative Labs'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab as Tab)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
-                  ? 'bg-background text-foreground shadow-sm'
+          <div className="bg-secondary/50 p-1 rounded-lg border-dotted-box">
+            {['Featured Work', 'Creative Labs'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab as Tab)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${activeTab === tab
+                  ? 'bg-primary/20 text-primary'
                   : 'text-muted-foreground hover:text-foreground'
-                }`}
-            >
-              {tab}
-            </button>
-          ))}
+                  }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredProjects.map((project, index) => {
-          // Simple logic for bento grid layout
-          // First item spans 2 cols on large screens
-          // Fourth item spans 2 cols on large screens
           let spanClass = "";
           if (activeTab === 'Featured Work') {
             if (index === 0 || index === 3) {

@@ -6,7 +6,7 @@ import { TechStack } from './components/TechStack';
 import { ThemeToggle } from './components/ThemeToggle';
 import { Contact } from './components/Contact';
 import { NavBar } from './components/ui/tubelight-navbar';
-import { Typewriter } from './components/ui/typewriter';
+// Typewriter removed for new design
 import { Home, User, Briefcase, Code } from 'lucide-react';
 import { ICONS } from './constants';
 
@@ -22,82 +22,89 @@ const App: React.FC = () => {
 
   const Hero: React.FC = () => {
     return (
-      <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 text-center overflow-visible">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <section id="home" className="relative pt-24 pb-16 md:pt-40 md:pb-24">
+        <div className="section-container max-w-4xl mx-auto text-center">
+          <div className="space-y-6">
+            <div className="inline-block px-4 py-1.5 border-dotted-accent text-sm font-medium text-primary mb-4">
+              <span className="font-mono">// software engineer</span>
+            </div>
 
-        <div className="space-y-6">
-          <h1 className="text-7xl md:text-9xl font-extrabold tracking-tighter shiny-text">
-            <Typewriter
-              text="Kinshuk Goel"
-              speed={80}
-              initialDelay={100}
-              loop={false}
-              showCursor={false}
-              className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50"
-            />
-          </h1>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+              <span className="text-gradient-purple">Kinshuk Goel</span>
+            </h1>
 
-          <h2 className="text-2xl md:text-3xl font-medium text-muted-foreground tracking-tight">
-            Building <span className="text-foreground font-semibold">Intelligent Systems</span>
-          </h2>
+            <h2 className="text-xl md:text-2xl font-medium text-muted-foreground tracking-tight">
+              Building <span className="text-foreground font-semibold">Intelligent Systems</span>
+            </h2>
 
-          <p className="text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed">
-            I engineer AI agents and full-stack platforms that are simple, reliable, and built for the real world.
-          </p>
-        </div>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              I engineer AI agents and full-stack platforms that are simple, reliable, and built for the real world.
+            </p>
+          </div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
-          <button
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group relative px-8 py-3 rounded-full bg-foreground text-background font-semibold hover:opacity-90 transition-all flex items-center gap-2"
-          >
-            View Projects
-            <ICONS.chevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
-          </button>
-          <button
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-3 rounded-full border border-border bg-background text-foreground font-semibold hover:bg-secondary/50 transition-colors"
-          >
-            Contact
-          </button>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-8">
+            <button
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all flex items-center gap-2 glow-accent-hover"
+            >
+              View Projects
+              <ICONS.chevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+            </button>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-6 py-2.5 rounded-lg border-dotted-box bg-transparent text-foreground font-medium hover:bg-card/50 transition-colors"
+            >
+              Contact
+            </button>
+          </div>
         </div>
       </section>
     );
   };
 
   const About: React.FC = () => (
-    <section id="about" className="py-20 text-center">
-      <h2 className="text-3xl font-bold mb-4">About Me</h2>
-      <p className="max-w-3xl mx-auto text-muted-foreground">
-        {/* I’m an 18-year-old programmer from New Jersey with a focus on AI systems engineering — building everything from LLM-powered agents to full-stack applications that integrate AI into real-world workflows. My background spans frontend/UI design, backend development, and cloud deployment, giving me the ability to take AI projects from research concept to production-ready system. */}
-        I’m a CS student at Rutgers and a programmer from New Jersey. I like building AI tools and full-stack apps — stuff like LLM agents and platforms that actually get used in real workflows. I’ve worked across frontend, backend, and cloud, so I know how to take a project from an idea to something people can use.
-      </p>
-      <p className="max-w-3xl mx-auto text-muted-foreground mt-4">
-        {/* Right now, I’m leveling up in machine learning theory, deep learning with PyTorch, and LLM fine-tuning, with the goal of engineering the next generation of intelligent, autonomous applications. */}
-        Right now, I’m digging into ML theory, PyTorch, and LLM fine-tuning so I can build smarter, more autonomous systems.
-      </p>
+    <section id="about" className="py-16">
+      <div className="section-container max-w-4xl mx-auto">
+        <div className="flex items-center gap-2 mb-6">
+          <div className="w-8 h-px bg-primary/50"></div>
+          <h2 className="text-sm font-mono text-primary uppercase tracking-wider">about-me</h2>
+        </div>
+        <h3 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">Who I Am</h3>
+        <p className="max-w-3xl mx-auto text-muted-foreground">
+          {/* I’m an 18-year-old programmer from New Jersey with a focus on AI systems engineering — building everything from LLM-powered agents to full-stack applications that integrate AI into real-world workflows. My background spans frontend/UI design, backend development, and cloud deployment, giving me the ability to take AI projects from research concept to production-ready system. */}
+          I’m a CS student at Rutgers and a programmer from New Jersey. I like building AI tools and full-stack apps — stuff like LLM agents and platforms that actually get used in real workflows. I’ve worked across frontend, backend, and cloud, so I know how to take a project from an idea to something people can use.
+        </p>
+        <p className="max-w-3xl mx-auto text-muted-foreground mt-4">
+          {/* Right now, I’m leveling up in machine learning theory, deep learning with PyTorch, and LLM fine-tuning, with the goal of engineering the next generation of intelligent, autonomous applications. */}
+          Right now, I’m digging into ML theory, PyTorch, and LLM fine-tuning so I can build smarter, more autonomous systems.
+        </p>
+      </div>
     </section>
   );
 
   const Footer: React.FC = () => (
-    <footer className="border-t border-border py-8">
-      <div className="container mx-auto px-4 text-center text-muted-foreground">
-        <div className="flex justify-center gap-6 mb-4">
-          <a href="https://linkedin.com/in/kinshukgoel2" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
-            <ICONS.linkedin className="w-6 h-6" />
-          </a>
-          <a href="https://github.com/shuknuk/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
-            <ICONS.github className="w-6 h-6" />
-          </a>
+    <footer className="border-t border-dashed border-border py-8 mt-16">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground font-mono">
+            &copy; {new Date().getFullYear()} <span className="text-foreground">Kinshuk Goel | All Rights Reserved</span>
+          </p>
+          <div className="flex items-center gap-4">
+            <a href="https://linkedin.com/in/kinshukgoel2" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <ICONS.linkedin className="w-5 h-5" />
+            </a>
+            <a href="https://github.com/shuknuk/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <ICONS.github className="w-5 h-5" />
+            </a>
+          </div>
+          <p className="text-xs text-muted-foreground/70 italic font-mono">// make stuff. break it. build it again.</p>
         </div>
-        <p className="text-sm">&copy; {new Date().getFullYear()} Kinshuk Goel. All rights reserved.</p>
-        <p className="text-xs mt-2 italic">"Make stuff. Break it. Build it again."</p>
       </div>
     </footer>
   );
 
   return (
-    <ThemeProvider defaultTheme="light" storageKey="kinshuk-portfolio-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="kinshuk-portfolio-theme">
       <div className="text-foreground min-h-screen font-sans">
         <NavBar items={navItems} />
 

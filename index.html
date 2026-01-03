@@ -24,7 +24,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Kinshuk Goel — Portfolio" />
 
-  <meta name="theme-color" content="#0b1221" />
+  <meta name="theme-color" content="#2E3440" />
 
   <!-- Preconnect for fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -90,60 +90,190 @@
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 
+    /* === NORD COLOR SCHEME === */
+    /* Polar Night (backgrounds) | Snow Storm (text) | Frost (accents) | Aurora (highlights) */
     :root {
-      --background: 0 0% 100%;
-      --foreground: 240 10% 3.9%;
-      --card: 0 0% 100%;
-      --card-foreground: 240 10% 3.9%;
-      --popover: 0 0% 100%;
-      --popover-foreground: 240 10% 3.9%;
-      --primary: 240 5.9% 10%;
-      --primary-foreground: 0 0% 98%;
-      --secondary: 240 4.8% 95.9%;
-      --secondary-foreground: 240 5.9% 10%;
-      --muted: 240 4.8% 95.9%;
-      --muted-foreground: 240 3.8% 46.1%;
-      --accent: 240 4.8% 95.9%;
-      --accent-foreground: 240 5.9% 10%;
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-      --border: 240 5.9% 90%;
-      --input: 240 5.9% 90%;
-      --ring: 240 10% 3.9%;
+      /* Polar Night - Dark backgrounds */
+      --background: 220 16% 22%;
+      /* nord0 #2E3440 */
+      --foreground: 219 28% 88%;
+      /* nord4 #D8DEE9 */
+      --card: 220 17% 24%;
+      /* nord1 #3B4252 */
+      --card-foreground: 218 27% 92%;
+      /* nord5 #E5E9F0 */
+      --popover: 220 16% 28%;
+      /* nord2 #434C5E */
+      --popover-foreground: 218 27% 94%;
+      /* nord6 #ECEFF4 */
+
+      /* Frost - Primary accents (blue-cyan) */
+      --primary: 193 43% 67%;
+      /* nord8 #88C0D0 - main accent */
+      --primary-foreground: 220 16% 22%;
+      /* nord0 for contrast */
+
+      /* Secondary */
+      --secondary: 220 17% 28%;
+      /* nord2 #434C5E */
+      --secondary-foreground: 219 28% 88%;
+
+      /* Muted */
+      --muted: 220 16% 26%;
+      /* between nord1 and nord2 */
+      --muted-foreground: 219 14% 60%;
+      /* muted text */
+
+      /* Accent - Teal frost */
+      --accent: 179 25% 65%;
+      /* nord7 #8FBCBB */
+      --accent-foreground: 220 16% 22%;
+
+      /* Destructive - Aurora red */
+      --destructive: 354 42% 56%;
+      /* nord11 #BF616A */
+      --destructive-foreground: 218 27% 94%;
+
+      /* Borders & inputs */
+      --border: 220 16% 32%;
+      /* nord3 #4C566A */
+      --input: 220 17% 28%;
+      --ring: 193 43% 67%;
+      /* nord8 */
       --radius: 0.5rem;
+
+      /* Nord accent colors for special use */
+      --nord-frost-1: 179 25% 65%;
+      /* #8FBCBB teal */
+      --nord-frost-2: 193 43% 67%;
+      /* #88C0D0 cyan */
+      --nord-frost-3: 210 34% 63%;
+      /* #81A1C1 blue */
+      --nord-frost-4: 213 32% 52%;
+      /* #5E81AC deep blue */
+      --nord-aurora-green: 92 28% 65%;
+      /* #A3BE8C */
+      --nord-aurora-yellow: 40 71% 73%;
+      /* #EBCB8B */
+      --nord-aurora-orange: 14 51% 63%;
+      /* #D08770 */
     }
 
-    .dark {
-      --background: 240 10% 3.9%;
-      --foreground: 0 0% 98%;
-      --card: 240 10% 3.9%;
-      --card-foreground: 0 0% 98%;
-      --popover: 240 10% 3.9%;
-      --popover-foreground: 0 0% 98%;
-      --primary: 0 0% 98%;
-      --primary-foreground: 240 5.9% 10%;
-      --secondary: 240 3.7% 15.9%;
-      --secondary-foreground: 0 0% 98%;
-      --muted: 240 3.7% 15.9%;
-      --muted-foreground: 240 5% 64.9%;
-      --accent: 240 3.7% 15.9%;
-      --accent-foreground: 0 0% 98%;
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-      --border: 240 3.7% 15.9%;
-      --input: 240 3.7% 15.9%;
-      --ring: 0 0% 98%;
+    /* === NORD LIGHT MODE (Snow Storm) === */
+    .light {
+      --background: 218 27% 94%;
+      /* nord6 #ECEFF4 */
+      --foreground: 220 16% 22%;
+      /* nord0 #2E3440 */
+      --card: 218 27% 92%;
+      /* nord5 #E5E9F0 */
+      --card-foreground: 220 16% 22%;
+      --popover: 219 28% 88%;
+      /* nord4 #D8DEE9 */
+      --popover-foreground: 220 16% 22%;
+      --primary: 213 32% 52%;
+      /* nord10 #5E81AC - deeper blue for contrast */
+      --primary-foreground: 218 27% 94%;
+      --secondary: 219 28% 88%;
+      /* nord4 */
+      --secondary-foreground: 220 16% 22%;
+      --muted: 218 27% 90%;
+      --muted-foreground: 220 16% 36%;
+      --accent: 210 34% 63%;
+      /* nord9 #81A1C1 */
+      --accent-foreground: 218 27% 94%;
+      --border: 219 28% 82%;
+      --input: 218 27% 88%;
+      --ring: 213 32% 52%;
     }
 
     body {
       background-color: hsl(var(--background));
       color: hsl(var(--foreground));
       font-family: 'Inter', sans-serif;
-      background-image: radial-gradient(hsl(var(--foreground) / 0.1) 1.5px, transparent 1.5px);
-      background-size: 2.5rem 2.5rem;
+      position: relative;
     }
 
+    /* === SUBTLE MOUNTAIN BACKGROUND === */
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40vh;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%234C566A' fill-opacity='0.08' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3Cpath fill='%234C566A' fill-opacity='0.05' d='M0,288L48,272C96,256,192,224,288,218.7C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,208C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: bottom center;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .light body::before,
+    .light::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%2381A1C1' fill-opacity='0.1' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3Cpath fill='%2381A1C1' fill-opacity='0.06' d='M0,288L48,272C96,256,192,224,288,218.7C384,213,480,235,576,245.3C672,256,768,256,864,245.3C960,235,1056,213,1152,208C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    }
+
+    /* === DOTTED/DASHED BORDER UTILITIES === */
+    .border-dotted-box {
+      border: 1px dashed hsl(var(--border));
+      border-radius: var(--radius);
+    }
+
+    .border-dotted-subtle {
+      border: 1px dashed hsl(var(--border) / 0.5);
+      border-radius: var(--radius);
+    }
+
+    .border-dotted-accent {
+      border: 1px dashed hsl(var(--primary) / 0.4);
+      border-radius: var(--radius);
+    }
+
+    /* === GLASSMORPHIC CARD STYLES === */
+    .glass-card {
+      background: hsl(var(--card) / 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px dashed hsl(var(--border));
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      background: hsl(var(--card) / 0.9);
+      border-color: hsl(var(--primary) / 0.6);
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.15);
+    }
+
+    /* === GLOW EFFECTS === */
+    .glow-accent {
+      box-shadow: 0 0 15px hsl(var(--primary) / 0.2);
+    }
+
+    .glow-accent-hover:hover {
+      box-shadow: 0 0 25px hsl(var(--primary) / 0.25);
+    }
+
+    /* Text gradient using Nord Frost colors */
+    .text-gradient-purple {
+      background: linear-gradient(135deg, hsl(var(--nord-frost-2)) 0%, hsl(var(--nord-frost-1)) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* === SECTION CONTAINERS === */
+    .section-container {
+      border: 1px dashed hsl(var(--border));
+      border-radius: calc(var(--radius) * 2);
+      padding: 2rem;
+      background: hsl(var(--card) / 0.3);
+    }
+
+    /* === ANIMATIONS === */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -154,57 +284,69 @@
       }
     }
 
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .fade-in-on-change {
       animation: fadeIn 400ms ease-in-out;
     }
 
-    /* === ANIMATION STYLES START === */
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
 
-    /* Animated Shiny Header */
-    @keyframes shine {
-      from {
-        background-position: 200% center;
+    /* === TECH FONT === */
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* === CUSTOM SCROLLBAR === */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: hsl(var(--background));
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--border));
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: hsl(var(--primary) / 0.5);
+    }
+
+    /* === GRID LAYOUT HELPERS === */
+    .grid-projects {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid-projects {
+        grid-template-columns: repeat(2, 1fr);
       }
+    }
 
-      to {
-        background-position: -200% center;
+    @media (min-width: 1024px) {
+      .grid-projects {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    .shiny-text {
-      background: linear-gradient(to right, hsl(var(--foreground)) 20%, hsl(var(--muted-foreground)) 40%, hsl(var(--muted-foreground)) 60%, hsl(var(--foreground)) 80%);
-      background-size: 200% auto;
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-      animation: shine 5s linear infinite;
-    }
-
-    /* Spotlight Project Cards */
-    .spotlight-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .spotlight-card::before {
-      content: "";
-      position: absolute;
-      left: var(--mouse-x, 50%);
-      top: var(--mouse-y, 50%);
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, hsl(var(--foreground) / 0.1) 0%, transparent 70%);
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-
-    .spotlight-card:hover::before {
-      opacity: 1;
-    }
-
-    /* Book Animation 3D Transforms */
+    /* === 3D TRANSFORMS (kept for compatibility) === */
     .transform-gpu {
       transform: translateZ(0);
     }
@@ -216,20 +358,6 @@
     .preserve-3d {
       transform-style: preserve-3d;
     }
-
-    .rotateY-0 {
-      transform: perspective(1000px) rotateY(0deg);
-    }
-
-    .rotateY-90 {
-      transform: perspective(1000px) rotateY(90deg);
-    }
-
-    .-rotateY-90 {
-      transform: perspective(1000px) rotateY(-90deg);
-    }
-
-    /* === ANIMATION STYLES END === */
   </style>
   <script type="importmap">
 {
