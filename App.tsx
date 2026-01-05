@@ -51,11 +51,11 @@ const App: React.FC = () => {
             </h1>
 
             <h2 className="text-xl md:text-2xl font-medium text-muted-foreground tracking-tight">
-              Building <span className="text-foreground font-semibold">Intelligent Systems</span>
+              <span className="text-foreground font-semibold">Full-Stack Software Engineer</span>
             </h2>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              I engineer AI agents and full-stack platforms that are simple, reliable, and built for the real world.
+              Building reliable infrastructure and AI-native products. Specializing in Next.js, TypeScript, and Supabase.
             </p>
           </div>
 

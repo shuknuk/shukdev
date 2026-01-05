@@ -187,30 +187,29 @@ const TECH_ICONS = {
     ),
 };
 
-// Tech stack data organized by categories
+// Tech stack data organized by categories - Full-Stack Product Engineer focus
 const TECH_STACK = {
-    aiEngineering: [
-        { name: 'PyTorch', icon: TECH_ICONS['PyTorch (in progress)'] },
-        { name: 'LangChain', icon: TECH_ICONS.LangChain },
-        { name: 'Gemini 2.5 Pro', icon: TECH_ICONS['Gemini 2.5 Pro'] },
-        { name: 'Hugging Face', icon: TECH_ICONS['Hugging Face'] },
-        { name: 'ReAct Framework', icon: TECH_ICONS['ReAct Framework'] },
-        { name: 'Tavily API', icon: TECH_ICONS['Tavily Search API'] },
-    ],
-    fullStack: [
-        { name: 'Next.js', icon: TECH_ICONS['Next.js'] },
+    languages: [
         { name: 'TypeScript', icon: TECH_ICONS.TypeScript },
         { name: 'Python', icon: TECH_ICONS.Python },
-        { name: 'FastAPI', icon: TECH_ICONS.FastAPI },
-        { name: 'Node.js', icon: TECH_ICONS['Node.js'] },
-        { name: 'TailwindCSS', icon: TECH_ICONS.TailwindCSS },
+        { name: 'Java', icon: TECH_ICONS.Java },
+        { name: 'SQL', icon: TECH_ICONS.Bash }, // Using Bash icon as placeholder
+        { name: 'Bash', icon: TECH_ICONS.Bash },
     ],
-    infrastructure: [
-        { name: 'Docker', icon: TECH_ICONS.Docker },
-        { name: 'Google Cloud', icon: TECH_ICONS['Google Cloud'] },
-        { name: 'Vercel', icon: TECH_ICONS.Vercel },
+    frontend: [
+        { name: 'Next.js', icon: TECH_ICONS['Next.js'] },
+        { name: 'React', icon: TECH_ICONS['Next.js'] }, // Using Next icon for React
+        { name: 'Tailwind CSS', icon: TECH_ICONS.TailwindCSS },
         { name: 'Framer Motion', icon: TECH_ICONS['Framer Motion'] },
-        { name: 'Figma', icon: TECH_ICONS.Figma },
+    ],
+    backendAndTools: [
+        { name: 'Supabase', icon: TECH_ICONS.Vercel }, // Placeholder icon
+        { name: 'Docker', icon: TECH_ICONS.Docker },
+        { name: 'FastAPI', icon: TECH_ICONS.FastAPI },
+        { name: 'Git', icon: TECH_ICONS.Git },
+        { name: 'Postgres', icon: TECH_ICONS.Vercel }, // Placeholder icon
+        { name: 'Google Cloud', icon: TECH_ICONS['Google Cloud'] },
+        { name: 'Chrome Extension API', icon: TECH_ICONS.Vite }, // Placeholder icon
     ],
 };
 
@@ -254,9 +253,9 @@ export function TechStack() {
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8 text-foreground">Tech Stack</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <SkillCard title="AI & Intelligent Systems" skills={TECH_STACK.aiEngineering} />
-                    <SkillCard title="Full Stack Engineering" skills={TECH_STACK.fullStack} />
-                    <SkillCard title="Cloud & Design" skills={TECH_STACK.infrastructure} />
+                    <SkillCard title="Languages" skills={TECH_STACK.languages} />
+                    <SkillCard title="Frontend" skills={TECH_STACK.frontend} />
+                    <SkillCard title="Backend & Tools" skills={TECH_STACK.backendAndTools} />
                 </div>
             </div>
         </section>
