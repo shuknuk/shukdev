@@ -14,7 +14,7 @@ interface LaserLine {
 export function LaserBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const linesRef = useRef<LaserLine[]>([]);
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number>(0);
 
     useEffect(() => {
         const canvas = canvasRef.current;
