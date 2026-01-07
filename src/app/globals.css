@@ -4,7 +4,10 @@
 
 /* Nord Color Scheme */
 :root {
-    /* Snow Storm - Light backgrounds */
+    /* Desk Background - The area outside the page */
+    --desk-background: #E5E9F0;
+
+    /* Snow Storm - Page background */
     --background: #ECEFF4;
     --background-secondary: #E5E9F0;
     --foreground: #2E3440;
@@ -22,7 +25,10 @@
 }
 
 .dark {
-    /* Polar Night - Dark backgrounds */
+    /* Desk Background - The area outside the page */
+    --desk-background: #242933;
+
+    /* Polar Night - Page background */
     --background: #2E3440;
     --background-secondary: #3B4252;
     --foreground: #ECEFF4;
@@ -49,9 +55,53 @@ html.dark {
 
 body {
     color: var(--foreground);
-    background: var(--background);
+    background: var(--desk-background);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+/* Page Container */
+.page-container {
+    padding: 2rem 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 0;
+    }
+}
+
+.page-sheet {
+    background: var(--background);
+    max-width: 1024px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.dark .page-sheet {
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1024px) {
+    .page-sheet {
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-sheet {
+        margin: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
 }
 
 /* Grid background pattern with radial mask for "fade" effect */
@@ -98,7 +148,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--background);
+    background: var(--desk-background);
 }
 
 ::-webkit-scrollbar-thumb {

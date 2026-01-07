@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/Header";
-import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Kinshuk Goel | Software Engineer",
-    description: "CS student at Rutgers. Building AI tools and full-stack apps that actually get used in real workflows.",
+    title: "Kinshuk Goel | Digital Architect",
+    description: "Portfolio of Kinshuk Goel - CS student at Rutgers, AI Engineer, and Full-stack Developer.",
 };
 
 export default function RootLayout({
@@ -15,14 +15,19 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className="antialiased bg-[--background] text-[--foreground]">
+            <body className="antialiased selection:bg-accent/30">
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
+                    disableTransitionOnChange
                 >
-                    <Header />
-                    <main className="pt-14">{children}</main>
+                    <div className="page-container">
+                        <main className="page-sheet">
+                            <Header />
+                            {children}
+                        </main>
+                    </div>
                 </ThemeProvider>
             </body>
         </html>
