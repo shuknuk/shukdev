@@ -8,10 +8,12 @@ export function LaserBackground({
     children,
     className,
     containerClassName,
+    style,
 }: {
     children?: React.ReactNode;
     className?: string;
     containerClassName?: string;
+    style?: React.CSSProperties;
 }) {
     const mouseX = useSpring(0, { stiffness: 500, damping: 100 });
     const mouseY = useSpring(0, { stiffness: 500, damping: 100 });
@@ -29,6 +31,7 @@ export function LaserBackground({
         <div
             className={cn("relative group w-full h-full overflow-hidden", containerClassName)}
             onMouseMove={onMouseMove}
+            style={style}
         >
             {/* Grid background */}
             <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />

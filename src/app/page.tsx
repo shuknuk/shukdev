@@ -17,6 +17,7 @@ const stagger = {
     visible: {
         transition: {
             staggerChildren: 0.1,
+            delayChildren: 0.3, // Wait for page fade
         },
     },
 };
@@ -203,7 +204,12 @@ export default function Home() {
     const activeProject = PROJECTS_DATA.find(p => p.id === activeCaseStudy);
 
     return (
-        <div className="min-h-screen">
+        <motion.div
+            className="min-h-screen"
+            initial={{ opacity: 0, scale: 0.98, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+        >
             {activeProject && (
                 <CaseStudyModal
                     project={activeProject}
@@ -483,20 +489,45 @@ export default function Home() {
 
             {/* Footer */}
             <motion.footer
-                className="relative py-24 px-6 text-center overflow-hidden"
+                className="relative py-12 px-8 overflow-hidden"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
                 <NordMountains />
-                <p className="italic text-[--foreground-secondary] text-sm relative z-10">
-                    "Make stuff. Break it. Build it again."
-                </p>
-                <p className="text-xs text-[--foreground-secondary] mt-4 opacity-60 relative z-10">
-                    KINSHUK GOEL &copy; {new Date().getFullYear()}
-                </p>
+
+                {/* Content Container */}
+                <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 text-[10px] sm:text-xs font-mono tracking-tight text-[--foreground-secondary] border-t border-[--border] pt-8">
+                    {/* Left: Copyright */}
+                    <div className="opacity-80">
+                        &copy; {new Date().getFullYear()} KINSHUK GOEL | ALL RIGHTS RESERVED
+                    </div>
+
+                    {/* Center: Social Icons */}
+                    <div className="flex items-center gap-4">
+                        <Link
+                            href="https://linkedin.com/in/kinshukgoel2"
+                            target="_blank"
+                            className="hover:text-[--foreground] transition-colors"
+                        >
+                            <Linkedin className="w-4 h-4" />
+                        </Link>
+                        <Link
+                            href="https://github.com/shuknuk"
+                            target="_blank"
+                            className="hover:text-[--foreground] transition-colors"
+                        >
+                            <Github className="w-4 h-4" />
+                        </Link>
+                    </div>
+
+                    {/* Right: Motto */}
+                    <div className="italic opacity-60 lowercase">
+                        // make stuff. break it. build it again.
+                    </div>
+                </div>
             </motion.footer>
-        </div>
+        </motion.div>
     );
 }
