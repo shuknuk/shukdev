@@ -1,0 +1,55 @@
+---
+title: "Why I'm Rebuilding My Digital Presence"
+subtitle: "The Architecture of Continuous Growth"
+date: "2026-01-06"
+category: "Reflection"
+author: "Kinshuk Goel"
+excerpt: "After years of iterating on my portfolio, I decided to rebuild everything from scratch. Here's why starting fresh was the best decision I made."
+---
+
+After years of iterating on my portfolio, I decided to rebuild everything from scratch. This isn't just about a fresh coat of paint—it's about creating a foundation that can grow with me.
+
+## The Problem with Iteration
+
+When you iterate on an existing codebase for too long, you accumulate technical debt. Small compromises stack up. What started as a clean architecture becomes a patchwork of quick fixes and workarounds.
+
+My previous portfolio was built with Vite and React. It worked fine, but:
+
+- **No MDX support**: I couldn't write content-rich blog posts
+- **No file-based routing**: Adding new pages required manual configuration  
+- **Limited SEO**: Client-side rendering hurt discoverability
+
+## The Solution: Start Fresh
+
+I migrated to **Next.js 15** with the App Router. Here's what changed:
+
+### Better Content System
+
+With MDX support, I can now write posts like this one—mixing markdown with React components. Code blocks have syntax highlighting. I can embed interactive demos.
+
+### Improved Performance
+
+Server-side rendering means faster initial loads. Static generation for blog posts. Automatic code splitting. The lighthouse scores speak for themselves.
+
+### Cleaner Architecture
+
+The new codebase is organized around features:
+
+```
+src/
+├── app/           # Routes
+├── components/    # UI components
+├── content/       # MDX blog posts
+├── data/          # Static data
+└── lib/           # Utilities
+```
+
+## What I Learned
+
+Rebuilding taught me that **starting fresh isn't giving up**—it's leveling up. Sometimes the best refactor is a rewrite, especially when your requirements have fundamentally changed.
+
+The key is knowing when to iterate and when to rebuild. If you're fighting your architecture more than building with it, it might be time for a fresh start.
+
+---
+
+*Thanks for reading. If you're thinking about rebuilding your own digital presence, feel free to reach out—I'd love to hear your story.*
