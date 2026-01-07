@@ -89,18 +89,13 @@ function NordMountains() {
                     fill="#4C566A"
                     fillOpacity="0.35"
                 />
-
-                {/* Snow caps */}
-                <path d="M598,42 L600,40 L602,42 Z" fill="white" fillOpacity="0.3" />
-                <path d="M998,32 L1000,30 L1002,32 Z" fill="white" fillOpacity="0.3" />
-                <path d="M198,62 L200,60 L202,62 Z" fill="white" fillOpacity="0.3" />
             </svg>
 
             {/* Aurora glow at top */}
             <div
                 className="absolute top-0 left-1/4 right-1/4 h-16 rounded-full blur-3xl"
                 style={{
-                    background: 'linear-gradient(90deg, rgba(136,192,208,0.1), rgba(163,190,140,0.08), rgba(136,192,208,0.1))'
+                    background: 'linear-gradient(90deg, rgba(136,192,208,0.08), rgba(163,190,140,0.05), rgba(136,192,208,0.08))'
                 }}
             />
         </div>
@@ -222,8 +217,14 @@ export default function Home() {
                 />
             )}
 
-            {/* Hero Section with floating icons */}
-            <LaserBackground containerClassName="min-h-[70vh] border-b border-[--border] relative">
+            {/* Hero Section with floating icons and faded grid */}
+            <LaserBackground
+                containerClassName="min-h-[70vh] relative"
+                style={{
+                    maskImage: 'linear-gradient(to bottom, black 80%, transparent)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent)'
+                }}
+            >
                 <FloatingIcons />
                 <motion.div
                     className="max-w-5xl mx-auto px-6 py-16 md:py-24 relative z-10"
@@ -282,17 +283,20 @@ export default function Home() {
                 </motion.div>
             </LaserBackground>
 
+            {/* Faded Divider */}
+            <div className="faded-line-h max-w-5xl mx-auto opacity-50" />
+
             {/* About Section */}
             <motion.section
-                className="border-b border-[--border]"
+                className="relative"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6 }}
             >
-                <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12">
+                <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 relative">
                     <motion.div
-                        className="md:col-span-7 p-8 md:p-12 md:border-r border-[--border]"
+                        className="md:col-span-7 p-8 md:p-12 relative"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -307,16 +311,17 @@ export default function Home() {
                             Right now I'm digging into ML theory, PyTorch, and LLM fine-tuning to build smarter,
                             more autonomous systems. I've shipped production apps used by real people—not just demos.
                         </p>
+                        {/* Vertical Faded Line */}
+                        <div className="absolute right-0 top-0 bottom-0 faded-line-v hidden md:block opacity-30" />
                     </motion.div>
 
                     <motion.div
-                        className="md:col-span-5 p-8 md:p-12 bg-[--background-secondary] border-t md:border-t-0 border-[--border] relative overflow-hidden"
+                        className="md:col-span-5 p-8 md:p-12 bg-[--background-secondary]/30 relative overflow-hidden"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        {/* Subtle tech icon in corner */}
                         <Cpu className="absolute -right-4 -bottom-4 w-24 h-24 text-[--border] opacity-20" strokeWidth={0.5} />
 
                         <span className="font-mono text-xs text-accent uppercase tracking-wider mb-4 block relative z-10">
@@ -344,10 +349,13 @@ export default function Home() {
                 </div>
             </motion.section>
 
+            {/* Faded Divider */}
+            <div className="faded-line-h max-w-5xl mx-auto opacity-50" />
+
             {/* Flagship Projects Section */}
-            <section id="projects" className="border-b border-[--border]">
+            <section id="projects" className="relative">
                 <motion.div
-                    className="max-w-5xl mx-auto px-6 py-8 border-b border-[--border]"
+                    className="max-w-5xl mx-auto px-6 py-8 relative"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -360,9 +368,11 @@ export default function Home() {
                     <p className="text-[--foreground-secondary] mt-2">
                         Production apps shipped to real users—not just localhost demos.
                     </p>
+                    {/* Faded bottom line for the project header */}
+                    <div className="absolute bottom-0 left-0 right-0 faded-line-h opacity-30" />
                 </motion.div>
 
-                <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[--border]">
+                <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 relative">
                     {flagshipProjects.map((project, idx) => {
                         const href = project.links.live ||
                             (typeof project.links.github === 'string' ? project.links.github : project.links.github?.[0]?.url) ||
@@ -371,7 +381,7 @@ export default function Home() {
                         return (
                             <motion.div
                                 key={project.id}
-                                className="p-6 md:p-8 flex flex-col h-full"
+                                className="p-6 md:p-8 flex flex-col h-full relative"
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -418,16 +428,24 @@ export default function Home() {
                                         </button>
                                     )}
                                 </div>
+
+                                {/* Vertical faded line between cards */}
+                                {idx < 2 && <div className="absolute right-0 top-8 bottom-8 faded-line-v hidden md:block opacity-20" />}
+                                {/* Horizontal faded line for mobile */}
+                                <div className="absolute bottom-0 left-6 right-6 faded-line-h md:hidden opacity-20" />
                             </motion.div>
                         );
                     })}
                 </div>
             </section>
 
+            {/* Faded Divider */}
+            <div className="faded-line-h max-w-5xl mx-auto opacity-50" />
+
             {/* Other Projects Section */}
-            <section className="border-b border-[--border]">
+            <section className="relative">
                 <motion.div
-                    className="max-w-5xl mx-auto px-6 py-8 border-b border-[--border]"
+                    className="max-w-5xl mx-auto px-6 py-8 relative"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -440,9 +458,10 @@ export default function Home() {
                     <p className="text-[--foreground-secondary] mt-2">
                         Side projects, experiments, and creative explorations.
                     </p>
+                    <div className="absolute bottom-0 left-0 right-0 faded-line-h opacity-30" />
                 </motion.div>
 
-                <div className="max-w-5xl mx-auto divide-y divide-[--border]">
+                <div className="max-w-5xl mx-auto relative divide-y-0">
                     {otherProjects.map((project, idx) => {
                         const href = project.links.live ||
                             (typeof project.links.github === 'string' ? project.links.github : project.links.github?.[0]?.url) ||
@@ -451,7 +470,7 @@ export default function Home() {
                         return (
                             <motion.div
                                 key={project.id}
-                                className="px-6 py-4 flex flex-col md:flex-row md:items-center gap-4 hover:bg-[--background-secondary] transition-colors"
+                                className="px-6 py-4 flex flex-col md:flex-row md:items-center gap-4 hover:bg-[--background-secondary]/30 transition-colors relative"
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
@@ -487,6 +506,8 @@ export default function Home() {
                                         View <ArrowUpRight className="w-3 h-3" />
                                     </Link>
                                 </div>
+                                {/* Horizontal faded line between list items */}
+                                <div className="absolute bottom-0 left-6 right-6 faded-line-h opacity-10" />
                             </motion.div>
                         );
                     })}
@@ -495,7 +516,7 @@ export default function Home() {
 
             {/* Footer with Nord Mountains */}
             <motion.footer
-                className="relative py-24 px-6 text-center overflow-hidden"
+                className="relative py-32 px-6 text-center overflow-hidden"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
