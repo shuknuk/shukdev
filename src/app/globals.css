@@ -1,13 +1,46 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+/* Nord Color Scheme */
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    /* Snow Storm - Light backgrounds */
+    --background: #ECEFF4;
+    --background-secondary: #E5E9F0;
+    --foreground: #2E3440;
+    --foreground-secondary: #4C566A;
+
+    /* Frost - Accent */
+    --accent: #5E81AC;
+    --accent-light: #81A1C1;
+
+    /* Aurora - Highlights */
+    --success: #A3BE8C;
+    --border: #D8DEE9;
 }
 
 .dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Polar Night - Dark backgrounds */
+    --background: #2E3440;
+    --background-secondary: #3B4252;
+    --foreground: #ECEFF4;
+    --foreground-secondary: #D8DEE9;
+
+    /* Frost - Accent */
+    --accent: #88C0D0;
+    --accent-light: #8FBCBB;
+
+    /* Aurora - Highlights */
+    --success: #A3BE8C;
+    --border: #434C5E;
+}
+
+html {
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
 }
 
 body {
@@ -16,16 +49,27 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Grid background pattern */
+/* Grid background pattern - Nord style */
 .bg-grid-pattern {
     background-image:
-        linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, var(--border) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border) 1px, transparent 1px);
     background-size: 40px 40px;
 }
 
-.dark .bg-grid-pattern {
-    background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* Nord accent color utilities */
+.text-accent {
+    color: var(--accent);
+}
+
+.text-accent-light {
+    color: var(--accent-light);
+}
+
+.bg-accent {
+    background-color: var(--accent);
+}
+
+.border-accent {
+    border-color: var(--accent);
 }

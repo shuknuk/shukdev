@@ -22,7 +22,8 @@ export function LaserBackground({
         mouseY.set(clientY - top);
     }
 
-    const maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, rgba(34, 197, 94, 0.15), transparent)`;
+    // Nord Frost color for the laser glow
+    const maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, rgba(136, 192, 208, 0.15), transparent)`;
 
     return (
         <div
@@ -32,7 +33,7 @@ export function LaserBackground({
             {/* Grid background */}
             <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />
 
-            {/* Laser glow effect */}
+            {/* Laser glow effect - Nord Frost */}
             <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{ background: maskImage }}

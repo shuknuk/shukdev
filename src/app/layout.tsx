@@ -15,12 +15,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className="antialiased bg-white dark:bg-black text-neutral-900 dark:text-neutral-100">
+            <body className="antialiased bg-[--background] text-[--foreground]">
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="light"
+                    defaultTheme="system"
                     enableSystem
-                    disableTransitionOnChange
                 >
                     <Header />
                     <main className="pt-14">{children}</main>
