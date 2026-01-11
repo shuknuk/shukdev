@@ -4,7 +4,7 @@ import { PROJECTS_DATA } from "@/constants";
 import { ArrowUpRight, Github, Linkedin, Mail, BookOpen, X, Code, Cpu, Database, Cloud, Terminal, Boxes } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
 import { LaserBackground } from "@/components/ui/LaserBackground";
 
 // Animation variants
@@ -63,6 +63,13 @@ function FloatingIcons() {
 
 // Nord Mountain SVG for footer
 function NordMountains() {
+    const [mounted, setMounted] = useState(false);
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <svg
@@ -74,18 +81,21 @@ function NordMountains() {
             >
                 <path
                     d="M0,200 L0,120 L200,60 L400,100 L600,40 L800,80 L1000,30 L1200,70 L1440,50 L1440,200 Z"
-                    fill="#4C566A"
-                    fillOpacity="0.15"
+                    fill="var(--foreground-secondary)"
+                    fillOpacity="0.05"
+                    className="transition-[fill] duration-500"
                 />
                 <path
                     d="M0,200 L0,140 L150,90 L350,120 L500,70 L700,110 L900,60 L1100,100 L1300,80 L1440,100 L1440,200 Z"
-                    fill="#4C566A"
-                    fillOpacity="0.25"
+                    fill="var(--foreground-secondary)"
+                    fillOpacity="0.1"
+                    className="transition-[fill] duration-500"
                 />
                 <path
                     d="M0,200 L0,160 L100,130 L250,150 L400,110 L600,140 L800,100 L1000,130 L1200,120 L1440,140 L1440,200 Z"
-                    fill="#4C566A"
-                    fillOpacity="0.35"
+                    fill="var(--foreground-secondary)"
+                    fillOpacity="0.15"
+                    className="transition-[fill] duration-500"
                 />
             </svg>
             <div

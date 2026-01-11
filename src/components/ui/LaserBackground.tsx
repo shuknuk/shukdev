@@ -24,8 +24,14 @@ export function LaserBackground({
         mouseY.set(clientY - top);
     }
 
-    // Nord Frost color for the laser glow
-    const maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, rgba(136, 192, 208, 0.15), transparent)`;
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Nord Frost color for the laser glow - using CSS variable for smooth transition
+    const maskImage = useMotionTemplate`radial-gradient(300px at ${mouseX}px ${mouseY}px, var(--accent), transparent)`;
 
     return (
         <div
@@ -39,7 +45,7 @@ export function LaserBackground({
             {/* Laser glow effect - Nord Frost */}
             <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{ background: maskImage }}
+                style={mounted ? { background: maskImage } : {}}
             />
 
             {/* Content */}

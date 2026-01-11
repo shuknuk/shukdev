@@ -2,6 +2,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Global smooth transitions for theme switching */
+*,
+*::before,
+*::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+
 /* Nord Color Scheme */
 :root {
     /* Desk Background - The area outside the page */

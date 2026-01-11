@@ -20,7 +20,6 @@ export default function RootLayout({
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
-                    disableTransitionOnChange
                 >
                     <div className="page-container">
                         <main className="page-sheet">
