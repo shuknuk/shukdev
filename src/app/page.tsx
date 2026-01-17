@@ -1,6 +1,11 @@
 "use client";
 
-import { PROJECTS_DATA, getTechColor, getTechIconComponent } from "@/constants";
+import {
+  PROJECTS_DATA,
+  getTechColor,
+  getTechIconComponent,
+  TECH_CATEGORIES,
+} from "@/constants";
 import {
   ArrowUpRight,
   Github,
@@ -31,6 +36,19 @@ const containerVar = {
 const itemVar = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0 },
+};
+
+const techListVar = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05 },
+  },
+};
+
+const techBadgeVar = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 },
 };
 
 // --- Sub-Components ---
@@ -164,8 +182,9 @@ function ProjectCard({
     "#";
 
   return (
-    <div
-      className={`group relative h-full flex flex-col p-5 md:p-6 bg-[--background-secondary]/30 hover:bg-[--background-secondary]/60 border border-[--border] rounded-xl transition-all duration-300 ${featured ? "md:p-8" : ""}`}
+    <motion.div
+      whileHover={{ y: -5 }}
+      className={`group relative h-full flex flex-col p-5 md:p-6 bg-[--background-secondary]/30 hover:bg-[--background-secondary]/60 border border-[--border] rounded-xl transition-colors duration-300 ${featured ? "md:p-8" : ""}`}
     >
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-2">
@@ -237,7 +256,7 @@ function ProjectCard({
           </button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -259,25 +278,6 @@ export default function Home() {
   const tertiaryFeatured = featuredProjects.slice(3);
 
   const activeProject = PROJECTS_DATA.find((p) => p.id === activeCaseStudy);
-
-  // Collect all unique tech for the skills card
-  const allTech = Array.from(new Set(PROJECTS_DATA.flatMap((p) => p.tech)));
-  // Prioritize specific tech for display
-  const priorityTech = [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Python",
-    "FastAPI",
-    "Docker",
-    "TailwindCSS",
-    "Supabase",
-    "Gemini",
-  ];
-  const displayTech = [
-    ...priorityTech,
-    ...allTech.filter((t) => !priorityTech.includes(t)),
-  ].slice(0, 15);
 
   return (
     <motion.div
@@ -382,29 +382,43 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* 4. Skills Cloud (Span 5) */}
+        {/* 4. Skills Categories (Span 5) */}
         <motion.div
           variants={itemVar}
-          className="md:col-span-5 bg-[--background-secondary]/30 border border-[--border] rounded-xl p-6 md:p-8 flex flex-col"
+          className="md:col-span-5 bg-[--background-secondary]/30 border border-[--border] rounded-xl p-6 md:p-8 flex flex-col gap-6"
         >
-          <div className="flex items-center gap-2 mb-6">
+          <div className="flex items-center gap-2 mb-2">
             <Terminal className="w-5 h-5 text-accent" />
             <h3 className="font-bold text-lg">Tech Stack</h3>
           </div>
-          <div className="flex flex-wrap gap-2 content-start">
-            {displayTech.map((tech) => {
-              const Icon = getTechIconComponent(tech);
-              return (
-                <span
-                  key={tech}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-transform hover:scale-105 cursor-default ${getTechColor(tech)}`}
+
+          <motion.div variants={techListVar} className="space-y-6">
+            {Object.entries(TECH_CATEGORIES).map(([category, techs]) => (
+              <motion.div key={category} variants={itemVar}>
+                <h4 className="text-xs font-mono uppercase text-[--foreground-secondary] mb-3 tracking-wider font-semibold opacity-80">
+                  {category}
+                </h4>
+                <motion.div
+                  variants={techListVar}
+                  className="flex flex-wrap gap-2"
                 >
-                  {Icon && <Icon className="w-3.5 h-3.5" />}
-                  {tech}
-                </span>
-              );
-            })}
-          </div>
+                  {techs.map((tech) => {
+                    const Icon = getTechIconComponent(tech);
+                    return (
+                      <motion.span
+                        variants={techBadgeVar}
+                        key={tech}
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium border transition-transform hover:scale-105 cursor-default ${getTechColor(tech)}`}
+                      >
+                        {Icon && <Icon className="w-3 h-3" />}
+                        {tech}
+                      </motion.span>
+                    );
+                  })}
+                </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
         {/* 5. Secondary Featured Projects (Span 6 each) */}
