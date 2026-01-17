@@ -69,7 +69,7 @@ function CaseStudyModal({
       {isOpen && (
         <>
           <motion.div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-[--foreground]/20 backdrop-blur-sm z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -77,24 +77,24 @@ function CaseStudyModal({
           />
 
           <motion.div
-            className="fixed inset-4 md:inset-10 lg:inset-20 bg-white dark:bg-[--background] border border-[--border] rounded-xl z-[60] overflow-hidden shadow-2xl flex flex-col"
+            className="fixed inset-4 md:inset-10 lg:inset-20 bg-[--background-secondary] border border-[--border] rounded-xl z-[60] overflow-hidden shadow-2xl flex flex-col"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="bg-gray-50/80 dark:bg-[--background-secondary]/50 border-b border-[--border] p-4 md:p-6 flex justify-between items-start shrink-0">
+            <div className="bg-[--background-secondary] border-b border-[--border] p-4 md:p-6 flex justify-between items-start shrink-0">
               <div>
                 <span className="text-xs font-mono text-accent uppercase tracking-wider mb-1 block">
                   Case Study
                 </span>
-                <h2 className="text-2xl md:text-3xl font-bold">
+                <h2 className="text-2xl md:text-3xl font-bold text-[--foreground]">
                   {project.title}
                 </h2>
               </div>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-[--background-secondary] rounded-md transition-colors"
+                className="p-2 hover:bg-[--border] rounded-md transition-colors text-[--foreground]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -108,7 +108,7 @@ function CaseStudyModal({
                     Challenge
                   </h3>
                   <p
-                    className="text-gray-700 dark:text-[--foreground-secondary] leading-relaxed"
+                    className="text-[--foreground]/90 leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: project.caseStudy.challenge,
                     }}
@@ -121,7 +121,7 @@ function CaseStudyModal({
                     Solution
                   </h3>
                   <p
-                    className="text-gray-700 dark:text-[--foreground-secondary] leading-relaxed"
+                    className="text-[--foreground]/90 leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: project.caseStudy.solution,
                     }}
@@ -134,7 +134,7 @@ function CaseStudyModal({
                     Learnings
                   </h3>
                   <p
-                    className="text-gray-700 dark:text-[--foreground-secondary] leading-relaxed"
+                    className="text-[--foreground]/90 leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: project.caseStudy.learnings,
                     }}

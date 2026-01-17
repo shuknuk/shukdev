@@ -50,7 +50,7 @@ export function ScrollIndicator() {
             onClick={handleScrollDown}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="p-4 bg-white text-gray-900 border border-gray-200 shadow-xl dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            className="p-4 bg-[--background] text-[--foreground] border border-[--border] shadow-xl hover:bg-[--background-secondary] rounded-full flex items-center justify-center cursor-pointer transition-colors"
             aria-label="Scroll down"
           >
             <motion.div
