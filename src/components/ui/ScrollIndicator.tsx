@@ -11,7 +11,7 @@ export function ScrollIndicator() {
     const checkScroll = () => {
       // Check if page is scrollable
       const isScrollable =
-        document.documentElement.scrollHeight > window.innerHeight;
+        document.documentElement.scrollHeight > window.innerHeight + 1;
 
       // Check if we are near the bottom (within 20px)
       const isAtBottom =
@@ -44,13 +44,13 @@ export function ScrollIndicator() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-8 right-8 z-50"
+          className="fixed bottom-8 right-8 z-[100]"
         >
           <motion.button
             onClick={handleScrollDown}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="p-3 bg-[--accent] text-white rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:bg-[--accent-light] transition-colors"
+            className="p-4 bg-white text-gray-900 border border-gray-200 shadow-xl dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             aria-label="Scroll down"
           >
             <motion.div
@@ -58,7 +58,7 @@ export function ScrollIndicator() {
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <ArrowDown className="w-6 h-6" />

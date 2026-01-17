@@ -59,13 +59,13 @@ function CaseStudyModal({
           />
 
           <motion.div
-            className="fixed inset-4 md:inset-10 lg:inset-20 bg-[--background] border border-[--border] rounded-xl z-[60] overflow-hidden shadow-2xl flex flex-col"
+            className="fixed inset-4 md:inset-10 lg:inset-20 bg-white dark:bg-[--background] border border-[--border] rounded-xl z-[60] overflow-hidden shadow-2xl flex flex-col"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="bg-[--background-secondary]/50 border-b border-[--border] p-4 md:p-6 flex justify-between items-start shrink-0">
+            <div className="bg-gray-50/80 dark:bg-[--background-secondary]/50 border-b border-[--border] p-4 md:p-6 flex justify-between items-start shrink-0">
               <div>
                 <span className="text-xs font-mono text-accent uppercase tracking-wider mb-1 block">
                   Case Study
@@ -90,7 +90,7 @@ function CaseStudyModal({
                     Challenge
                   </h3>
                   <p
-                    className="text-[--foreground-secondary] leading-relaxed"
+                    className="text-gray-700 dark:text-[--foreground-secondary] leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: project.caseStudy.challenge,
                     }}
@@ -103,7 +103,7 @@ function CaseStudyModal({
                     Solution
                   </h3>
                   <p
-                    className="text-[--foreground-secondary] leading-relaxed"
+                    className="text-gray-700 dark:text-[--foreground-secondary] leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: project.caseStudy.solution,
                     }}
@@ -116,7 +116,7 @@ function CaseStudyModal({
                     Learnings
                   </h3>
                   <p
-                    className="text-[--foreground-secondary] leading-relaxed"
+                    className="text-gray-700 dark:text-[--foreground-secondary] leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: project.caseStudy.learnings,
                     }}

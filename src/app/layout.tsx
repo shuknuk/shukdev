@@ -23,10 +23,10 @@ export default function RootLayout({
             <main className="page-sheet">
               <Header />
               {children}
-              <ScrollIndicator />
             </main>
           </div>
-        </ThemeProvider>
+          <ScrollIndicator />
+        </ThemeProvider>{" "}
       </body>
     </html>
   );
