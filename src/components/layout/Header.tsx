@@ -16,7 +16,7 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-6">
-          <Link
+          {/*<Link
             href="#projects"
             className="text-sm font-medium text-[--foreground-secondary] hover:text-[--foreground] transition-colors"
           >
@@ -28,7 +28,7 @@ export function Header() {
             className="text-sm font-medium text-[--foreground-secondary] hover:text-[--foreground] transition-colors"
           >
             GitHub
-          </Link>
+          </Link>*/}
           <ThemeToggle />
         </div>
       </nav>
