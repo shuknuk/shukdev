@@ -18,4 +18,5 @@ export interface Project {
     learnings: string;
   };
   image?: string;
+  is_hidden?: boolean;
 }
