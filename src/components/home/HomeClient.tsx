@@ -297,7 +297,10 @@ export default function HomeClient({ initialProjects }: HomeClientProps) {
                 className="mt-12 text-center opacity-40 hover:opacity-100 transition-opacity"
             >
                 <p className="text-[10px] font-mono uppercase tracking-widest">
-                    Designed in the Dark &bull; Powered by Supabase & Next.js &bull; &copy; 2026
+                    &copy; 2026 Kinshuk Goel | All Rights Reserved
+                </p>
+                <p className="text-[10px] font-mono uppercase tracking-widest">
+                    Powered by Supabase & Next.js &bull;
                 </p>
             </motion.div>
         </motion.div>

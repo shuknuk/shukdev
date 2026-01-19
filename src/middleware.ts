@@ -1,8 +1,18 @@
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { updateSession } from '@/utils/supabase/middleware'
 
 export async function middleware(request: NextRequest) {
-    return await updateSession(request)
+    try {
+        return await updateSession(request)
+    } catch (e) {
+        return new NextResponse(
+            JSON.stringify({
+                success: false,
+                message: (e as Error).message,
+            }),
+            { status: 500, headers: { "content-type": "application/json" } }
+        );
+    }
 }
 
 export const config = {
