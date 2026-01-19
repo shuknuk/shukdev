@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Global smooth transitions for theme switching */
+*,
+*::before,
+*::after {
+    transition-property:
+        background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+
+/* Nord Color Scheme */
+:root {
+    /* Desk Background - The area outside the page */
+    --desk-background: #e5e9f0;
+
+    /* Snow Storm - Page background */
+    --background: #eceff4;
+    --background-secondary: #e5e9f0;
+    --foreground: #2e3440;
+    --foreground-secondary: #4c566a;
+
+    /* Frost - Accent */
+    --accent: #5e81ac;
+    --accent-light: #81a1c1;
+
+    /* Aurora - Highlights */
+    --success: #a3be8c;
+
+    /* SOFT LINE OUTLINES - Extremely faint hairlines */
+    --border: rgba(46, 52, 64, 0.08);
+}
+
+.dark {
+    /* Desk Background - The area outside the page */
+    --desk-background: #242933;
+
+    /* Polar Night - Page background */
+    --background: #2e3440;
+    --background-secondary: #3b4252;
+    --foreground: #eceff4;
+    --foreground-secondary: #d8dee9;
+
+    /* Frost - Accent */
+    --accent: #88c0d0;
+    --accent-light: #8fbcbb;
+
+    /* Aurora - Highlights */
+    --success: #a3be8c;
+
+    /* SOFT LINE OUTLINES - Extremely faint hairlines */
+    --border: rgba(236, 239, 244, 0.06);
+}
+
+html {
+    color-scheme: light;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    color: var(--foreground);
+    background: var(--desk-background);
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+/* Page Container */
+.page-container {
+    padding: 2rem 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 0;
+    }
+}
+
+.page-sheet {
+    background: var(--background);
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.dark .page-sheet {
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1024px) {
+    .page-sheet {
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-sheet {
+        margin: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+/* Grid background pattern with radial mask for "fade" effect */
+.bg-grid-pattern {
+    background-image:
+        linear-gradient(to right, var(--border) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+/* Section divider with gradient fade */
+.faded-line-h {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--border) 15%,
+        var(--border) 85%,
+        transparent
+    );
+}
+
+.faded-line-v {
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--border) 15%,
+        var(--border) 85%,
+        transparent
+    );
+}
+
+/* Nord accent color utilities */
+.text-accent {
+    color: var(--accent);
+}
+
+.text-accent-light {
+    color: var(--accent-light);
+}
+
+.bg-accent {
+    background-color: var(--accent);
+}
+
+.border-accent {
+    border-color: var(--accent);
+}
+
+/* Custom scrollbar for Nord */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--desk-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--background-secondary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border);
+}
