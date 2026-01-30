@@ -35,24 +35,26 @@ export const PROJECTS_DATA: Project[] = [
     category: "Featured Work",
     rank: "Gold",
     description:
-      "Vertical tab management extension optimizing browser memory and workflow. Engineered a recursive tree data structure to visualize tab hierarchy; Published Open Source to solve horizontal tab overload.",
+      "Vertical tab management extension optimizing browser memory and workflow. I engineered a recursive tree data structure to visualize tab hierarchy and implemented on device AI for semantic grouping. Published open source to provide an elegant solution for horizontal tab overload.",
     tech: [
       "JavaScript",
       "Chrome Side Panel API",
       "DOM Manipulation",
       "CSS3",
       "HTML5",
+      "Transformers.js",
+      "MiniLM",
     ],
     links: {
       github: "https://github.com/shuknuk/zentreetabs",
     },
     caseStudy: {
       challenge:
-        "Browser tabs quickly spiral out of control during deep research sessions. Horizontal tab bars become unusable past 20+ tabs, destroying context and workflow. The challenge was engineering a performant tree visualization that preserves tab relationships while minimizing memory overhead.",
+        "Browser tabs quickly spiral out of control during deep research sessions. Horizontal tab bars become unusable past 20 tabs which essentially destroys context and workflow. The challenge was engineering a performant tree visualization that preserves tab relationships while minimizing memory overhead. I needed a way to organize chaos without adding more manual work for the user.",
       solution:
-        'I <strong>engineered a recursive tree data structure</strong> to model tab parent-child relationships, enabling automatic nesting of tabs under their "opener" tab. The extension uses <strong>Chrome\'s Side Panel API</strong> with <strong>vanilla JavaScript</strong> for zero-dependency performance. Custom <strong>DOM manipulation</strong> handles real-time tree updates without framework overhead. Implemented collapsible nodes, drag-and-drop reordering via HTML5 Drag API, and multi-select (Ctrl/Shift+click). Published as open source with glassmorphic UI and 5 custom themes.',
+        "I engineered a recursive tree data structure to model parent child relationships and nested tabs under their opener automatically. The extension uses the Chrome Side Panel API with vanilla JavaScript for zero dependency performance. For the intelligent grouping I implemented on device AI using MiniLM. This model provides semantic embeddings by computing cosine similarity between tab titles and domains to detect similar intents. Since MiniLM is purely for signals I built a deterministic logic engine on top to handle the reasoning. By using rules like time windows and session continuity I created a system that groups tabs by actual tasks with 100 percent predictability. This approach avoids the inconsistency of probabilistic LLMs while keeping everything local via Transformers.js. Your data never leaves the device and performance stays snappy because there is no server roundtrip.",
       learnings:
-        "Building without frameworks forced me to deeply understand recursive data structures, event delegation patterns, and Chrome extension architecture. The recursive tree algorithm was particularly interesting—traversing and mutating nested structures while maintaining UI sync required careful state management.",
+        "Building without frameworks forced me to deeply understand recursive data structures and event delegation patterns. Managing nested state while keeping the UI in sync was an interesting challenge in itself. I discovered that you do not always need a massive cloud model to achieve smart features. Combining lightweight embeddings with solid deterministic rules provides a perfectly predictable user experience. Plus keeping everything on device is a massive win for both privacy and latency. It turns out that well designed algorithms can often beat raw model power when you need precision and speed.",
     },
   },
   {
@@ -483,6 +485,10 @@ export const getTechColor = (tech: string): string => {
       "bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-400 border-indigo-300 dark:border-indigo-400/30",
     tavily:
       "bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-400 border-indigo-300 dark:border-indigo-400/30",
+    transformersjs:
+      "bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-400 border-pink-300 dark:border-pink-400/30",
+    minilm:
+      "bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border-cyan-300 dark:border-cyan-400/30",
 
     // DevOps & Deployment
     docker:
