@@ -9,7 +9,7 @@ export async function getProjects(): Promise<Project[]> {
     const { data, error } = await supabase
         .from("projects")
         .select("*")
-        .order("created_at", { ascending: true });
+        .order("display_order", { ascending: true });
 
     if (error) {
         console.error("Error fetching projects:", error);

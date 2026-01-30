@@ -39,9 +39,7 @@ export function ProjectCard({
             </span>
           ) : (
             <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase font-bold bg-[--background] text-[--foreground-secondary] border border-[--border]">
-              {project.category === "Featured Work"
-                ? "Featured"
-                : project.category}
+              {project.category}
             </span>
           )}
         </div>

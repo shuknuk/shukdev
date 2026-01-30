@@ -4,7 +4,7 @@ export type Theme = 'dark' | 'light' | 'system';
 export interface Project {
   id: string;
   title: string;
-  category: 'Featured Work' | 'Creative Labs';
+  category: 'Featured' | 'Project Archive';
   rank?: 'Gold' | 'Silver' | 'Bronze' | 'In Progress';
   description: string;
   tech: string[];
@@ -19,4 +19,5 @@ export interface Project {
   };
   image?: string;
   is_hidden?: boolean;
+  display_order?: number;
 }

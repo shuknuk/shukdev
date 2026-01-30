@@ -5,8 +5,9 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "karebud",
     title: "KareBud",
-    category: "Featured Work",
+    category: "Featured",
     rank: "In Progress",
+    display_order: 1,
     description:
       "AI-powered patient management system with speech-to-text automated records. Architected a relational database schema in Supabase for complex patient histories and built a visual timeline interface using React.",
     tech: [
@@ -32,8 +33,9 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "zentreetabs",
     title: "ZenTreeTabs",
-    category: "Featured Work",
+    category: "Featured",
     rank: "Gold",
+    display_order: 2,
     description:
       "Vertical tab management extension optimizing browser memory and workflow. I engineered a recursive tree data structure to visualize tab hierarchy and implemented on device AI for semantic grouping. Published open source to provide an elegant solution for horizontal tab overload.",
     tech: [
@@ -60,8 +62,9 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "resume-analyzer",
     title: "Intelligent Resume Analyzer",
-    category: "Featured Work",
+    category: "Featured",
     rank: "Gold",
+    display_order: 3,
     description:
       "Containerized AI agent for tailored resume feedback. Full-stack integration using a Dockerized backend and global CDN caching for reliability.",
     tech: [
@@ -96,7 +99,8 @@ export const PROJECTS_DATA: Project[] = [
     id: "portfolio-website",
     title: "This Portfolio Website",
     rank: "Silver",
-    category: "Featured Work",
+    category: "Featured",
+    display_order: 4,
     description: `Personal portfolio showcasing full-stack capabilities with a custom design system, theme-aware UI, and CI/CD deployment pipeline.`,
     tech: [
       "Vite",
@@ -120,8 +124,9 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "brhacks24",
     title: "BRHacks 2024",
-    category: "Featured Work",
+    category: "Featured",
     rank: "Bronze",
+    display_order: 5,
     description:
       "Production event website serving 100+ hackathon participants with real-time registration and zero downtime on Vercel.",
     tech: ["Next.js", "TailwindCSS", "Framer Motion", "Vercel"],
@@ -141,7 +146,8 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "brhacks23",
     title: "BRHacks 2023",
-    category: "Creative Labs",
+    category: "Project Archive",
+    display_order: 6,
     description:
       "First production website for inaugural high school hackathon—my introduction to shipping under deadline pressure.",
     tech: ["Next.js", "CSS"],
@@ -153,7 +159,8 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "env-careers",
     title: "Environmental Careers Guide",
-    category: "Creative Labs",
+    category: "Project Archive",
+    display_order: 7,
     description:
       "Interactive careers explorer built for AP Environmental Science.",
     tech: ["Next.js", "TailwindCSS", "React Hooks"],
@@ -165,7 +172,8 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "shuk-bot",
     title: "shuk-bot",
-    category: "Creative Labs",
+    category: "Project Archive",
+    display_order: 8,
     description: "Discord utility bot with moderation tools.",
     tech: ["JavaScript", "Node.js", "Discord.js"],
     links: {
@@ -175,7 +183,8 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "3pfs-in-1",
     title: "3pfs-in-1",
-    category: "Creative Labs",
+    category: "Project Archive",
+    display_order: 9,
     description: "Bash script to search Snap, Flatpak, and Apt simultaneously.",
     tech: ["Bash"],
     links: {

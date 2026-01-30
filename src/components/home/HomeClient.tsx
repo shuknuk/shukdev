@@ -67,10 +67,10 @@ export default function HomeClient({ initialProjects }: HomeClientProps) {
 
     // Split featured projects
     const featuredProjects = initialProjects.filter(
-        (p) => p.category === "Featured Work",
+        (p) => p.category === "Featured",
     );
     const otherProjects = initialProjects.filter(
-        (p) => p.category !== "Featured Work",
+        (p) => p.category !== "Featured",
     );
 
     const mainFeatured = featuredProjects[0];
