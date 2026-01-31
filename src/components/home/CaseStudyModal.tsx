@@ -1,6 +1,7 @@
 "use client";
 
-import { PROJECTS_DATA, getTechColor } from "@/constants";
+import { getTechColor } from "@/constants";
+import { Project } from "@/types";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
@@ -10,7 +11,7 @@ export function CaseStudyModal({
   isOpen,
   onClose,
 }: {
-  project: (typeof PROJECTS_DATA)[0];
+  project: Project;
   isOpen: boolean;
   onClose: () => void;
 }) {

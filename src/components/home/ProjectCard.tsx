@@ -1,6 +1,7 @@
 "use client";
 
-import { PROJECTS_DATA, getTechColor, getTechIconComponent } from "@/constants";
+import { getTechColor, getTechIconComponent } from "@/constants";
+import { Project } from "@/types";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -11,7 +12,7 @@ export function ProjectCard({
   onOpenCaseStudy,
   featured = false,
 }: {
-  project: (typeof PROJECTS_DATA)[0];
+  project: Project;
   onOpenCaseStudy: (id: string) => void;
   featured?: boolean;
 }) {
