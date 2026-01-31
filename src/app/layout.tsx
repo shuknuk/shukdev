@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/Header";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Kinshuk Goel | Digital Architect",
@@ -26,6 +27,7 @@ export default function RootLayout({
             </main>
           </div>
           <ScrollIndicator />
+          <Analytics />
         </ThemeProvider>{" "}
       </body>
     </html>
