@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LaserBackground } from "@/components/ui/LaserBackground";
 import { ProjectCard } from "@/components/home/ProjectCard";
 import dynamic from "next/dynamic";
@@ -61,7 +61,12 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({ initialProjects }: HomeClientProps) {
+    const [mounted, setMounted] = useState(false);
     const [activeCaseStudy, setActiveCaseStudy] = useState<string | null>(null);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const activeProject = initialProjects.find((p) => p.id === activeCaseStudy);
 
@@ -76,6 +81,8 @@ export default function HomeClient({ initialProjects }: HomeClientProps) {
     const mainFeatured = featuredProjects[0];
     const secondaryFeatured = featuredProjects.slice(1, 3);
     const tertiaryFeatured = featuredProjects.slice(3);
+
+    if (!mounted) return null;
 
     return (
         <motion.div

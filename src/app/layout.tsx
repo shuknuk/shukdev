@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/Header";
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
     "Portfolio of Kinshuk Goel - CS student at Rutgers, AI Engineer, and Full-stack Developer.",
 };
 
+const inter = Inter({ subsets: ["latin"] });
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased selection:bg-accent/30">
+      <body className={`${inter.className} antialiased selection:bg-accent/30`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="page-container">
             <main className="page-sheet">
@@ -28,7 +31,7 @@ export default function RootLayout({
           </div>
           <ScrollIndicator />
           <Analytics />
-        </ThemeProvider>{" "}
+        </ThemeProvider>
       </body>
     </html>
   );
