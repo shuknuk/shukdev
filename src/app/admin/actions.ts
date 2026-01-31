@@ -78,3 +78,76 @@ export async function updateProject(
     revalidatePath("/admin");
     return { success: true };
 }
+
+export async function updateProjectOrder(projectId: string, newOrder: number) {
+    const supabase = await createClient();
+    const { error } = await supabase
+        .from("projects")
+        .update({ display_order: newOrder })
+        .eq("id", projectId);
+
+    if (error) {
+        console.error("Error updating project order:", error);
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    return { success: true };
+}
+
+export async function createProject(projectData: {
+    id: string;
+    title: string;
+    description: string;
+    category: "Featured" | "Project Archive";
+    rank?: string | null;
+    tech: string[];
+    links: {
+        github?: string | { label: string; url: string }[];
+        live?: string;
+    };
+    caseStudy?: {
+        challenge: string;
+        solution: string;
+        learnings: string;
+    } | null;
+}) {
+    const supabase = await createClient();
+
+    // Get the highest display_order and add 1
+    const { data: projects } = await supabase
+        .from("projects")
+        .select("display_order")
+        .order("display_order", { ascending: false })
+        .limit(1);
+
+    const nextOrder = projects && projects.length > 0 ? (projects[0].display_order || 0) + 1 : 1;
+
+    // Map to database format
+    const dbData = {
+        id: projectData.id,
+        title: projectData.title,
+        description: projectData.description,
+        category: projectData.category,
+        rank: projectData.rank || null,
+        tech: projectData.tech,
+        links: projectData.links,
+        case_study: projectData.caseStudy || null,
+        display_order: nextOrder,
+        is_hidden: false,
+    };
+
+    const { error } = await supabase
+        .from("projects")
+        .insert(dbData);
+
+    if (error) {
+        console.error("Error creating project:", error);
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    return { success: true };
+}

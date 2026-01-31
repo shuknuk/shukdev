@@ -1,7 +1,8 @@
 import { CredentialForm } from "@/components/admin/CredentialForm";
 import { ProjectEditor } from "@/components/admin/ProjectEditor";
-import { getProjects, toggleProjectVisibility } from "./actions";
-import { Boxes, Eye, EyeOff } from "lucide-react";
+import { NewProjectForm } from "@/components/admin/NewProjectForm";
+import { getProjects, toggleProjectVisibility, updateProjectOrder } from "./actions";
+import { Boxes, Eye, EyeOff, ChevronUp, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 export default async function AdminPage() {
@@ -11,27 +12,30 @@ export default async function AdminPage() {
         <div className="min-h-screen p-8 max-w-4xl mx-auto">
             <div>
                 <h1 className="text-4xl font-black tracking-tighter mb-2">ADMIN DASHBOARD</h1>
-                <p className="text-[--foreground-secondary] mb-4">Manage project visibility on the main page.</p>
+                <p className="text-[--foreground-secondary] mb-4">Manage your portfolio projects.</p>
             </div>
-            <div className="flex gap-4">
-                <Link
-                    href="#settings"
-                    className="px-4 py-2 border border-[--border] rounded-lg hover:bg-[--background-secondary] transition-colors text-sm font-medium mb-4"
-                >
-                    Settings
-                </Link>
-                <form action={async () => {
-                    "use server";
-                    const { signOut } = await import("@/app/login/actions");
-                    await signOut();
-                }}>
-                    <button
-                        type="submit"
-                        className="px-4 py-2 border border-[--border] rounded-lg hover:bg-red-500/10 hover:border-red-500/50 hover:text-red-500 transition-colors text-sm font-medium mb-4"
+            <div className="flex gap-4 items-center justify-between mb-8">
+                <div className="flex gap-4">
+                    <Link
+                        href="#settings"
+                        className="px-4 py-2 border border-[--border] rounded-lg hover:bg-[--background-secondary] transition-colors text-sm font-medium"
                     >
-                        Logout & Exit
-                    </button>
-                </form>
+                        Settings
+                    </Link>
+                    <form action={async () => {
+                        "use server";
+                        const { signOut } = await import("@/app/login/actions");
+                        await signOut();
+                    }}>
+                        <button
+                            type="submit"
+                            className="px-4 py-2 border border-[--border] rounded-lg hover:bg-red-500/10 hover:border-red-500/50 hover:text-red-500 transition-colors text-sm font-medium"
+                        >
+                            Logout & Exit
+                        </button>
+                    </form>
+                </div>
+                <NewProjectForm />
             </div>
 
 
@@ -51,9 +55,14 @@ export default async function AdminPage() {
                                         <Boxes className={`w-7 h-7 ${isHidden ? 'text-gray-400' : 'text-accent'}`} />
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className={`font-bold text-2xl mb-2 ${isHidden ? 'opacity-50 line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'}`}>
-                                            {project.title}
-                                        </h3>
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <h3 className={`font-bold text-2xl ${isHidden ? 'opacity-50 line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'}`}>
+                                                {project.title}
+                                            </h3>
+                                            <span className="px-2 py-1 rounded-md text-xs font-mono bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
+                                                #{project.display_order}
+                                            </span>
+                                        </div>
                                         <div className="flex items-center gap-3 flex-wrap">
                                             <span className="px-3 py-1 rounded-lg text-sm font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
                                                 {project.category}
@@ -67,31 +76,75 @@ export default async function AdminPage() {
                                     </div>
                                 </div>
 
-                                <form action={async () => {
-                                    "use server";
-                                    await toggleProjectVisibility(project.id, !isHidden);
-                                }}>
-                                    <button
-                                        type="submit"
-                                        className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all shadow-sm hover:shadow ${isHidden
-                                            ? "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
-                                            : "bg-accent text-white border-2 border-accent hover:bg-accent/90"
-                                            }`}
-                                    >
-                                        {isHidden ? (
-                                            <>
-                                                <Eye className="w-5 h-5" />
-                                                Show Project
-                                            </>
-                                        ) : (
-                                            <>
-                                                <EyeOff className="w-5 h-5" />
-                                                Hide Project
-                                            </>
-                                        )}
-                                    </button>
-                                </form>
+                                <div className="flex items-center gap-2">
+                                    {/* Display Order Controls */}
+                                    <div className="flex flex-col gap-1">
+                                        <form action={async () => {
+                                            "use server";
+                                            const currentIndex = projects.findIndex(p => p.id === project.id);
+                                            if (currentIndex > 0) {
+                                                const prevProject = projects[currentIndex - 1];
+                                                await updateProjectOrder(project.id, prevProject.display_order || 0);
+                                                await updateProjectOrder(prevProject.id, project.display_order || 0);
+                                            }
+                                        }}>
+                                            <button
+                                                type="submit"
+                                                disabled={projects.findIndex(p => p.id === project.id) === 0}
+                                                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                                                title="Move up"
+                                            >
+                                                <ChevronUp className="w-4 h-4" />
+                                            </button>
+                                        </form>
+                                        <form action={async () => {
+                                            "use server";
+                                            const currentIndex = projects.findIndex(p => p.id === project.id);
+                                            if (currentIndex < projects.length - 1) {
+                                                const nextProject = projects[currentIndex + 1];
+                                                await updateProjectOrder(project.id, nextProject.display_order || 0);
+                                                await updateProjectOrder(nextProject.id, project.display_order || 0);
+                                            }
+                                        }}>
+                                            <button
+                                                type="submit"
+                                                disabled={projects.findIndex(p => p.id === project.id) === projects.length - 1}
+                                                className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                                                title="Move down"
+                                            >
+                                                <ChevronDown className="w-4 h-4" />
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    {/* Visibility Toggle */}
+                                    <form action={async () => {
+                                        "use server";
+                                        await toggleProjectVisibility(project.id, !isHidden);
+                                    }}>
+                                        <button
+                                            type="submit"
+                                            className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all shadow-sm hover:shadow ${isHidden
+                                                ? "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500"
+                                                : "bg-accent text-white border-2 border-accent hover:bg-accent/90"
+                                                }`}
+                                        >
+                                            {isHidden ? (
+                                                <>
+                                                    <Eye className="w-5 h-5" />
+                                                    Show Project
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <EyeOff className="w-5 h-5" />
+                                                    Hide Project
+                                                </>
+                                            )}
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
+
 
                             {/* Project Details */}
                             <div className="space-y-5 mb-6">
@@ -116,7 +169,7 @@ export default async function AdminPage() {
                         </div>
                     );
                 })}
-            </div>
+            </div >
 
             <div id="settings" className="mt-16 pt-12 border-t border-[--border]">
                 <h2 className="text-2xl font-bold mb-6">Admin Settings</h2>
