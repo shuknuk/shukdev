@@ -39,3 +39,42 @@ export async function toggleProjectVisibility(projectId: string, isHidden: boole
     revalidatePath("/admin");
     return { success: true };
 }
+
+export async function updateProject(
+    projectId: string,
+    updates: {
+        title?: string;
+        description?: string;
+        category?: string;
+        rank?: string | null;
+        caseStudy?: {
+            challenge: string;
+            solution: string;
+            learnings: string;
+        } | null;
+    }
+) {
+    const supabase = await createClient();
+
+    // Map caseStudy to case_study for database
+    const dbUpdates: Record<string, unknown> = {};
+    if (updates.title !== undefined) dbUpdates.title = updates.title;
+    if (updates.description !== undefined) dbUpdates.description = updates.description;
+    if (updates.category !== undefined) dbUpdates.category = updates.category;
+    if (updates.rank !== undefined) dbUpdates.rank = updates.rank;
+    if (updates.caseStudy !== undefined) dbUpdates.case_study = updates.caseStudy;
+
+    const { error } = await supabase
+        .from("projects")
+        .update(dbUpdates)
+        .eq("id", projectId);
+
+    if (error) {
+        console.error("Error updating project:", error);
+        return { success: false, error: error.message };
+    }
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    return { success: true };
+}
