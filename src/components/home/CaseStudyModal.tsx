@@ -5,7 +5,7 @@ import { Project } from "@/types";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import { MarkdownRenderer } from "@/components/shared/MarkdownRenderer";
 
 export function CaseStudyModal({
   project,
@@ -104,8 +104,8 @@ export function CaseStudyModal({
                     <div className="w-1.5 h-1.5 rounded-full bg-accent" /> The
                     Challenge
                   </h3>
-                  <div className="text-white/90 leading-relaxed prose prose-invert prose-sm max-w-none">
-                    <ReactMarkdown>{project.caseStudy.challenge}</ReactMarkdown>
+                  <div className="text-white/90 leading-relaxed">
+                    <MarkdownRenderer content={project.caseStudy.challenge} />
                   </div>
                 </div>
 
@@ -114,8 +114,8 @@ export function CaseStudyModal({
                     <div className="w-1.5 h-1.5 rounded-full bg-accent" /> The
                     Solution
                   </h3>
-                  <div className="text-white/90 leading-relaxed prose prose-invert prose-sm max-w-none">
-                    <ReactMarkdown>{project.caseStudy.solution}</ReactMarkdown>
+                  <div className="text-white/90 leading-relaxed">
+                    <MarkdownRenderer content={project.caseStudy.solution} />
                   </div>
                 </div>
 
@@ -124,8 +124,8 @@ export function CaseStudyModal({
                     <div className="w-1.5 h-1.5 rounded-full bg-accent" />{" "}
                     Learnings
                   </h3>
-                  <div className="text-white/90 leading-relaxed prose prose-invert prose-sm max-w-none">
-                    <ReactMarkdown>{project.caseStudy.learnings}</ReactMarkdown>
+                  <div className="text-white/90 leading-relaxed">
+                    <MarkdownRenderer content={project.caseStudy.learnings} />
                   </div>
                 </div>
 

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 
 export function ProjectCard({
   project,
@@ -80,7 +81,7 @@ export function ProjectCard({
       </h3>
 
       <div className="text-[--foreground-secondary] text-sm leading-relaxed mb-6 line-clamp-3 flex-grow prose prose-sm dark:prose-invert max-w-none prose-p:leading-relaxed prose-p:my-0">
-        <ReactMarkdown>{project.description}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkBreaks]}>{project.description}</ReactMarkdown>
       </div>
 
       <div className="flex flex-col gap-4 mt-auto">

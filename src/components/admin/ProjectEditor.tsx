@@ -3,21 +3,14 @@
 import { Project } from "@/types";
 import { updateProject } from "@/app/admin/actions";
 import { useState, useTransition } from "react";
-import { Pencil, Save, X, Check, Eye } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import { Pencil, Save, X, Check } from "lucide-react";
+import { MarkdownInput } from "@/components/shared/MarkdownInput";
 
 export function ProjectEditor({ project }: { project: Project }) {
     const [isEditing, setIsEditing] = useState(false);
     const [isPending, startTransition] = useTransition();
     const [showSuccess, setShowSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
-    const [showPreview, setShowPreview] = useState<{ [key: string]: boolean }>({
-        description: false,
-        challenge: false,
-        solution: false,
-        learnings: false
-    });
 
     const [formData, setFormData] = useState<{
         title: string;
@@ -180,39 +173,14 @@ export function ProjectEditor({ project }: { project: Project }) {
                         </div>
 
                         {/* Description */}
-                        <div>
-                            <div className="flex justify-between items-center mb-2">
-                                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">
-                                    Description *
-                                </label>
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPreview(prev => ({ ...prev, description: !prev.description }))}
-                                    className="text-xs font-semibold flex items-center gap-1 text-accent hover:underline"
-                                >
-                                    <Eye className="w-3 h-3" />
-                                    {showPreview.description ? "Edit" : "Preview"}
-                                </button>
-                            </div>
-                            {showPreview.description ? (
-                                <div className="w-full px-4 py-3 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 rounded-xl min-h-[100px] prose prose-sm dark:prose-invert max-w-none">
-                                    <ReactMarkdown>{formData.description}</ReactMarkdown>
-                                </div>
-                            ) : (
-                                <textarea
-                                    value={formData.description}
-                                    onChange={(e) =>
-                                        setFormData({ ...formData, description: e.target.value })
-                                    }
-                                    rows={3}
-                                    className="w-full px-4 py-3 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none text-gray-900 dark:text-white"
-                                    required
-                                />
-                            )}
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                                {formData.description.length} characters
-                            </p>
-                        </div>
+                        <MarkdownInput
+                            label="Description"
+                            value={formData.description}
+                            onChange={(value) => setFormData({ ...formData, description: value })}
+                            placeholder="Enter project description...\n\nSupports **bold**, *italic*, [links](url), and more!"
+                            rows={5}
+                            required
+                        />
                     </div>
 
                     {/* Case Study Section */}
@@ -244,112 +212,49 @@ export function ProjectEditor({ project }: { project: Project }) {
                         {formData.caseStudy && (
                             <div className="space-y-5 bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl p-5">
                                 {/* Challenge */}
-                                <div>
-                                    <div className="flex justify-between items-center mb-2">
-                                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">
-                                            Challenge *
-                                        </label>
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowPreview(prev => ({ ...prev, challenge: !prev.challenge }))}
-                                            className="text-xs font-semibold flex items-center gap-1 text-accent hover:underline"
-                                        >
-                                            <Eye className="w-3 h-3" />
-                                            {showPreview.challenge ? "Edit" : "Preview"}
-                                        </button>
-                                    </div>
-                                    {showPreview.challenge ? (
-                                        <div className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-xl min-h-[120px] prose prose-sm dark:prose-invert max-w-none">
-                                            <ReactMarkdown>{formData.caseStudy.challenge}</ReactMarkdown>
-                                        </div>
-                                    ) : (
-                                        <textarea
-                                            value={formData.caseStudy.challenge}
-                                            onChange={(e) =>
-                                                setFormData({
-                                                    ...formData,
-                                                    caseStudy: formData.caseStudy ? { ...formData.caseStudy, challenge: e.target.value } : null,
-                                                })
-                                            }
-                                            rows={4}
-                                            className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none text-gray-900 dark:text-white"
-                                            placeholder="Describe the challenge or problem this project addressed..."
-                                            required={!!formData.caseStudy}
-                                        />
-                                    )}
-                                </div>
+                                <MarkdownInput
+                                    label="Challenge"
+                                    value={formData.caseStudy.challenge}
+                                    onChange={(value) =>
+                                        setFormData({
+                                            ...formData,
+                                            caseStudy: formData.caseStudy ? { ...formData.caseStudy, challenge: value } : null,
+                                        })
+                                    }
+                                    placeholder="Describe the challenge you faced...\n\nWhat problem were you trying to solve?"
+                                    rows={6}
+                                    required={!!formData.caseStudy}
+                                />
 
                                 {/* Solution */}
-                                <div>
-                                    <div className="flex justify-between items-center mb-2">
-                                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">
-                                            Solution *
-                                        </label>
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowPreview(prev => ({ ...prev, solution: !prev.solution }))}
-                                            className="text-xs font-semibold flex items-center gap-1 text-accent hover:underline"
-                                        >
-                                            <Eye className="w-3 h-3" />
-                                            {showPreview.solution ? "Edit" : "Preview"}
-                                        </button>
-                                    </div>
-                                    {showPreview.solution ? (
-                                        <div className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-xl min-h-[120px] prose prose-sm dark:prose-invert max-w-none">
-                                            <ReactMarkdown>{formData.caseStudy.solution}</ReactMarkdown>
-                                        </div>
-                                    ) : (
-                                        <textarea
-                                            value={formData.caseStudy.solution}
-                                            onChange={(e) =>
-                                                setFormData({
-                                                    ...formData,
-                                                    caseStudy: formData.caseStudy ? { ...formData.caseStudy, solution: e.target.value } : null,
-                                                })
-                                            }
-                                            rows={4}
-                                            className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none text-gray-900 dark:text-white"
-                                            placeholder="Explain how you solved the problem..."
-                                            required={!!formData.caseStudy}
-                                        />
-                                    )}
-                                </div>
+                                <MarkdownInput
+                                    label="Solution"
+                                    value={formData.caseStudy.solution}
+                                    onChange={(value) =>
+                                        setFormData({
+                                            ...formData,
+                                            caseStudy: formData.caseStudy ? { ...formData.caseStudy, solution: value } : null,
+                                        })
+                                    }
+                                    placeholder="Explain your solution...\n\nHow did you approach and solve the problem?"
+                                    rows={6}
+                                    required={!!formData.caseStudy}
+                                />
 
                                 {/* Learnings */}
-                                <div>
-                                    <div className="flex justify-between items-center mb-2">
-                                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">
-                                            Learnings *
-                                        </label>
-                                        <button
-                                            type="button"
-                                            onClick={() => setShowPreview(prev => ({ ...prev, learnings: !prev.learnings }))}
-                                            className="text-xs font-semibold flex items-center gap-1 text-accent hover:underline"
-                                        >
-                                            <Eye className="w-3 h-3" />
-                                            {showPreview.learnings ? "Edit" : "Preview"}
-                                        </button>
-                                    </div>
-                                    {showPreview.learnings ? (
-                                        <div className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-xl min-h-[120px] prose prose-sm dark:prose-invert max-w-none">
-                                            <ReactMarkdown>{formData.caseStudy.learnings}</ReactMarkdown>
-                                        </div>
-                                    ) : (
-                                        <textarea
-                                            value={formData.caseStudy.learnings}
-                                            onChange={(e) =>
-                                                setFormData({
-                                                    ...formData,
-                                                    caseStudy: formData.caseStudy ? { ...formData.caseStudy, learnings: e.target.value } : null,
-                                                })
-                                            }
-                                            rows={4}
-                                            className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all resize-none text-gray-900 dark:text-white"
-                                            placeholder="Share what you learned from this project..."
-                                            required={!!formData.caseStudy}
-                                        />
-                                    )}
-                                </div>
+                                <MarkdownInput
+                                    label="Learnings"
+                                    value={formData.caseStudy.learnings}
+                                    onChange={(value) =>
+                                        setFormData({
+                                            ...formData,
+                                            caseStudy: formData.caseStudy ? { ...formData.caseStudy, learnings: value } : null,
+                                        })
+                                    }
+                                    placeholder="Share what you learned...\n\nWhat insights or skills did you gain from this project?"
+                                    rows={6}
+                                    required={!!formData.caseStudy}
+                                />
                             </div>
                         )}
                     </div>
