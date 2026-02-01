@@ -5,6 +5,7 @@ import { Project } from "@/types";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 export function CaseStudyModal({
   project,
@@ -103,12 +104,9 @@ export function CaseStudyModal({
                     <div className="w-1.5 h-1.5 rounded-full bg-accent" /> The
                     Challenge
                   </h3>
-                  <p
-                    className="text-white/90 leading-relaxed"
-                    dangerouslySetInnerHTML={{
-                      __html: project.caseStudy.challenge,
-                    }}
-                  />
+                  <div className="text-white/90 leading-relaxed prose prose-invert prose-sm max-w-none">
+                    <ReactMarkdown>{project.caseStudy.challenge}</ReactMarkdown>
+                  </div>
                 </div>
 
                 <div>
@@ -116,12 +114,9 @@ export function CaseStudyModal({
                     <div className="w-1.5 h-1.5 rounded-full bg-accent" /> The
                     Solution
                   </h3>
-                  <p
-                    className="text-white/90 leading-relaxed"
-                    dangerouslySetInnerHTML={{
-                      __html: project.caseStudy.solution,
-                    }}
-                  />
+                  <div className="text-white/90 leading-relaxed prose prose-invert prose-sm max-w-none">
+                    <ReactMarkdown>{project.caseStudy.solution}</ReactMarkdown>
+                  </div>
                 </div>
 
                 <div>
@@ -129,12 +124,9 @@ export function CaseStudyModal({
                     <div className="w-1.5 h-1.5 rounded-full bg-accent" />{" "}
                     Learnings
                   </h3>
-                  <p
-                    className="text-white/90 leading-relaxed"
-                    dangerouslySetInnerHTML={{
-                      __html: project.caseStudy.learnings,
-                    }}
-                  />
+                  <div className="text-white/90 leading-relaxed prose prose-invert prose-sm max-w-none">
+                    <ReactMarkdown>{project.caseStudy.learnings}</ReactMarkdown>
+                  </div>
                 </div>
 
                 <div className="pt-6 border-t border-white/10">

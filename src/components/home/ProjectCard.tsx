@@ -6,6 +6,7 @@ import { ArrowUpRight, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 export function ProjectCard({
   project,
@@ -78,9 +79,9 @@ export function ProjectCard({
         {project.title}
       </h3>
 
-      <p className="text-[--foreground-secondary] text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
-        {project.description}
-      </p>
+      <div className="text-[--foreground-secondary] text-sm leading-relaxed mb-6 line-clamp-3 flex-grow prose prose-sm dark:prose-invert max-w-none prose-p:leading-relaxed prose-p:my-0">
+        <ReactMarkdown>{project.description}</ReactMarkdown>
+      </div>
 
       <div className="flex flex-col gap-4 mt-auto">
         <div className="flex flex-wrap gap-1.5">
